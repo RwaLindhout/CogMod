@@ -103,11 +103,11 @@
 		23D30CD4221ADE1300982D18 /* BeverBende */ = {
 			isa = PBXGroup;
 			children = (
+				23D30CE1221ADE1400982D18 /* Info.plist */,
 				23D30D03221ADE5100982D18 /* Extra */,
 				23D30CD5221ADE1300982D18 /* AppDelegate.swift */,
 				23D30CD7221ADE1300982D18 /* ViewController.swift */,
 				23D30CD9221ADE1300982D18 /* Main.storyboard */,
-				23D30CDE221ADE1400982D18 /* LaunchScreen.storyboard */,
 				23D30D06221ADEDC00982D18 /* Deck.swift */,
 				23D30D0A221ADF8500982D18 /* Card.swift */,
 				23D30D0C221ADFA400982D18 /* Game.swift */,
@@ -136,8 +136,8 @@
 		23D30D03221ADE5100982D18 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				23D30CDE221ADE1400982D18 /* LaunchScreen.storyboard */,
 				23D30CDC221ADE1400982D18 /* Assets.xcassets */,
-				23D30CE1221ADE1400982D18 /* Info.plist */,
 			);
 			path = Extra;
 			sourceTree = "<group>";

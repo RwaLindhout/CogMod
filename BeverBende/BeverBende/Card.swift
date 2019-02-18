@@ -9,5 +9,22 @@
 import Foundation
 
 struct Card {
+    var isFaceUp = false
+    var value: Int
+    var identifier: Int
     
+    var cardValue: Int {
+        get {
+            return value
+        } set {
+            value = newValue
+        }
+    }
+    
+    static var identifierFactory = 0
+
+    static func getUniqueIdentifier() -> Int {
+        identifierFactory += 1
+        return 0
+    }
 }

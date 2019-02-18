@@ -9,12 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private lazy var game = Deck()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-
+    @IBOutlet var cardValue: [UIButton]!
+    // Generated code, not sure if needed or not
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        // Do any additional setup after loading the view, typically from a nib.
+//    }
+    
 }
 
