@@ -9,5 +9,9 @@
 import Foundation
 
 class Game {
+    var deck = Deck()
     
+    init() {
+        self.deck = Deck()
+    }
 }

@@ -19,13 +19,13 @@ struct Card: Hashable {
     var value: Int
     private var identifier: Int
     
-    var cardValue: Int {
-        get {
-            return value
-        } set {
-            value = newValue
-        }
-    }
+//    var cardValue: Int {
+//        get {
+//            return value
+//        } set {
+//            value = newValue
+//        }
+//    }
     
     static var identifierFactory = 0
 
@@ -34,16 +34,8 @@ struct Card: Hashable {
         return 0
     }
     
-    init() {
+    init(value: Int) {
         self.identifier = Card.getUniqueIdentifier()
-        // self.value needs to be a random number
-        self.value = Int(arc4random())
-    }
-}
-
-extension Int {
-    var arc4random: Int {
-//        return Int(arc4random_uniform(UInt32(9)))
-        return Int(arc4random_uniform(UInt32(9)))
+        self.value = value
     }
 }
