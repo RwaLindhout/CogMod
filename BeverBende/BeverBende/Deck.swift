@@ -14,9 +14,10 @@ class Deck {
     // TODO: initialize all cards
     init() {
         for _ in 0..<6 {
-            for i in 0..<10 {
+            for _ in 0..<10 {
                 // Initialize a card with a value ranging from 0 to 9
-                let card = Card(isFaceUp: false, value: i, identifier: Card.getUniqueIdentifier())
+                let card = Card()
+//                let card = Card(isFaceUp: false, value: i, identifier: Card.getUniqueIdentifier())
                 cards += [card]
                 print(card.cardValue)
             }

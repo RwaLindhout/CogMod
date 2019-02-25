@@ -8,10 +8,16 @@
 
 import Foundation
 
-struct Card {
+struct Card: Hashable {
+    var hashValue: Int { return identifier }
+    
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    
     var isFaceUp = false
     var value: Int
-    var identifier: Int
+    private var identifier: Int
     
     var cardValue: Int {
         get {
@@ -26,5 +32,18 @@ struct Card {
     static func getUniqueIdentifier() -> Int {
         identifierFactory += 1
         return 0
+    }
+    
+    init() {
+        self.identifier = Card.getUniqueIdentifier()
+        // self.value needs to be a random number
+        self.value = Int(arc4random())
+    }
+}
+
+extension Int {
+    var arc4random: Int {
+//        return Int(arc4random_uniform(UInt32(9)))
+        return Int(arc4random_uniform(UInt32(9)))
     }
 }
