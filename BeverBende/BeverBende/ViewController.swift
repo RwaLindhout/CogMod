@@ -11,6 +11,20 @@ import UIKit
 class ViewController: UIViewController {
     private lazy var game = Game()
     
+    @IBAction func draw(_ sender: UIButton) {
+    }
+    
+    @IBAction func discard(_ sender: UIButton) {
+    }
+    
+    @IBAction func beverbende(_ sender: UIButton) {
+    }
+    
+    @IBAction func score(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Score", message: "score", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
     
     @IBOutlet var cardButtons: [UIButton]!
     

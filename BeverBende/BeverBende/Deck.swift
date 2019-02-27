@@ -16,7 +16,7 @@ class Deck {
             for i in 0..<10 {
                 let card = Card(value: i)
                 cards += [card]
-                print(card.cardValue)
+                print(card.value)
             }
         }
     }

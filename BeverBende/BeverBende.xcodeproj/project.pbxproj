@@ -11,12 +11,14 @@
 		23D30CD8221ADE1300982D18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CD7221ADE1300982D18 /* ViewController.swift */; };
 		23D30CDB221ADE1300982D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CD9221ADE1300982D18 /* Main.storyboard */; };
 		23D30CDD221ADE1400982D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CDC221ADE1400982D18 /* Assets.xcassets */; };
-		23D30CE0221ADE1400982D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CDE221ADE1400982D18 /* LaunchScreen.storyboard */; };
+		23D30CE0221ADE1400982D18 /* StartScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CDE221ADE1400982D18 /* StartScreen.storyboard */; };
 		23D30CEB221ADE1400982D18 /* BeverBendeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CEA221ADE1400982D18 /* BeverBendeTests.swift */; };
 		23D30CF6221ADE1400982D18 /* BeverBendeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CF5221ADE1400982D18 /* BeverBendeUITests.swift */; };
 		23D30D07221ADEDC00982D18 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D06221ADEDC00982D18 /* Deck.swift */; };
 		23D30D0B221ADF8500982D18 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D0A221ADF8500982D18 /* Card.swift */; };
 		23D30D0D221ADFA400982D18 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D0C221ADFA400982D18 /* Game.swift */; };
+		C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */; };
+		C6B6CAB122269D9B00724A90 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6CAB022269D9B00724A90 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +44,7 @@
 		23D30CD7221ADE1300982D18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		23D30CDA221ADE1300982D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23D30CDC221ADE1400982D18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		23D30CDF221ADE1400982D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		23D30CDF221ADE1400982D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StartScreen.storyboard; sourceTree = "<group>"; };
 		23D30CE1221ADE1400982D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23D30CE6221ADE1400982D18 /* BeverBendeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeverBendeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D30CEA221ADE1400982D18 /* BeverBendeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeverBendeTests.swift; sourceTree = "<group>"; };
@@ -53,6 +55,8 @@
 		23D30D06221ADEDC00982D18 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		23D30D0A221ADF8500982D18 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		23D30D0C221ADFA400982D18 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C6B6CAB022269D9B00724A90 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				23D30CE1221ADE1400982D18 /* Info.plist */,
 				23D30D03221ADE5100982D18 /* Extra */,
 				23D30CD5221ADE1300982D18 /* AppDelegate.swift */,
+				23D30CDE221ADE1400982D18 /* StartScreen.storyboard */,
+				C6B6CAB022269D9B00724A90 /* StartViewController.swift */,
 				23D30CD7221ADE1300982D18 /* ViewController.swift */,
 				23D30CD9221ADE1300982D18 /* Main.storyboard */,
 				23D30D06221ADEDC00982D18 /* Deck.swift */,
@@ -136,8 +142,8 @@
 		23D30D03221ADE5100982D18 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
-				23D30CDE221ADE1400982D18 /* LaunchScreen.storyboard */,
 				23D30CDC221ADE1400982D18 /* Assets.xcassets */,
+				C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -246,7 +252,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23D30CE0221ADE1400982D18 /* LaunchScreen.storyboard in Resources */,
+				23D30CE0221ADE1400982D18 /* StartScreen.storyboard in Resources */,
+				C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */,
 				23D30CDD221ADE1400982D18 /* Assets.xcassets in Resources */,
 				23D30CDB221ADE1300982D18 /* Main.storyboard in Resources */,
 			);
@@ -278,6 +285,7 @@
 				23D30CD8221ADE1300982D18 /* ViewController.swift in Sources */,
 				23D30CD6221ADE1300982D18 /* AppDelegate.swift in Sources */,
 				23D30D0B221ADF8500982D18 /* Card.swift in Sources */,
+				C6B6CAB122269D9B00724A90 /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,12 +329,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		23D30CDE221ADE1400982D18 /* LaunchScreen.storyboard */ = {
+		23D30CDE221ADE1400982D18 /* StartScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				23D30CDF221ADE1400982D18 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = StartScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -461,7 +469,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "nooit-win-ik-met.BeverBende";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -478,7 +486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "nooit-win-ik-met.BeverBende";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
