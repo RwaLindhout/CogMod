@@ -28,7 +28,12 @@ class ViewController: UIViewController {
     
     @IBOutlet var cardButtons: [UIButton]!
     
+    // Update all different decks
     private func updateViewFromModel() {
+        // TODO: Update player deck
+        // TODO: Update ACT-R deck
+        // TODO: Update the draw pile and the discard pile
+        
         for index in cardButtons.indices {
             let button = cardButtons[index]
             let card = game.deck.cards[index]
