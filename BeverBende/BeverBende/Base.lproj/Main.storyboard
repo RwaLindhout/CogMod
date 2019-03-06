@@ -261,7 +261,7 @@
                         <outlet property="discard" destination="N2C-Zn-DVQ" id="hVM-g4-itL"/>
                         <outlet property="draw" destination="ho1-bF-7K4" id="sKU-4x-1oi"/>
                         <outlet property="score" destination="zwo-eb-4R9" id="QKh-FC-kCR"/>
-                        <outletCollection property="act1Buttons" destination="0R6-NN-Ira" collectionClass="NSMutableArray" id="LAr-iO-HDu"/>
+                        <outletCollection property="actr1Buttons" destination="0R6-NN-Ira" collectionClass="NSMutableArray" id="LAr-iO-HDu"/>
                         <outletCollection property="actr3Buttons" destination="aQM-Pd-UQl" collectionClass="NSMutableArray" id="iEI-B2-cSO"/>
                         <outletCollection property="playerButtons" destination="lbk-Iq-RBo" collectionClass="NSMutableArray" id="y5a-B0-zT7"/>
                         <outletCollection property="actr2Buttons" destination="KSH-mc-FKh" collectionClass="NSMutableArray" id="O25-dj-C03"/>

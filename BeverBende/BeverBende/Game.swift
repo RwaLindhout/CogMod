@@ -10,10 +10,10 @@ import Foundation
 
 class Game {
     var drawPile: Deck
-    var playerDeck: Deck
-    var actrDeck1: Deck
-    var actrDeck2: Deck
-    var actrDeck3: Deck
+    public var playerDeck: Deck
+    public var actrDeck1: Deck
+    public var actrDeck2: Deck
+    public var actrDeck3: Deck
     var discardPile: Deck
     
     init() {
