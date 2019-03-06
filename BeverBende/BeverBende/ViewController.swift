@@ -20,6 +20,18 @@ class ViewController: UIViewController {
     @IBAction func beverbende(_ sender: UIButton) {
     }
     
+    @IBAction func playerButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func actr1Button(_ sender: UIButton) {
+    }
+    
+    @IBAction func actr2Button(_ sender: UIButton) {
+    }
+    
+    @IBAction func actr3Button(_ sender: UIButton) {
+    }
+    
     @IBAction func score(_ sender: UIButton) {
         let alert = UIAlertController(title: "Score", message: "score", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
