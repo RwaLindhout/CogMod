@@ -11,26 +11,18 @@ import UIKit
 class ViewController: UIViewController {
     private lazy var game = Game()
     
-    @IBAction func draw(_ sender: UIButton) {
+   
+    @IBAction func touchCard(_ sender: Any) {
     }
     
-    @IBAction func discard(_ sender: UIButton) {
-    }
+    @IBOutlet var playerButtons: [UIButton]!
+    @IBOutlet var act1Buttons: [UIButton]!
+    @IBOutlet var actr2Buttons: [UIButton]!
+    @IBOutlet var actr3Buttons: [UIButton]!
     
-    @IBAction func beverbende(_ sender: UIButton) {
-    }
-    
-    @IBAction func playerButton(_ sender: UIButton) {
-    }
-    
-    @IBAction func actr1Button(_ sender: UIButton) {
-    }
-    
-    @IBAction func actr2Button(_ sender: UIButton) {
-    }
-    
-    @IBAction func actr3Button(_ sender: UIButton) {
-    }
+    @IBOutlet weak var discard: UIButton!
+    @IBOutlet weak var beverbende: UIButton!
+    @IBOutlet weak var deck: UIButton!
     
     @IBAction func score(_ sender: UIButton) {
         let alert = UIAlertController(title: "Score", message: "score", preferredStyle: .alert)

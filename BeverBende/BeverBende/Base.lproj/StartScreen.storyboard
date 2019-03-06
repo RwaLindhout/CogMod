@@ -18,9 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCz-TJ-Rz2">
-                                <rect key="frame" x="451" y="524" width="122" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCz-TJ-Rz2">
+                                <rect key="frame" x="450" y="524" width="124" height="57"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Instructions">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -38,19 +37,50 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1R8-qn-5NB">
-                                <rect key="frame" x="245" y="353" width="94" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1R8-qn-5NB">
+                                <rect key="frame" x="305.5" y="379" width="61" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="New Game">
+                                <state key="normal" title="2 rounds">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="New_Game:" destination="Wow-Ss-PZs" eventType="touchUpInside" id="0lc-iq-Hhe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idN-BH-siq">
+                                <rect key="frame" x="657.5" y="379" width="61" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="6 rounds">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="New_Game:" destination="Wow-Ss-PZs" eventType="touchUpInside" id="S3O-cs-Qjw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8K-zS-eV4">
+                                <rect key="frame" x="481.5" y="379" width="61" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="4 rounds">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="New_Game:" destination="Wow-Ss-PZs" eventType="touchUpInside" id="XfN-vq-D5B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.091823838651180267" green="0.63749819993972778" blue="0.096601419150829315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="idN-BH-siq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="6hg-2M-CPM"/>
+                            <constraint firstItem="ZCz-TJ-Rz2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="450" id="9Dj-7c-XD4"/>
+                            <constraint firstItem="ZCz-TJ-Rz2" firstAttribute="top" secondItem="O8K-zS-eV4" secondAttribute="bottom" constant="115" id="KF5-lJ-Q71"/>
+                            <constraint firstItem="O8K-zS-eV4" firstAttribute="leading" secondItem="1R8-qn-5NB" secondAttribute="trailing" constant="115" id="VcS-AZ-bpN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZCz-TJ-Rz2" secondAttribute="trailing" constant="450" id="Xr3-PA-MkI"/>
+                            <constraint firstItem="O8K-zS-eV4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="a4C-Bm-Yte"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZCz-TJ-Rz2" secondAttribute="bottom" constant="187" id="mCo-xv-LHV"/>
+                            <constraint firstItem="idN-BH-siq" firstAttribute="leading" secondItem="O8K-zS-eV4" secondAttribute="trailing" constant="115" id="nWk-F5-sug"/>
+                            <constraint firstItem="1R8-qn-5NB" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="spA-EW-dTl"/>
+                            <constraint firstItem="O8K-zS-eV4" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="z8R-zi-VGb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

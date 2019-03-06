@@ -10,12 +10,7 @@ import UIKit
 
 class StartViewController: UIViewController {
     
-    @IBAction func New_Game(_ sender: UIButton) {
-        Game.init()
-    }
-    
-    @IBAction func n_rounds(_ sender: UISlider) {
-    }
+   
     
     @IBAction func Instructions(_ sender: UIButton) {
         let alert = UIAlertController(title: "Instructions", message: "text", preferredStyle: .alert)
