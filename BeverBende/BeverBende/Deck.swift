@@ -23,21 +23,30 @@ class Deck {
         // Shuffles the entire deck
         cards.shuffle()
         // Last card in the drawPile should be faceUp
-        cards[cards.endIndex-1].isFaceUp = true
+//        cards[cards.endIndex-1].isFaceUp = true
     }
     
     // Initialize a player deck
     private func createPlayerDeck(drawDeck: Deck) {
-        let playerDeck = Deck()
         for i in 0..<4 {
-            drawCard(position: i, fromDeck: drawDeck, toDeck: playerDeck)
+            drawCard(position: i, fromDeck: drawDeck)
         }
     }
     
     // Draws a card from one deck to another
-    public func drawCard(position: Int, fromDeck: Deck, toDeck: Deck) {
+    public func drawCard(position: Int, fromDeck: Deck) {
         let card = fromDeck.cards.popLast()
-        toDeck.cards.insert(card!, at: position)
+        self.cards.insert(card!, at:position)
+    }
+    
+    public func isEmpty() -> Bool {
+        return self.cards.isEmpty
+    }
+    
+    public func showOuterCards() {
+        self.cards[0].isFaceUp = true
+        print(cards.endIndex-1)
+        self.cards[self.cards.endIndex-1].isFaceUp = true
     }
     
     // Init a deck with all the cards
@@ -54,6 +63,5 @@ class Deck {
     
     // Init an empty deck
     init() {
-        
     }
 }

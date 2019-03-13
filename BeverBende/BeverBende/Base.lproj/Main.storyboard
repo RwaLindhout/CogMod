@@ -208,6 +208,7 @@
                                 <connections>
                                     <action selector="beverbende:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KSp-4D-Vcf"/>
                                     <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EbM-Gh-VtY"/>
+                                    <action selector="touchStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8C9-UU-fS8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -256,15 +257,25 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="beverbende" destination="CIu-il-e2r" id="beo-er-eFG"/>
-                        <outlet property="deck" destination="ho1-bF-7K4" id="qvE-nL-Fow"/>
-                        <outlet property="discard" destination="N2C-Zn-DVQ" id="hVM-g4-itL"/>
-                        <outlet property="draw" destination="ho1-bF-7K4" id="sKU-4x-1oi"/>
-                        <outlet property="score" destination="zwo-eb-4R9" id="QKh-FC-kCR"/>
+                        <outlet property="beverBende" destination="CIu-il-e2r" id="beo-er-eFG"/>
+                        <outlet property="discardPile" destination="N2C-Zn-DVQ" id="hVM-g4-itL"/>
+                        <outlet property="drawPile" destination="ho1-bF-7K4" id="qvE-nL-Fow"/>
                         <outletCollection property="actr1Buttons" destination="0R6-NN-Ira" collectionClass="NSMutableArray" id="LAr-iO-HDu"/>
                         <outletCollection property="actr3Buttons" destination="aQM-Pd-UQl" collectionClass="NSMutableArray" id="iEI-B2-cSO"/>
                         <outletCollection property="playerButtons" destination="lbk-Iq-RBo" collectionClass="NSMutableArray" id="y5a-B0-zT7"/>
                         <outletCollection property="actr2Buttons" destination="KSH-mc-FKh" collectionClass="NSMutableArray" id="O25-dj-C03"/>
+                        <outletCollection property="playerButtons" destination="YwM-MV-Kek" collectionClass="NSMutableArray" id="Xa5-W9-DBY"/>
+                        <outletCollection property="playerButtons" destination="3Rx-Zh-D23" collectionClass="NSMutableArray" id="TVQ-K9-LBe"/>
+                        <outletCollection property="playerButtons" destination="ke8-tz-XQA" collectionClass="NSMutableArray" id="ndj-yg-DgF"/>
+                        <outletCollection property="actr1Buttons" destination="RUo-vz-J3d" collectionClass="NSMutableArray" id="4uN-jK-tzp"/>
+                        <outletCollection property="actr1Buttons" destination="RM8-fm-BOR" collectionClass="NSMutableArray" id="S88-CJ-FQL"/>
+                        <outletCollection property="actr1Buttons" destination="4wD-od-98f" collectionClass="NSMutableArray" id="Jdw-hv-Jdl"/>
+                        <outletCollection property="actr2Buttons" destination="wUh-oa-dLQ" collectionClass="NSMutableArray" id="7bl-9J-CNr"/>
+                        <outletCollection property="actr2Buttons" destination="f6c-fz-2X6" collectionClass="NSMutableArray" id="Qf5-U2-E4N"/>
+                        <outletCollection property="actr2Buttons" destination="Z8p-HU-stZ" collectionClass="NSMutableArray" id="zvJ-Ad-Om0"/>
+                        <outletCollection property="actr3Buttons" destination="sH5-Zb-4sw" collectionClass="NSMutableArray" id="y7k-hh-6aP"/>
+                        <outletCollection property="actr3Buttons" destination="Fjc-Az-ZhG" collectionClass="NSMutableArray" id="Hff-nb-OtM"/>
+                        <outletCollection property="actr3Buttons" destination="GLy-jJ-F8M" collectionClass="NSMutableArray" id="bkb-mW-UCF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

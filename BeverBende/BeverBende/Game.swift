@@ -9,12 +9,25 @@
 import Foundation
 
 class Game {
-    var drawPile: Deck
+    public var drawPile: Deck
     public var playerDeck: Deck
     public var actrDeck1: Deck
     public var actrDeck2: Deck
     public var actrDeck3: Deck
-    var discardPile: Deck
+    public var discardPile: Deck
+    public var currentPlayer: Int
+    
+    public func changePlayer() {
+        self.currentPlayer = 1 - self.currentPlayer
+    }
+    
+    public func showOuterCards() {
+        self.playerDeck.showOuterCards()
+    }
+    
+    public func humanTurn() {
+        // set the outer cards to faceUp, until the Start! button is pushed
+    }
     
     init() {
         self.drawPile = Deck(completeDeck: true)
@@ -23,5 +36,6 @@ class Game {
         self.actrDeck2 = Deck(drawPile: drawPile)
         self.actrDeck3 = Deck(drawPile: drawPile)
         self.discardPile = Deck()
+        self.currentPlayer = 1
     }
 }
