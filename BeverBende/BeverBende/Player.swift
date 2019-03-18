@@ -8,12 +8,13 @@
 
 import Foundation
 
-class ModelPlayer {
+class ModelPlayer: Model {
     public var playerNumber: Int
     public var playerTurn: Bool
     public var humanPlayer: Deck
     public var otherPlayer2: Deck
     public var otherPlayer3: Deck
+    public var loadedModel: String? = nil
     
     init(playerNumber: Int) {
         self.playerNumber = playerNumber

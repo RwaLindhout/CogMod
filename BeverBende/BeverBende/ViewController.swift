@@ -86,7 +86,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         _ = Game()
         updateViewFromModel()
-        // Do any additional setup after loading the view, typically from a nib.
+        game.modelPlayer1.loadModel(fileName: "beverbende")
+        game.modelPlayer2.loadModel(fileName: "beverbende")
+        game.modelPlayer3.loadModel(fileName: "beverbende")
+        game.modelPlayer1.loadedModel = "beverbende"
+        game.modelPlayer2.loadedModel = "beverbende"
+        game.modelPlayer3.loadedModel = "beverbende"
+        // Do any additional setup after loading the view.
     }
 }
 
