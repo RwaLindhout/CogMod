@@ -8,6 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		230C5162223FAAC50027845F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5161223FAAC50027845F /* Player.swift */; };
+		230C5179223FC46E0027845F /* SlotAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5168223FC46E0027845F /* SlotAction.swift */; };
+		230C517A223FC46E0027845F /* BufferCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5169223FC46E0027845F /* BufferCondition.swift */; };
+		230C517B223FC46E0027845F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C516A223FC46E0027845F /* Model.swift */; };
+		230C517C223FC46E0027845F /* Procedural.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C516B223FC46E0027845F /* Procedural.swift */; };
+		230C517D223FC46E0027845F /* Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C516C223FC46E0027845F /* Instantiation.swift */; };
+		230C517E223FC46E0027845F /* Temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C516D223FC46E0027845F /* Temporal.swift */; };
+		230C517F223FC46E0027845F /* Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C516E223FC46E0027845F /* Vision.swift */; };
+		230C5180223FC46E0027845F /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C516F223FC46E0027845F /* Tokenizer.swift */; };
+		230C5181223FC46E0027845F /* SlotCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5170223FC46E0027845F /* SlotCondition.swift */; };
+		230C5182223FC46E0027845F /* BufferAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5171223FC46E0027845F /* BufferAction.swift */; };
+		230C5183223FC46E0027845F /* FocusRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5172223FC46E0027845F /* FocusRing.swift */; };
+		230C5184223FC46E0027845F /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5173223FC46E0027845F /* Support.swift */; };
+		230C5185223FC46E0027845F /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5174223FC46E0027845F /* Parser.swift */; };
+		230C5186223FC46E0027845F /* Declarative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5175223FC46E0027845F /* Declarative.swift */; };
+		230C5187223FC46E0027845F /* Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5176223FC46E0027845F /* Chunk.swift */; };
+		230C5188223FC46E0027845F /* Production.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5177223FC46E0027845F /* Production.swift */; };
+		230C5189223FC46E0027845F /* ACTRWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5178223FC46E0027845F /* ACTRWindowView.swift */; };
 		23D30CD6221ADE1300982D18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CD5221ADE1300982D18 /* AppDelegate.swift */; };
 		23D30CD8221ADE1300982D18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CD7221ADE1300982D18 /* ViewController.swift */; };
 		23D30CDB221ADE1300982D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CD9221ADE1300982D18 /* Main.storyboard */; };
@@ -41,6 +58,23 @@
 
 /* Begin PBXFileReference section */
 		230C5161223FAAC50027845F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		230C5168223FC46E0027845F /* SlotAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotAction.swift; sourceTree = "<group>"; };
+		230C5169223FC46E0027845F /* BufferCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferCondition.swift; sourceTree = "<group>"; };
+		230C516A223FC46E0027845F /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		230C516B223FC46E0027845F /* Procedural.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Procedural.swift; sourceTree = "<group>"; };
+		230C516C223FC46E0027845F /* Instantiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instantiation.swift; sourceTree = "<group>"; };
+		230C516D223FC46E0027845F /* Temporal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temporal.swift; sourceTree = "<group>"; };
+		230C516E223FC46E0027845F /* Vision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vision.swift; sourceTree = "<group>"; };
+		230C516F223FC46E0027845F /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		230C5170223FC46E0027845F /* SlotCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotCondition.swift; sourceTree = "<group>"; };
+		230C5171223FC46E0027845F /* BufferAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferAction.swift; sourceTree = "<group>"; };
+		230C5172223FC46E0027845F /* FocusRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusRing.swift; sourceTree = "<group>"; };
+		230C5173223FC46E0027845F /* Support.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
+		230C5174223FC46E0027845F /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		230C5175223FC46E0027845F /* Declarative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Declarative.swift; sourceTree = "<group>"; };
+		230C5176223FC46E0027845F /* Chunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chunk.swift; sourceTree = "<group>"; };
+		230C5177223FC46E0027845F /* Production.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Production.swift; sourceTree = "<group>"; };
+		230C5178223FC46E0027845F /* ACTRWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTRWindowView.swift; sourceTree = "<group>"; };
 		23D30CD2221ADE1300982D18 /* BeverBende.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeverBende.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D30CD5221ADE1300982D18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23D30CD7221ADE1300982D18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +120,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		230C5167223FC46E0027845F /* Core ACT-R */ = {
+			isa = PBXGroup;
+			children = (
+				230C5168223FC46E0027845F /* SlotAction.swift */,
+				230C5169223FC46E0027845F /* BufferCondition.swift */,
+				230C516A223FC46E0027845F /* Model.swift */,
+				230C516B223FC46E0027845F /* Procedural.swift */,
+				230C516C223FC46E0027845F /* Instantiation.swift */,
+				230C516D223FC46E0027845F /* Temporal.swift */,
+				230C516E223FC46E0027845F /* Vision.swift */,
+				230C516F223FC46E0027845F /* Tokenizer.swift */,
+				230C5170223FC46E0027845F /* SlotCondition.swift */,
+				230C5171223FC46E0027845F /* BufferAction.swift */,
+				230C5172223FC46E0027845F /* FocusRing.swift */,
+				230C5173223FC46E0027845F /* Support.swift */,
+				230C5174223FC46E0027845F /* Parser.swift */,
+				230C5175223FC46E0027845F /* Declarative.swift */,
+				230C5176223FC46E0027845F /* Chunk.swift */,
+				230C5177223FC46E0027845F /* Production.swift */,
+				230C5178223FC46E0027845F /* ACTRWindowView.swift */,
+			);
+			path = "Core ACT-R";
+			sourceTree = "<group>";
+		};
 		23D30CC9221ADE1300982D18 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +167,7 @@
 		23D30CD4221ADE1300982D18 /* BeverBende */ = {
 			isa = PBXGroup;
 			children = (
+				230C5167223FC46E0027845F /* Core ACT-R */,
 				23D30CE1221ADE1400982D18 /* Info.plist */,
 				23D30D03221ADE5100982D18 /* Extra */,
 				23D30CD5221ADE1300982D18 /* AppDelegate.swift */,
@@ -284,12 +343,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				23D30D07221ADEDC00982D18 /* Deck.swift in Sources */,
+				230C5180223FC46E0027845F /* Tokenizer.swift in Sources */,
+				230C517F223FC46E0027845F /* Vision.swift in Sources */,
 				23D30D0D221ADFA400982D18 /* Game.swift in Sources */,
+				230C5184223FC46E0027845F /* Support.swift in Sources */,
 				23D30CD8221ADE1300982D18 /* ViewController.swift in Sources */,
+				230C5179223FC46E0027845F /* SlotAction.swift in Sources */,
+				230C5187223FC46E0027845F /* Chunk.swift in Sources */,
 				23D30CD6221ADE1300982D18 /* AppDelegate.swift in Sources */,
+				230C5181223FC46E0027845F /* SlotCondition.swift in Sources */,
+				230C517B223FC46E0027845F /* Model.swift in Sources */,
 				230C5162223FAAC50027845F /* Player.swift in Sources */,
+				230C5183223FC46E0027845F /* FocusRing.swift in Sources */,
+				230C5185223FC46E0027845F /* Parser.swift in Sources */,
+				230C517D223FC46E0027845F /* Instantiation.swift in Sources */,
+				230C5186223FC46E0027845F /* Declarative.swift in Sources */,
 				23D30D0B221ADF8500982D18 /* Card.swift in Sources */,
+				230C5188223FC46E0027845F /* Production.swift in Sources */,
+				230C517C223FC46E0027845F /* Procedural.swift in Sources */,
 				C6B6CAB122269D9B00724A90 /* StartViewController.swift in Sources */,
+				230C5189223FC46E0027845F /* ACTRWindowView.swift in Sources */,
+				230C517A223FC46E0027845F /* BufferCondition.swift in Sources */,
+				230C517E223FC46E0027845F /* Temporal.swift in Sources */,
+				230C5182223FC46E0027845F /* BufferAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
