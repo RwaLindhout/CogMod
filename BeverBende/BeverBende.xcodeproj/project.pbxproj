@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230C5162223FAAC50027845F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5161223FAAC50027845F /* Player.swift */; };
 		23D30CD6221ADE1300982D18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CD5221ADE1300982D18 /* AppDelegate.swift */; };
 		23D30CD8221ADE1300982D18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CD7221ADE1300982D18 /* ViewController.swift */; };
 		23D30CDB221ADE1300982D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CD9221ADE1300982D18 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		230C5161223FAAC50027845F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		23D30CD2221ADE1300982D18 /* BeverBende.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeverBende.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D30CD5221ADE1300982D18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23D30CD7221ADE1300982D18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				23D30D06221ADEDC00982D18 /* Deck.swift */,
 				23D30D0A221ADF8500982D18 /* Card.swift */,
 				23D30D0C221ADFA400982D18 /* Game.swift */,
+				230C5161223FAAC50027845F /* Player.swift */,
 			);
 			path = BeverBende;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				23D30D0D221ADFA400982D18 /* Game.swift in Sources */,
 				23D30CD8221ADE1300982D18 /* ViewController.swift in Sources */,
 				23D30CD6221ADE1300982D18 /* AppDelegate.swift in Sources */,
+				230C5162223FAAC50027845F /* Player.swift in Sources */,
 				23D30D0B221ADF8500982D18 /* Card.swift in Sources */,
 				C6B6CAB122269D9B00724A90 /* StartViewController.swift in Sources */,
 			);

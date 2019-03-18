@@ -49,6 +49,13 @@ class Deck {
         self.cards[self.cards.endIndex-1].isFaceUp = true
     }
     
+    private func initFourCards() {
+        for _ in 0..<4 {
+            let card = Card(value: 5)
+            cards += [card]
+        }
+    }
+    
     // Init a deck with all the cards
     init(completeDeck: Bool) {
         if completeDeck {
@@ -59,6 +66,13 @@ class Deck {
     // Init a player deck
     init(drawPile: Deck) {
         createPlayerDeck(drawDeck: drawPile)
+    }
+    
+    // Init four cards for representation of ACT-R Model
+    init(playerModel: Bool) {
+        if playerModel {
+            initFourCards()
+        }
     }
     
     // Init an empty deck
