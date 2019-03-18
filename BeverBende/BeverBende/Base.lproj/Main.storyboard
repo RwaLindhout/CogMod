@@ -74,10 +74,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="playerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YMt-rP-zOj"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cz1-Fc-oLg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbk-Iq-RBo">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbk-Iq-RBo">
                                         <rect key="frame" x="158" y="0.0" width="150" height="185"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -85,7 +84,7 @@
                                             <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lzm-nA-Rdr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Rx-Zh-D23">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Rx-Zh-D23">
                                         <rect key="frame" x="316" y="0.0" width="150" height="185"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -93,7 +92,7 @@
                                             <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xwt-QZ-1qB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ke8-tz-XQA">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ke8-tz-XQA">
                                         <rect key="frame" x="474" y="0.0" width="150" height="185"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -206,8 +205,6 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Beverbende!"/>
                                 <connections>
-                                    <action selector="beverbende:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KSp-4D-Vcf"/>
-                                    <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EbM-Gh-VtY"/>
                                     <action selector="touchStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8C9-UU-fS8"/>
                                 </connections>
                             </button>

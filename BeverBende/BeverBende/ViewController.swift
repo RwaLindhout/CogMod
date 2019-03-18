@@ -19,7 +19,8 @@ class ViewController: UIViewController {
     // and the turn of the player should start, later this button should be used to call
     // BeverBende
     @IBAction func touchStartButton(_ sender: UIButton) {
-        game.showOuterCards()
+        game.initGame()
+        updateViewFromModel()
     }
     
     @IBOutlet var playerButtons: [UIButton]!
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
     private func updateDeck(cardButton: [UIButton]!, deck: Deck) {
         for index in cardButton.indices {
             let button = cardButton[index]
-            let card = deck.cards[index]
+            let card = deck.cards[button.tag]
             if card.isFaceUp {
                 button.setTitle(String(card.value), for:UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -84,14 +85,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = Game()
+        game = Game()
         updateViewFromModel()
         game.modelPlayer1.loadModel(fileName: "beverbende")
-        game.modelPlayer2.loadModel(fileName: "beverbende")
-        game.modelPlayer3.loadModel(fileName: "beverbende")
+//        game.modelPlayer2.loadModel(fileName: "beverbende")
+//        game.modelPlayer3.loadModel(fileName: "beverbende")
         game.modelPlayer1.loadedModel = "beverbende"
-        game.modelPlayer2.loadedModel = "beverbende"
-        game.modelPlayer3.loadedModel = "beverbende"
+//        game.modelPlayer2.loadedModel = "beverbende"
+//        game.modelPlayer3.loadedModel = "beverbende"
         // Do any additional setup after loading the view.
     }
 }

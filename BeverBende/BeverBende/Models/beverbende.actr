@@ -131,6 +131,24 @@
    >  avg         =discard
 )
 
+(p start-my-turn-empty-discard
+   =goal>
+      ISA         goal
+      state       wait-for-turn
+   =action>
+      ISA         moves
+      discard     nil
+      draw        =draw
+==>
+   =goal>
+      state       compare-draw
+   =action>   ;No strict harvesting
+   +retrieval>
+      ISA         card
+      player      0
+   >  avg         =draw
+)
+
 ;If we were able to find a card with a higher average than the card from the discard pile in our own deck
 ;then we take the card from the discard pile and swap. 
 ;We also let the app know that we made our decision, which can then be shown and we'll wait for our next turn. 

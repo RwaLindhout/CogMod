@@ -19,8 +19,8 @@ class ModelPlayer: Model {
     init(playerNumber: Int) {
         self.playerNumber = playerNumber
         self.playerTurn = false
-        self.humanPlayer = Deck()
-        self.otherPlayer2 = Deck()
-        self.otherPlayer3 = Deck()
+        self.humanPlayer = Deck(playerModel: true)
+        self.otherPlayer2 = Deck(playerModel: true)
+        self.otherPlayer3 = Deck(playerModel: true)
     }
 }

@@ -45,8 +45,7 @@ class Deck {
     
     public func showOuterCards() {
         self.cards[0].isFaceUp = true
-        print(cards.endIndex-1)
-        self.cards[self.cards.endIndex-1].isFaceUp = true
+        self.cards[3].isFaceUp = true
     }
     
     private func initFourCards() {
@@ -54,6 +53,10 @@ class Deck {
             let card = Card(value: 5)
             cards += [card]
         }
+    }
+    
+    public func returnCardAtPos(position: Int) -> Int {
+        return cards[position].value
     }
     
     // Init a deck with all the cards
