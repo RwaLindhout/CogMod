@@ -11,10 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     private lazy var game = Game()
     
-//    @IBAction func touchCard(_ sender: Any) {
-//        // card should be highlighted and actions can be performed
-//    }
-    
     // If start button is pressed, the outer two player cards must be placed downwards,
     // and the turn of the player should start, later this button should be used to call
     // BeverBende
@@ -38,6 +34,14 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    public func highlightButtonsAndMakeClickable() {
+        if !game.discardPile.isEmpty() {
+            // highlight player buttons + make them clickable as well as the drawPile
+        } else {
+            // highlight player buttons + make them clickable as well as the drawPile and discardPile
+        }
+    }
+    
     private func updateDeck(cardButton: [UIButton]!, deck: Deck) {
         for index in cardButton.indices {
             let button = cardButton[index]
@@ -49,6 +53,7 @@ class ViewController: UIViewController {
                 button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
+            button.isEnabled = false
         }
     }
     

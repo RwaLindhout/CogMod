@@ -19,37 +19,43 @@ class Game {
     public var modelPlayer2: ModelPlayer
     public var modelPlayer3: ModelPlayer
     
-    private func modifyActionInit(model: ModelPlayer, deck: Deck) {
+    private func ACTRModelActions(model: ModelPlayer, deck: Deck) {
+        model.run()
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
         model.modifyLastAction(slot: "right", value: String(deck.returnCardAtPos(position: 3)))
-        print(model.buffers)
         model.run()
-//        print(model.buffers)
+        model.modifyLastAction(slot: "isa", value: "moves")
+        model.modifyLastAction(slot: "discard", value: "nil")
+        model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
+        model.run()
+        print(model.buffers)
+    }
+    
+    private func humanActions() {
+        // First turn there is nothing on the discardPile
+        if (discardPile.cards.isEmpty) {
+            // highlight card in the drawPile and make it clickable
+            
+        }
     }
     
     public func initGame() {
         playerDeck.showOuterCards()
-        modelPlayer1.run()
-        modifyActionInit(model: modelPlayer1, deck: actrDeck1)
-        
-//        modifyActionInit(model: modelPlayer2, deck: actrDeck2)
-//        modifyActionInit(model: modelPlayer3, deck: actrDeck3)
-        
-        // THIS IS JUST FOR TESTING
-        modelPlayer1.modifyLastAction(slot: "isa", value: "moves")
-        modelPlayer1.modifyLastAction(slot: "discard", value: "nil")
-        modelPlayer1.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
-        print(modelPlayer1.buffers)
-        modelPlayer1.run()
-        print(modelPlayer1.buffers)
-//        print(modelPlayer1.trace)
-//        let tmp = modelPlayer1.lastAction(slot: "action")
-//        print(tmp!)
-        
-        
+        // if start button is pressed then start the game
+        startGame()
     }
     
+    private func startGame() {
+        // First human turn, then {
+        // while beverbende button is not pressed {
+        ACTRModelActions(model: modelPlayer1, deck: actrDeck1)
+        ACTRModelActions(model: modelPlayer2, deck: actrDeck2)
+        ACTRModelActions(model: modelPlayer3, deck: actrDeck3)
+        //} Now human turn {
+        //
+        // }
+    }
     
     init() {
         self.drawPile = Deck(completeDeck: true)

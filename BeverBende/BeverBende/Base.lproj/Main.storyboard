@@ -27,7 +27,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr2Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="crh-QW-nI9"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SCi-8G-MAS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSH-mc-FKh">
@@ -35,7 +34,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr2Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TaR-SC-9Gq"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TIe-Zo-K6T"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6c-fz-2X6">
@@ -43,7 +41,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr2Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J8Y-Zk-yZU"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pFz-yA-p0X"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8p-HU-stZ">
@@ -51,7 +48,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr2Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Glf-6X-A3h"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iqz-NF-xO6"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -63,7 +59,6 @@
                                 <state key="normal" title="Draw"/>
                                 <connections>
                                     <action selector="draw:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zl3-Mu-n4v"/>
-                                    <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rjm-IV-n7G"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cIc-Xi-cI2">
@@ -81,7 +76,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="playerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z3N-vu-JG2"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lzm-nA-Rdr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Rx-Zh-D23">
@@ -89,7 +83,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="playerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Qz-eU-y4t"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xwt-QZ-1qB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ke8-tz-XQA">
@@ -97,7 +90,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="playerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S6n-kE-zxf"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgq-Of-R0m"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -110,7 +102,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr3Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PAd-th-9Bv"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="06Q-vQ-HoM"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQM-Pd-UQl">
@@ -118,7 +109,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr3Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dht-RR-DR1"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jWj-eV-27S"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjc-Az-ZhG">
@@ -126,7 +116,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr3Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Alb-Pl-6y9"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6eh-9N-cVO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sH5-Zb-4sw">
@@ -134,7 +123,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr3Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sgE-pE-iUD"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T2O-36-cJg"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -157,7 +145,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr1Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OEr-YF-OBn"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zb3-OL-jGC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0R6-NN-Ira">
@@ -165,7 +152,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr1Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pNw-KI-Zct"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R2a-3t-xbn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUo-vz-J3d">
@@ -173,7 +159,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr1Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4kL-vM-x18"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oJy-4C-jVQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM8-fm-BOR">
@@ -181,7 +166,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="actr1Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VY4-wq-s8F"/>
-                                            <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dy6-31-l3k"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -193,7 +177,6 @@
                                 <state key="normal" title="Discard Pile"/>
                                 <connections>
                                     <action selector="discard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zri-3g-ATw"/>
-                                    <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pjZ-5c-3x9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-il-e2r">
