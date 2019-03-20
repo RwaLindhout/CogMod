@@ -48,6 +48,11 @@ class Deck {
         self.cards[3].isFaceUp = true
     }
     
+    public func hideOuterCards() {
+        self.cards[0].isFaceUp = false
+        self.cards[3].isFaceUp = false
+    }
+    
     private func initFourCards() {
         for _ in 0..<4 {
             let card = Card(value: 5)

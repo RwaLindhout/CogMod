@@ -42,8 +42,12 @@ class Game {
     
     public func initGame() {
         playerDeck.showOuterCards()
-        // if start button is pressed then start the game
         startGame()
+        // if start button is pressed then start the game
+    }
+    
+    public func hideCard() {
+        playerDeck.hideOuterCards()
     }
     
     private func startGame() {

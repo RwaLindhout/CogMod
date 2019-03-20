@@ -11,12 +11,31 @@ import UIKit
 class ViewController: UIViewController {
     private lazy var game = Game()
     
+    
     // If start button is pressed, the outer two player cards must be placed downwards,
     // and the turn of the player should start, later this button should be used to call
     // BeverBende
-    @IBAction func touchStartButton(_ sender: UIButton) {
-        game.initGame()
-        updateViewFromModel()
+    var clickCount = 0
+    
+    @IBAction func centralButton(_ sender: UIButton) {
+        clickCount+=1
+        centralButtonClick(button: sender, clicks: clickCount)
+    }
+    
+    func centralButtonClick(button: UIButton,clicks: Int){
+        switch (clicks)
+        {
+        case 1:
+            game.initGame()
+            updateViewFromModel()
+        case 2:
+            game.hideCard()
+            updateViewFromModel()
+            button.setTitle("BeverBende!", for: .normal)
+        default:
+            //BeverBende
+            break;
+        }
     }
     
     @IBOutlet var playerButtons: [UIButton]!
@@ -25,7 +44,6 @@ class ViewController: UIViewController {
     @IBOutlet var actr3Buttons: [UIButton]!
     
     @IBOutlet weak var discardPile: UIButton!
-    @IBOutlet weak var beverBende: UIButton!
     @IBOutlet weak var drawPile: UIButton!
     
     @IBAction func score(_ sender: UIButton) {
@@ -42,7 +60,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateDeck(cardButton: [UIButton]!, deck: Deck) {
+    private func updateDeck(cardButton: [UIButton]!, deck: Deck, enable: Bool) {
         for index in cardButton.indices {
             let button = cardButton[index]
             let card = deck.cards[button.tag]
@@ -53,11 +71,11 @@ class ViewController: UIViewController {
                 button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
-            button.isEnabled = false
+            button.isEnabled = enable
         }
     }
     
-    private func updateDeck(cardButton: UIButton!, deck: Deck, isDrawPile: Bool) {
+    private func updateDeck(cardButton: UIButton, deck: Deck, isDrawPile: Bool) {
         // If deck is empty, make button transparent, for visibility this is now brown
         if deck.isEmpty() {
             cardButton.setTitle("", for: UIControl.State.normal)
@@ -82,10 +100,10 @@ class ViewController: UIViewController {
         
         // TODO: Update player deck
         // TODO: Update ACT-R deck
-        updateDeck(cardButton: playerButtons, deck: game.playerDeck)
-        updateDeck(cardButton: actr1Buttons, deck: game.actrDeck1)
-        updateDeck(cardButton: actr2Buttons, deck: game.actrDeck2)
-        updateDeck(cardButton: actr3Buttons, deck: game.actrDeck3)
+        updateDeck(cardButton: playerButtons, deck: game.playerDeck, false)
+        updateDeck(cardButton: actr1Buttons, deck: game.actrDeck1, false)
+        updateDeck(cardButton: actr2Buttons, deck: game.actrDeck2, false)
+        updateDeck(cardButton: actr3Buttons, deck: game.actrDeck3, false)
     }
     
     override func viewDidLoad() {
