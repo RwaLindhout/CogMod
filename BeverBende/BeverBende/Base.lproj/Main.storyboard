@@ -62,7 +62,7 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Draw"/>
                                 <connections>
-                                    <action selector="draw:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zl3-Mu-n4v"/>
+                                    <action selector="drawPileClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JBG-JZ-DQA"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cIc-Xi-cI2">
@@ -74,6 +74,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <connections>
                                             <action selector="playerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YMt-rP-zOj"/>
+                                            <action selector="playerClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nvP-EC-LOL"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbk-Iq-RBo">
@@ -82,6 +83,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <connections>
                                             <action selector="playerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z3N-vu-JG2"/>
+                                            <action selector="playerClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9A6-Mh-0nP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Rx-Zh-D23">
@@ -90,6 +92,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <connections>
                                             <action selector="playerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Qz-eU-y4t"/>
+                                            <action selector="playerClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x7y-xb-nbx"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ke8-tz-XQA">
@@ -98,6 +101,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <connections>
                                             <action selector="playerButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S6n-kE-zxf"/>
+                                            <action selector="playerClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fc8-8O-Fkc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -193,7 +197,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Discard Pile"/>
                                 <connections>
-                                    <action selector="discard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zri-3g-ATw"/>
+                                    <action selector="discardPileClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LCN-mr-Vqa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-il-e2r">
