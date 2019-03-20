@@ -16,6 +16,8 @@ struct Card: Hashable {
     }
     
     public var isFaceUp = false
+    public var isHighlighted = false
+    public var isClickable = false
     var value: Int
     private var identifier: Int
     
@@ -26,16 +28,8 @@ struct Card: Hashable {
         return 0
     }
     
-    mutating func setFaceUp(faceUp: Bool) {
-        self.isFaceUp = faceUp
-    }
-    
-//    public var faceUp: Bool {
-//        get {
-//            return isFaceUp
-//        } set {
-//            isFaceUp = newValue
-//        }
+//    mutating func setFaceUp(faceUp: Bool) {
+//        self.isFaceUp = faceUp
 //    }
     
     init(value: Int) {

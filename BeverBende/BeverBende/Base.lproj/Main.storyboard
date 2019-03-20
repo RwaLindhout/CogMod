@@ -57,9 +57,6 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Draw"/>
-                                <connections>
-                                    <action selector="draw:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zl3-Mu-n4v"/>
-                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cIc-Xi-cI2">
                                 <rect key="frame" x="200" y="573" width="624" height="185"/>
@@ -175,9 +172,6 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Discard Pile"/>
-                                <connections>
-                                    <action selector="discard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zri-3g-ATw"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-il-e2r">
                                 <rect key="frame" x="468.5" y="357" width="87" height="54"/>

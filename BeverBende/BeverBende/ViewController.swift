@@ -34,14 +34,6 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    public func highlightButtonsAndMakeClickable() {
-        if !game.discardPile.isEmpty() {
-            // highlight player buttons + make them clickable as well as the drawPile
-        } else {
-            // highlight player buttons + make them clickable as well as the drawPile and discardPile
-        }
-    }
-    
     private func updateDeck(cardButton: [UIButton]!, deck: Deck) {
         for index in cardButton.indices {
             let button = cardButton[index]
@@ -53,7 +45,15 @@ class ViewController: UIViewController {
                 button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
-            button.isEnabled = false
+            if card.isHighlighted {
+                // TODO: Card should become highlighted, for now just changes color
+                button.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+            }
+            if card.isClickable {
+                button.isEnabled = true
+            } else {
+                button.isEnabled = false
+            }
         }
     }
     
@@ -72,20 +72,43 @@ class ViewController: UIViewController {
             cardButton.setTitle("", for: UIControl.State.normal)
             cardButton.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
         }
+        cardButton.isEnabled = false
     }
     
     // Update all different decks
     private func updateViewFromModel() {
-        // TODO: Update the draw pile and the discard pile
         updateDeck(cardButton: drawPile, deck: game.drawPile, isDrawPile: true)
         updateDeck(cardButton: discardPile, deck: game.discardPile, isDrawPile: false)
-        
-        // TODO: Update player deck
-        // TODO: Update ACT-R deck
         updateDeck(cardButton: playerButtons, deck: game.playerDeck)
         updateDeck(cardButton: actr1Buttons, deck: game.actrDeck1)
         updateDeck(cardButton: actr2Buttons, deck: game.actrDeck2)
         updateDeck(cardButton: actr3Buttons, deck: game.actrDeck3)
+    }
+    
+    private func runGame() {
+        game.initGame()
+        while !game.isFinished {
+            // Player turn
+            game.humanActions()
+            updateViewFromModel()
+            
+            // ACT-R Model turns
+            game.ACTRInit()
+            updateViewFromModel()
+            game.ACTRModelActions(model: game.modelPlayer1, deck: game.actrDeck1)
+            updateViewFromModel()
+            game.isFinished = true
+            
+//            game.ACTRInit()
+//            updateViewFromModel()
+//            game.ACTRModelActions(model: game.modelPlayer2, deck: game.actrDeck2)
+//            updateViewFromModel()
+//
+//            game.ACTRInit()
+//            updateViewFromModel()
+//            game.ACTRModelActions(model: game.modelPlayer3, deck: game.actrDeck3)
+//            updateViewFromModel()
+        }
     }
     
     override func viewDidLoad() {
@@ -96,6 +119,9 @@ class ViewController: UIViewController {
 //        game.modelPlayer2.loadModel(fileName: "beverbende")
 //        game.modelPlayer3.loadModel(fileName: "beverbende")
         game.modelPlayer1.loadedModel = "beverbende"
+        
+        // TODO: If start button is clicked then run the game
+        runGame()
 //        game.modelPlayer2.loadedModel = "beverbende"
 //        game.modelPlayer3.loadedModel = "beverbende"
         // Do any additional setup after loading the view.

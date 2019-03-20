@@ -22,8 +22,6 @@ class Deck {
         }
         // Shuffles the entire deck
         cards.shuffle()
-        // Last card in the drawPile should be faceUp
-//        cards[cards.endIndex-1].isFaceUp = true
     }
     
     // Initialize a player deck
@@ -46,6 +44,15 @@ class Deck {
     public func showOuterCards() {
         self.cards[0].isFaceUp = true
         self.cards[3].isFaceUp = true
+    }
+    
+    public func makeLastCardClickableAndHighlighted() {
+        self.cards[cards.endIndex-1].isClickable = true
+        self.cards[cards.endIndex-1].isHighlighted = true
+    }
+    
+    public func makeLastCardHighlighted() {
+        self.cards[cards.endIndex-1].isHighlighted = true
     }
     
     private func initFourCards() {

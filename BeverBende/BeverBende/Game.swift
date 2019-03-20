@@ -18,8 +18,18 @@ class Game {
     public var modelPlayer1: ModelPlayer
     public var modelPlayer2: ModelPlayer
     public var modelPlayer3: ModelPlayer
+    public var isFinished: Bool = false
     
-    private func ACTRModelActions(model: ModelPlayer, deck: Deck) {
+    public func ACTRInit() {
+        if discardPile.cards.isEmpty {
+            drawPile.makeLastCardHighlighted()
+        } else {
+            drawPile.makeLastCardHighlighted()
+            discardPile.makeLastCardHighlighted()
+        }
+    }
+    
+    public func ACTRModelActions(model: ModelPlayer, deck: Deck) {
         model.run()
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
@@ -30,31 +40,25 @@ class Game {
         model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
         model.run()
         print(model.buffers)
+        
+        // TODO: ACT-R Model actions are performed here
     }
     
-    private func humanActions() {
-        // First turn there is nothing on the discardPile
+    public func humanActions() {
+        // First turn there is nothing on the discardPile so only
+        // drawPile becomes clickable and highlighted
         if (discardPile.cards.isEmpty) {
-            // highlight card in the drawPile and make it clickable
-            
+            drawPile.makeLastCardClickableAndHighlighted()
+        } else {
+            // drawPile and discardPile become clickable and highlighted
+            drawPile.makeLastCardClickableAndHighlighted()
+            discardPile.makeLastCardClickableAndHighlighted()
         }
+        // TODO: Human performs actions here
     }
     
     public func initGame() {
         playerDeck.showOuterCards()
-        // if start button is pressed then start the game
-        startGame()
-    }
-    
-    private func startGame() {
-        // First human turn, then {
-        // while beverbende button is not pressed {
-        ACTRModelActions(model: modelPlayer1, deck: actrDeck1)
-        ACTRModelActions(model: modelPlayer2, deck: actrDeck2)
-        ACTRModelActions(model: modelPlayer3, deck: actrDeck3)
-        //} Now human turn {
-        //
-        // }
     }
     
     init() {
