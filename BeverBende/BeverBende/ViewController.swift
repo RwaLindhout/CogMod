@@ -9,8 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let image = UIImage(named: "bever.jpg")
+    let image1 = UIImage(named: "table.jpg")
     private lazy var game = Game()
-    
     
     // If start button is pressed, the outer two player cards must be placed downwards,
     // and the turn of the player should start, later this button should be used to call
@@ -39,12 +40,14 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func drawPileClick(_ sender: UIButton) {
+    @IBAction func drawPileClick(_ sender: MyButton) {
         game.drawPile.isClicked(position: -1)
+        updateViewFromModel()
     }
     
-    @IBAction func discardPileClick(_ sender: UIButton) {
+    @IBAction func discardPileClick(_ sender: MyButton) {
         game.discardPile.isClicked(position: -1)
+        updateViewFromModel()
     }
     
     @IBAction func playerClick(_ sender: UIButton) {
@@ -53,15 +56,16 @@ class ViewController: UIViewController {
                 game.playerDeck.isClicked(position: i)
             }
         }
+        updateViewFromModel()
     }
     
-    @IBOutlet var playerButtons: [UIButton]!
-    @IBOutlet var actr1Buttons: [UIButton]!
-    @IBOutlet var actr2Buttons: [UIButton]!
-    @IBOutlet var actr3Buttons: [UIButton]!
+    @IBOutlet var playerButtons: [MyButton]!
+    @IBOutlet var actr1Buttons: [MyButton]!
+    @IBOutlet var actr2Buttons: [MyButton]!
+    @IBOutlet var actr3Buttons: [MyButton]!
     
-    @IBOutlet weak var discardPile: UIButton!
-    @IBOutlet weak var drawPile: UIButton!
+    @IBOutlet weak var discardPile: MyButton!
+    @IBOutlet weak var drawPile: MyButton!
     
     @IBAction func score(_ sender: UIButton) {
         let alert = UIAlertController(title: "Score", message: "score", preferredStyle: .alert)
@@ -70,20 +74,32 @@ class ViewController: UIViewController {
     }
     
 
-    private func updateDeck(cardButton: [UIButton]!, deck: Deck) {
+    private func updateDeck(cardButton: [MyButton]!, deck: Deck) {
         for index in cardButton.indices {
             let button = cardButton[index]
             let card = deck.cards[button.tag]
             if card.isFaceUp {
                 button.setTitle(String(card.value), for:UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                button.setBackgroundImage(nil, for: .normal)
             } else {
                 button.setTitle("", for: UIControl.State.normal)
-                button.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+                button.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+                //TODO: zorg dat de goeie decks een gedraaid plaatje hebben
+             //   if deck == 1 {
+               //     let imageRotate = image!.rotate(radians: .pi/2)
+                 //   button.setBackgroundImage(imageRotate!, for: .normal)
+                //}
+                //else if deck == 3 {
+                  //  let imageRotate = image!.rotate(radians: .pi/2*3)
+                   //button.setBackgroundImage(imageRotate!, for: .normal)
+                //}
+                
+                button.setBackgroundImage(image!, for: .normal)
+                
             }
             if card.isHighlighted {
-                // TODO: Card should become highlighted, for now just changes color
-                button.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+                button.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
             }
             if card.isClickable {
                 button.isEnabled = true
@@ -93,7 +109,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateDeck(cardButton: UIButton, deck: Deck, isDrawPile: Bool) {
+    private func updateDeck(cardButton: MyButton, deck: Deck, isDrawPile: Bool) {
         // If deck is empty, make button transparent, for visibility this is now brown
         if deck.isEmpty() {
             cardButton.setTitle("", for: UIControl.State.normal)
@@ -106,10 +122,11 @@ class ViewController: UIViewController {
         // If the deck is the drawPile
         } else {
             cardButton.setTitle("", for: UIControl.State.normal)
-            cardButton.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+            cardButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+            cardButton.setBackgroundImage(image!, for: .normal)
             if deck.cards[deck.cards.endIndex-1].isHighlighted {
                 // TODO: Card should become highlighted, for now just changes color
-                cardButton.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+                cardButton.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
             }
             if deck.cards[deck.cards.endIndex-1].isClickable {
                 cardButton.isEnabled = true
@@ -159,6 +176,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: image1!)
+
         game = Game()
         updateViewFromModel()
         game.modelPlayer1.loadModel(fileName: "beverbende")
@@ -170,5 +189,7 @@ class ViewController: UIViewController {
 //        game.modelPlayer3.loadedModel = "beverbende"
         // Do any additional setup after loading the view.
     }
+    
+    
 }
 

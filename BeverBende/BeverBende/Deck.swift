@@ -76,6 +76,7 @@ class Deck {
             self.cards[position].isClicked = true
         } else {
             self.cards[cards.endIndex - 1].isClicked = true
+            self.cards[cards.endIndex - 1].isFaceUp = true
             isClickedPile = true
         }
     }
@@ -100,6 +101,7 @@ class Deck {
         return cards[position].value
     }
     
+    
     // Init a deck with all the cards
     init(completeDeck: Bool) {
         if completeDeck {
@@ -118,6 +120,7 @@ class Deck {
             initFourCards()
         }
     }
+    
     
     // Init an empty deck
     init() {

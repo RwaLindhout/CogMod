@@ -35,7 +35,11 @@
 		23D30D07221ADEDC00982D18 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D06221ADEDC00982D18 /* Deck.swift */; };
 		23D30D0B221ADF8500982D18 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D0A221ADF8500982D18 /* Card.swift */; };
 		23D30D0D221ADFA400982D18 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D0C221ADFA400982D18 /* Game.swift */; };
-		C61F6853224235EF00EFFD8E /* beverbende.actr in Resources */ = {isa = PBXBuildFile; fileRef = C61F6852224235EF00EFFD8E /* beverbende.actr */; };
+		C6327CC1224BB2F600457488 /* beverbende.actr in Resources */ = {isa = PBXBuildFile; fileRef = C6327CC0224BB2F600457488 /* beverbende.actr */; };
+		C6327CC7224BB62E00457488 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6327CC6224BB62E00457488 /* MyButton.swift */; };
+		C6327CC9224BB7E800457488 /* bever.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6327CC8224BB7E800457488 /* bever.jpg */; };
+		C6327CCB224BBF4300457488 /* table.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C6327CCA224BBF4300457488 /* table.jpg */; };
+		C6327CCF224BCA1000457488 /* rotateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6327CCE224BCA1000457488 /* rotateImage.swift */; };
 		C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */; };
 		C6B6CAB122269D9B00724A90 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6CAB022269D9B00724A90 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
@@ -92,7 +96,11 @@
 		23D30D06221ADEDC00982D18 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		23D30D0A221ADF8500982D18 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		23D30D0C221ADFA400982D18 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		C61F6852224235EF00EFFD8E /* beverbende.actr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = beverbende.actr; path = ../../../../../Downloads/beverbende.actr; sourceTree = "<group>"; };
+		C6327CC0224BB2F600457488 /* beverbende.actr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = beverbende.actr; sourceTree = "<group>"; };
+		C6327CC6224BB62E00457488 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
+		C6327CC8224BB7E800457488 /* bever.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bever.jpg; path = ../../../../Downloads/bever.jpg; sourceTree = "<group>"; };
+		C6327CCA224BBF4300457488 /* table.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = table.jpg; path = ../../../../Downloads/table.jpg; sourceTree = "<group>"; };
+		C6327CCE224BCA1000457488 /* rotateImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rotateImage.swift; sourceTree = "<group>"; };
 		C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6B6CAB022269D9B00724A90 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,7 +157,7 @@
 		230C518A223FC9A90027845F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C61F6852224235EF00EFFD8E /* beverbende.actr */,
+				C6327CC0224BB2F600457488 /* beverbende.actr */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,15 +185,19 @@
 		23D30CD4221ADE1300982D18 /* BeverBende */ = {
 			isa = PBXGroup;
 			children = (
+				C6327CCA224BBF4300457488 /* table.jpg */,
+				C6327CC8224BB7E800457488 /* bever.jpg */,
 				230C518A223FC9A90027845F /* Models */,
 				230C5167223FC46E0027845F /* Core ACT-R */,
 				23D30CE1221ADE1400982D18 /* Info.plist */,
 				23D30D03221ADE5100982D18 /* Extra */,
 				23D30CD5221ADE1300982D18 /* AppDelegate.swift */,
+				C6327CCE224BCA1000457488 /* rotateImage.swift */,
 				23D30CDE221ADE1400982D18 /* StartScreen.storyboard */,
 				C6B6CAB022269D9B00724A90 /* StartViewController.swift */,
 				23D30CD7221ADE1300982D18 /* ViewController.swift */,
 				23D30CD9221ADE1300982D18 /* Main.storyboard */,
+				C6327CC6224BB62E00457488 /* MyButton.swift */,
 				23D30D06221ADEDC00982D18 /* Deck.swift */,
 				23D30D0A221ADF8500982D18 /* Card.swift */,
 				23D30D0C221ADFA400982D18 /* Game.swift */,
@@ -331,11 +343,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6327CC9224BB7E800457488 /* bever.jpg in Resources */,
 				23D30CE0221ADE1400982D18 /* StartScreen.storyboard in Resources */,
 				C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */,
-				C61F6853224235EF00EFFD8E /* beverbende.actr in Resources */,
 				23D30CDD221ADE1400982D18 /* Assets.xcassets in Resources */,
 				23D30CDB221ADE1300982D18 /* Main.storyboard in Resources */,
+				C6327CC1224BB2F600457488 /* beverbende.actr in Resources */,
+				C6327CCB224BBF4300457488 /* table.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,10 +382,12 @@
 				23D30CD8221ADE1300982D18 /* ViewController.swift in Sources */,
 				230C5179223FC46E0027845F /* SlotAction.swift in Sources */,
 				230C5187223FC46E0027845F /* Chunk.swift in Sources */,
+				C6327CCF224BCA1000457488 /* rotateImage.swift in Sources */,
 				23D30CD6221ADE1300982D18 /* AppDelegate.swift in Sources */,
 				230C5181223FC46E0027845F /* SlotCondition.swift in Sources */,
 				230C517B223FC46E0027845F /* Model.swift in Sources */,
 				230C5162223FAAC50027845F /* Player.swift in Sources */,
+				C6327CC7224BB62E00457488 /* MyButton.swift in Sources */,
 				230C5183223FC46E0027845F /* FocusRing.swift in Sources */,
 				230C5185223FC46E0027845F /* Parser.swift in Sources */,
 				230C517D223FC46E0027845F /* Instantiation.swift in Sources */,

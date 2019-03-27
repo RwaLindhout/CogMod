@@ -56,7 +56,7 @@ class Game {
         }
         playerDeck.makeCardsClickableAndHighlighted()
         if drawPile.isClickedPile {
-            discardPile.addCard(card: playerDeck.isClickedCard()!)
+            //discardPile.addCard(card: playerDeck.isClickedCard()!)
             // TODO: Add the card to the playerDeck and remove from drawpile
         }
         // TODO: Draw card from discard pile and add card to playerdeck
