@@ -142,6 +142,8 @@ class ViewController: UIViewController {
                 cardButton.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
             }
             if deck.cards[deck.cards.endIndex-1].isFaceUp {
+                cardButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                cardButton.setBackgroundImage(nil, for: .normal)
                 cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
             }
             if deck.cards[deck.cards.endIndex-1].isClickable {
