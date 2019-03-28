@@ -197,8 +197,8 @@ class ViewController: UIViewController {
         
         game = Game()
         updateViewFromModel()
-//        game.modelPlayer1.loadModel(fileName: "beverbende")
-//        game.modelPlayer1.loadedModel = "beverbende"
+       game.modelPlayer1.loadModel(fileName: "beverbende")
+        game.modelPlayer1.loadedModel = "beverbende"
         
         
 //        game.modelPlayer2.loadModel(fileName: "beverbende")
