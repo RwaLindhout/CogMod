@@ -74,7 +74,7 @@ class ViewController: UIViewController {
     }
     
 
-    private func updateDeck(cardButton: [MyButton]!, deck: Deck) {
+    private func updateDeck(cardButton: [MyButton]!, deck: Deck, actr1 : Bool, actr2: Bool, actr3: Bool) {
         for index in cardButton.indices {
             let button = cardButton[index]
             let card = deck.cards[button.tag]
@@ -86,17 +86,20 @@ class ViewController: UIViewController {
                 button.setTitle("", for: UIControl.State.normal)
                 button.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
                 //TODO: zorg dat de goeie decks een gedraaid plaatje hebben
-             //   if deck == 1 {
-               //     let imageRotate = image!.rotate(radians: .pi/2)
-                 //   button.setBackgroundImage(imageRotate!, for: .normal)
-                //}
-                //else if deck == 3 {
-                  //  let imageRotate = image!.rotate(radians: .pi/2*3)
-                   //button.setBackgroundImage(imageRotate!, for: .normal)
-                //}
-                
+                if actr1 == true {
+                    let imageRotate = image!.rotate(radians: .pi/2)
+                    button.setBackgroundImage(imageRotate!, for: .normal)
+                }
+                else if actr2 == true {
+                    let imageRotate = image!.rotate(radians: .pi)
+                    button.setBackgroundImage(imageRotate!, for: .normal)
+                }
+                else if actr3 == true {
+                    let imageRotate = image!.rotate(radians: .pi/2*3)
+                   button.setBackgroundImage(imageRotate!, for: .normal)
+                } else {
                 button.setBackgroundImage(image!, for: .normal)
-                
+                }
             }
             if card.isHighlighted {
                 button.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
@@ -108,6 +111,7 @@ class ViewController: UIViewController {
             }
         }
     }
+    
     
     private func updateDeck(cardButton: MyButton, deck: Deck, isDrawPile: Bool) {
         // If deck is empty, make button transparent, for visibility this is now brown
@@ -140,10 +144,10 @@ class ViewController: UIViewController {
     private func updateViewFromModel() {
         updateDeck(cardButton: drawPile, deck: game.drawPile, isDrawPile: true)
         updateDeck(cardButton: discardPile, deck: game.discardPile, isDrawPile: false)
-        updateDeck(cardButton: playerButtons, deck: game.playerDeck)
-        updateDeck(cardButton: actr1Buttons, deck: game.actrDeck1)
-        updateDeck(cardButton: actr2Buttons, deck: game.actrDeck2)
-        updateDeck(cardButton: actr3Buttons, deck: game.actrDeck3)
+        updateDeck(cardButton: playerButtons, deck: game.playerDeck, actr1: false, actr2: false,actr3: false)
+        updateDeck(cardButton: actr1Buttons, deck: game.actrDeck1, actr1: true,actr2:false,actr3:false)
+        updateDeck(cardButton: actr2Buttons, deck: game.actrDeck2,actr1:false,actr2:true,actr3:false)
+        updateDeck(cardButton: actr3Buttons, deck: game.actrDeck3,actr1:false,actr2:false,actr3:true)
 
     }
    
@@ -177,7 +181,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: image1!)
-
+        
         game = Game()
         updateViewFromModel()
         game.modelPlayer1.loadModel(fileName: "beverbende")
