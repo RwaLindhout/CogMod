@@ -44,13 +44,7 @@ class ViewController: UIViewController {
         }
     }
     
-
-   
     @IBAction func drawPileClick(_ sender: UIButton) {
-        // init drawPile
-//        game.drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-//        game.drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
-//        game.drawPile.makeCardsFaceUp(fourCards: false, setTrueOrFalse: true)
         pileClicked = 1
         
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
@@ -61,12 +55,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func discardPileClick(_ sender: UIButton) {
-//        game.discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-//        game.discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
         // If the previous pileClicked was the drawPile
         if pileClicked == 1 {
             game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
-            // TODO: removeLastAndInsert
         }
         pileClicked = 2
         

@@ -110,17 +110,6 @@ class Game {
         return(lowest,lowestpos)
     }
     
-//    public func humanActions() {
-//        if drawPile.isClickedPile {
-//            //discardPile.addCard(card: playerDeck.isClickedCard()!)
-//            print("drawPile is clicked!")
-//            discardPile.addCard(card: playerDeck.isClickedCard()!)
-//            // TODO: Add the card to the playerDeck and remove from drawpile
-//        }
-        // TODO: Draw card from discard pile and add card to playerdeck
-        
-//    }
-    
     public func initGame() {
         playerDeck.showOuterCards()
     }
@@ -133,7 +122,6 @@ class Game {
         self.drawPile = Deck(completeDeck: true)
         self.playerDeck = Deck(drawPile: drawPile)
         self.actrDeck1 = Deck(drawPile: drawPile)
-        print(self.actrDeck1.cards)
         self.actrDeck2 = Deck(drawPile: drawPile)
         self.actrDeck3 = Deck(drawPile: drawPile)
         self.discardPile = Deck()
