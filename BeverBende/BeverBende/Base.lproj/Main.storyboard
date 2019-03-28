@@ -24,7 +24,9 @@
                                 <subviews>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUh-oa-dLQ" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="130" height="166"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -40,7 +42,9 @@
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSH-mc-FKh" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="138" y="0.0" width="130" height="166"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -56,7 +60,9 @@
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6c-fz-2X6" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="276" y="0.0" width="130" height="166"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -72,7 +78,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8p-HU-stZ" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="414" y="0.0" width="130" height="166"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -89,7 +97,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ho1-bF-7K4" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
-                                <rect key="frame" x="622.5" y="296" width="134.5" height="177"/>
+                                <rect key="frame" x="622" y="296" width="135" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -112,7 +120,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YwM-MV-Kek" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="185"/>
-                                        <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
@@ -194,7 +202,9 @@
                                 <subviews>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLy-jJ-F8M" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="147" height="81"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -210,7 +220,9 @@
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQM-Pd-UQl" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="89" width="147" height="81"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -226,7 +238,9 @@
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjc-Az-ZhG" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="178" width="147" height="81"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -242,7 +256,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sH5-Zb-4sw" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="267" width="147" height="81"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -273,7 +289,9 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wD-od-98f" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="147" height="81"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -289,7 +307,9 @@
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0R6-NN-Ira" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="89" width="147" height="81"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -305,7 +325,9 @@
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUo-vz-J3d" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="178" width="147" height="81"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -321,7 +343,9 @@
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM8-fm-BOR" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="267" width="147" height="81"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -338,7 +362,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2C-Zn-DVQ" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
-                                <rect key="frame" x="267" y="296" width="134.5" height="177"/>
+                                <rect key="frame" x="267" y="296" width="135" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -356,15 +380,13 @@
                                     <action selector="discardPileClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LCN-mr-Vqa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-il-e2r">
-                                <rect key="frame" x="481.5" y="365" width="61" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-il-e2r">
+                                <rect key="frame" x="444" y="356" width="136" height="57"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="CIu-il-e2r" secondAttribute="height" multiplier="8:5" id="NZ3-gC-Mbx"/>
-                                </constraints>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Start!"/>
+                                <state key="normal" title="Beverbende!"/>
                                 <connections>
                                     <action selector="centralButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mnk-Dh-XXg"/>
                                 </connections>
@@ -376,24 +398,22 @@
                             <constraint firstItem="zwo-eb-4R9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="39" id="2sK-L7-76o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cIc-Xi-cI2" secondAttribute="bottom" constant="10" id="3fr-NJ-NhS"/>
                             <constraint firstItem="6cM-2C-tFl" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6E9-x6-tZY"/>
+                            <constraint firstItem="CIu-il-e2r" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7xq-LE-atY"/>
                             <constraint firstItem="cIc-Xi-cI2" firstAttribute="top" secondItem="N2C-Zn-DVQ" secondAttribute="bottom" constant="100" id="AQY-Cb-0vv"/>
                             <constraint firstItem="N2C-Zn-DVQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="267" id="Bba-3u-dDH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FSO-bz-kbO" secondAttribute="bottom" constant="200" id="Ex4-Qn-7Wb"/>
-                            <constraint firstItem="CIu-il-e2r" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="FeI-ra-CMN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N2C-Zn-DVQ" secondAttribute="bottom" constant="295" id="HkU-JZ-w5h"/>
                             <constraint firstItem="N2C-Zn-DVQ" firstAttribute="leading" secondItem="FSO-bz-kbO" secondAttribute="trailing" constant="100" id="IxF-Gu-X63"/>
                             <constraint firstItem="FSO-bz-kbO" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="MeJ-1C-IxU"/>
-                            <constraint firstItem="73m-l9-vrc" firstAttribute="leading" secondItem="ho1-bF-7K4" secondAttribute="trailing" constant="100" id="PTq-UU-bRQ"/>
-                            <constraint firstItem="CIu-il-e2r" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Pkd-b5-CB2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N2C-Zn-DVQ" secondAttribute="trailing" constant="622" id="NM1-6i-ufy"/>
                             <constraint firstItem="73m-l9-vrc" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="QGv-CO-PWX"/>
                             <constraint firstItem="CIu-il-e2r" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-10" id="QjQ-Ov-khX"/>
                             <constraint firstItem="6cM-2C-tFl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="240" id="Rpw-6r-svN"/>
                             <constraint firstItem="cIc-Xi-cI2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="200" id="TJh-kh-L2G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ho1-bF-7K4" secondAttribute="bottom" constant="295" id="TMx-DQ-vKx"/>
                             <constraint firstItem="N2C-Zn-DVQ" firstAttribute="top" secondItem="6cM-2C-tFl" secondAttribute="bottom" constant="100" id="Vep-04-do0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ho1-bF-7K4" secondAttribute="trailing" constant="267" id="bSs-t1-g8I"/>
+                            <constraint firstItem="aQM-Pd-UQl" firstAttribute="leading" secondItem="ho1-bF-7K4" secondAttribute="trailing" constant="100" id="a9J-fk-rGP"/>
                             <constraint firstItem="zwo-eb-4R9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="cY4-uZ-Kib"/>
-                            <constraint firstItem="ho1-bF-7K4" firstAttribute="leading" secondItem="CIu-il-e2r" secondAttribute="trailing" constant="80" id="cgw-pg-xrE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="73m-l9-vrc" secondAttribute="bottom" constant="200" id="daC-h0-yxv"/>
                             <constraint firstItem="73m-l9-vrc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="dmg-By-dMz"/>
                             <constraint firstItem="N2C-Zn-DVQ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-9.5" id="esJ-tR-EwK"/>
@@ -401,20 +421,23 @@
                             <constraint firstItem="FSO-bz-kbO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="iLr-af-5ZT"/>
                             <constraint firstItem="ke8-tz-XQA" firstAttribute="top" secondItem="ho1-bF-7K4" secondAttribute="bottom" constant="100" id="jCb-9N-2Wd"/>
                             <constraint firstItem="ho1-bF-7K4" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-9.5" id="jEt-gg-IHr"/>
-                            <constraint firstItem="CIu-il-e2r" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kHa-PM-dgn"/>
-                            <constraint firstItem="CIu-il-e2r" firstAttribute="leading" secondItem="N2C-Zn-DVQ" secondAttribute="trailing" constant="80" id="lQo-nh-2Yq"/>
+                            <constraint firstItem="ho1-bF-7K4" firstAttribute="leading" secondItem="N2C-Zn-DVQ" secondAttribute="trailing" constant="220" id="kST-QN-F4T"/>
                             <constraint firstItem="wUh-oa-dLQ" firstAttribute="leading" secondItem="zwo-eb-4R9" secondAttribute="trailing" constant="81" id="lX0-ad-RBv"/>
                             <constraint firstItem="cIc-Xi-cI2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="oPL-sd-vsi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6cM-2C-tFl" secondAttribute="trailing" constant="240" id="p20-BJ-wez"/>
                             <constraint firstItem="ho1-bF-7K4" firstAttribute="top" secondItem="Z8p-HU-stZ" secondAttribute="bottom" constant="100" id="p6E-hH-8Ox"/>
+                            <constraint firstItem="N2C-Zn-DVQ" firstAttribute="leading" secondItem="0R6-NN-Ira" secondAttribute="trailing" constant="100" id="pd0-L8-TbB"/>
                             <constraint firstItem="4wD-od-98f" firstAttribute="top" secondItem="zwo-eb-4R9" secondAttribute="bottom" constant="128" id="qb4-nc-NJY"/>
                             <constraint firstItem="6cM-2C-tFl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="qzG-9D-QjL"/>
                             <constraint firstItem="N2C-Zn-DVQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="276" id="uP9-Ul-aCf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ho1-bF-7K4" secondAttribute="trailing" constant="267" id="uvr-Bl-3zj"/>
+                            <constraint firstItem="CIu-il-e2r" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="vWx-ZR-vgE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="73m-l9-vrc" secondAttribute="trailing" constant="20" id="wC2-7w-zKC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="beverBendeButton" destination="CIu-il-e2r" id="awy-QZ-yVS"/>
                         <outlet property="discardPile" destination="N2C-Zn-DVQ" id="hVM-g4-itL"/>
                         <outlet property="drawPile" destination="ho1-bF-7K4" id="qvE-nL-Fow"/>
                         <outletCollection property="actr1Buttons" destination="0R6-NN-Ira" collectionClass="NSMutableArray" id="LAr-iO-HDu"/>

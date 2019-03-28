@@ -92,6 +92,7 @@ class ViewController: UIViewController {
     @IBOutlet var actr2Buttons: [MyButton]!
     @IBOutlet var actr3Buttons: [MyButton]!
     
+    @IBOutlet weak var beverBendeButton: UIButton!
     @IBOutlet weak var discardPile: MyButton!
     @IBOutlet weak var drawPile: MyButton!
     
@@ -115,21 +116,25 @@ class ViewController: UIViewController {
                 button.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
                 if actr1 == true {
                     let imageRotate = image!.rotate(radians: .pi/2)
-                    button.setBackgroundImage(imageRotate!, for: .normal)
+                    button.setBackgroundImage(imageRotate, for: .normal)
                 }
                 else if actr2 == true {
                     let imageRotate = image!.rotate(radians: .pi)
-                    button.setBackgroundImage(imageRotate!, for: .normal)
+                    button.setBackgroundImage(imageRotate, for: .normal)
                 }
                 else if actr3 == true {
                     let imageRotate = image!.rotate(radians: .pi/2*3)
-                    button.setBackgroundImage(imageRotate!, for: .normal)
+                    button.setBackgroundImage(imageRotate, for: .normal)
                 } else {
-                    button.setBackgroundImage(image!, for: UIControl.State.normal)
+                    button.setBackgroundImage(image!, for: .normal)
                 }
             }
             if card.isHighlighted {
+                if (actr1 || actr2 || actr3) {
+                    button.borderColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
+                } else {
                 button.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+                }
             }
             if card.isClickable {
                 button.isEnabled = true
@@ -206,7 +211,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = UIColor(patternImage: image1!)
+        self.beverBendeButton.setTitle("Start!", for: .normal)
         
         game = Game()
         updateViewFromModel()
