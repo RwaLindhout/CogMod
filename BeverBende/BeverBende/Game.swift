@@ -34,22 +34,53 @@ class Game {
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
         model.modifyLastAction(slot: "right", value: String(deck.returnCardAtPos(position: 3)))
+        //Start turn
         model.run()
+        model.run()
+        
+        let max_tuple = max(model: model)
+        print(max_tuple)
+        let max_val = max_tuple.0
+        let max_pos = max_tuple.1
+        model.modifyLastAction(slot: "isa", value: "compare-cards")
+        model.modifyLastAction(slot: "max", value: String(max_val))
+        model.modifyLastAction(slot: "max-pos", value: String(max_pos))
+        let min_tuple = min(model: model)
+        let min_val = min_tuple.0
+        let min_pos = min_tuple.1
+        print(min_tuple)
+        model.modifyLastAction(slot: "min", value: String(min_val))
+        model.modifyLastAction(slot: "min-pos", value: String(min_pos))
+        print(model.buffers)
+        model.run()
+        
         model.modifyLastAction(slot: "isa", value: "moves")
         model.buffers["actions"]?.slotvals["discard"] = nil
         model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
+        print(model.buffers)
         model.run()
         print(model.buffers)
         // TODO: ACT-R Model actions are performed here
     }
     
+    public func cardActions(pos: Int, pileClicked: Int) {
+        if pileClicked == 1 {
+            // if the drawPile is clicked
+            discardPile.appendCard(fromDeck: playerDeck, pos: pos)
+            playerDeck.popAndInsertCard(fromDeck: drawPile, pos: pos)
+        } else if pileClicked == 2 {
+            // if the discardPile is clicked
+            playerDeck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
+        }
+    }
+        
     private func max(model: ModelPlayer) -> (Double, Int) {
         var highest: Double = -1
         var highestpos: Int = 5
         let position = ["pos0","pos1","pos2","pos3"]
         var j = 0
         for i in position {
-            let value = model.buffers["actions"]?.slotvals[i]?.number()
+            let value = model.buffers["action"]?.slotvals[i]?.number()
             if value != nil {
                 if value! > highest {
                     highest = value!
@@ -67,7 +98,7 @@ class Game {
         let position = ["pos0","pos1","pos2","pos3"]
         var j = 0
         for i in position {
-            let value = model.buffers["actions"]?.slotvals[i]?.number()
+            let value = model.buffers["action"]?.slotvals[i]?.number()
             if value != nil {
                 if value! < lowest {
                     lowest = value!
@@ -79,16 +110,16 @@ class Game {
         return(lowest,lowestpos)
     }
     
-    public func humanActions() {
-        if drawPile.isClickedPile {
-            //discardPile.addCard(card: playerDeck.isClickedCard()!)
-            print("drawPile is clicked!")
-            discardPile.addCard(card: playerDeck.isClickedCard()!)
-            // TODO: Add the card to the playerDeck and remove from drawpile
-        }
+//    public func humanActions() {
+//        if drawPile.isClickedPile {
+//            //discardPile.addCard(card: playerDeck.isClickedCard()!)
+//            print("drawPile is clicked!")
+//            discardPile.addCard(card: playerDeck.isClickedCard()!)
+//            // TODO: Add the card to the playerDeck and remove from drawpile
+//        }
         // TODO: Draw card from discard pile and add card to playerdeck
         
-    }
+//    }
     
     public func initGame() {
         playerDeck.showOuterCards()
