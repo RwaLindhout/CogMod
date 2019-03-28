@@ -1,45 +1,42 @@
-;(sgp :v nil :esc t :lf 0.4 :bll 0.5 :ans 0.5 :rt 0 :ncnar nil)
-
-;(sgp :show-focus t)
-
-;Sla per positie per speler op wat de upper en lower waarde kunnen zijn en wat avg is.
+;Sla per positie per speler op wat de upper en lower waarde kunnen zijn en wat avg is. 
 ;(chunk-type card player position lower upper avg)
+
 ;Goal chunk houdt de status van de game bij. Maar ook de score van het model en de 3 tegenstanders voor deze ronde
-;Dat is dus de schatting van de waarde voor jezelf en de drie andere spelers.
+;Dat is dus de schatting van de waarde voor jezelf en de drie andere spelers. 
 ;(chunk-type goal state model-score opp1 opp2 opp3)
-;PROBLEM: Hoe ga je bijhouden wat de geschatte waarden van de opponents zijn. Model is inactive namelijk gedurende de beurten van de andere spelers.
-;          Dit zul je dus waarschijnlijk via swift moeten fixen
+
 
 ;SWIFT: Deze chunk is alleen voor het begin van het spel aangezien je dan meekrijgt wat je meest linker en rechter kaart zijn
 ;(chunk-type start-info left right)
+
 ;SWIFT: Get the value of the disard card and the first drawn card, then you can decide.
-;If the draw the special card where you can go twice, this chunk will be requested from swift repeatedly.
+;If the draw the special card where you can go twice, this chunk will be requested from swift repeatedly. 
 ;(chunk-type moves discard draw)
 
 (add-dm
-(player1 isa card player 0 position 0 lower 0 upper 9 avg 5)
-(player2 isa card player 0 position 1 lower 0 upper 9 avg 5)
-(player3 isa card player 0 position 2 lower 0 upper 9 avg 5)
-(player4 isa card player 0 position 3 lower 0 upper 9 avg 5)
-(opp11 isa card player 1 position 0 lower 0 upper 9 avg 5)
-(opp12 isa card player 1 position 1 lower 0 upper 9 avg 5)
-(opp13 isa card player 1 position 2 lower 0 upper 9 avg 5)
-(opp14 isa card player 1 position 3 lower 0 upper 9 avg 5)
-(opp21 isa card player 2 position 0 lower 0 upper 9 avg 5)
-(opp22 isa card player 2 position 1 lower 0 upper 9 avg 5)
-(opp23 isa card player 2 position 2 lower 0 upper 9 avg 5)
-(opp24 isa card player 2 position 3 lower 0 upper 9 avg 5)
-(opp31 isa card player 3 position 0 lower 0 upper 9 avg 5)
-(opp32 isa card player 3 position 1 lower 0 upper 9 avg 5)
-(opp33 isa card player 3 position 2 lower 0 upper 9 avg 5)
-(opp34 isa card player 3 position 3 lower 0 upper 9 avg 5)
+ (player1 isa card player 0 position 0 lower 0 upper 9 avg 5)
+ (player2 isa card player 0 position 1 lower 0 upper 9 avg 5)
+ (player3 isa card player 0 position 2 lower 0 upper 9 avg 5)
+ (player4 isa card player 0 position 3 lower 0 upper 9 avg 5)
+ (opp11 isa card player 1 position 0 lower 0 upper 9 avg 5)
+ (opp12 isa card player 1 position 1 lower 0 upper 9 avg 5)
+ (opp13 isa card player 1 position 2 lower 0 upper 9 avg 5)
+ (opp14 isa card player 1 position 3 lower 0 upper 9 avg 5)
+ (opp21 isa card player 2 position 0 lower 0 upper 9 avg 5)
+ (opp22 isa card player 2 position 1 lower 0 upper 9 avg 5)
+ (opp23 isa card player 2 position 2 lower 0 upper 9 avg 5)
+ (opp24 isa card player 2 position 3 lower 0 upper 9 avg 5)
+ (opp31 isa card player 3 position 0 lower 0 upper 9 avg 5)
+ (opp32 isa card player 3 position 1 lower 0 upper 9 avg 5)
+ (opp33 isa card player 3 position 2 lower 0 upper 9 avg 5)
+ (opp34 isa card player 3 position 3 lower 0 upper 9 avg 5)
+ 
+ (goal isa goal) (count) (counting)(my-turn)(start-game)
+ (clear-imaginal)(look-at-cards)(compare-discard)(compare-draw)
+  (goal isa goal state start-game)
+ )
 
-(goal isa goal) (count) (counting)(my-turn)(start-game)
-(clear-imaginal)(look-at-cards)(compare-discard)(compare-draw)
-(goal isa goal state start-game)
-)
-
-(set-all-baselevels -100 10)
+;(set-all-baselevels 100 10)
 
 (goal-focus goal)
 
@@ -49,232 +46,357 @@
 ;########Initialize Model ###########
 
 (p init
-=goal>
-isa       goal
-state     start-game
+   =goal>
+    isa       goal
+    state     start-game
 ==>
-=goal>
-isa       goal
-state     start-game2
-+action>
-isa       test
-var       69
-)
+  =goal>
+    isa       goal
+    state     start-game2
+  +action>
+    isa       test
+    var       69
+  )
 
-;At the very beginning of the game we look at our two outer cards. And these are saved in declarative memory.
+;At the very beginning of the game we look at our two outer cards. And these are saved in declarative memory. 
 (p start-game
-=goal>
-isa       goal
-state     start-game2
-=action>
-isa       start-info
-left      =pos0
-right     =pos3
+   =goal>
+      isa       goal
+      state     start-game2
+   =action>
+      isa       start-info
+      left      =pos0
+      right     =pos3
 ;  ?imaginal>
 ;      buffer    empty
 ;      state     free
 ==>
-=goal>
-isa       goal
-state     look-at-cards
-=action>
-+imaginal>
-isa       card
-player    0
-position  0
-lower     nil     ;set to nill indicating that we know the values rather than just an estimate
-upper     nil
-avg       =pos0
-)
+  =goal>
+      isa       goal
+      state     look-at-cards
+  =action>
+  +imaginal>
+      isa       card
+      player    0
+      position  0
+      lower     nil     ;set to nill indicating that we know the values rather than just an estimate
+      upper     nil
+      avg       =pos0
+ -imaginal>
+   )
 
 
-;Here we look at the second card and then wait for our turn, so hand over control to the app.
+;Here we look at the second card and then wait for our turn, so hand over control to the app. 
 (p look-at-cards
-=goal>
-isa       goal
-state     look-at-cards
-=action>
-isa       start-info
-left      =pos0
-right     =pos3
+   =goal>
+      isa       goal
+      state     look-at-cards
+   =action>
+      isa       start-info
+      left      =pos0
+      right     =pos3
 ;   ?imaginal>
 ;      buffer    empty
 ;      state     free
 ==>
-=goal>
-isa       goal
-state     wait-for-turn                ;TODO staat aanpassen na process-history zodra dat werkt
-+imaginal>
-isa       card
-player    0
-position  3
-lower     nil     ;set to nill indicating that we know the values rather than just an estimate
-upper     nil
-avg       =pos3
--imaginal>
-+action>
-isa       moves                        ;TODO staat aanpassen na process-history zodra dat werkt
+  =goal>
+      isa       goal
+      state     wait-for-turn				;TODO staat aanpassen na process-history zodra dat werkt
+  +imaginal>
+      isa       card
+      player    0
+      position  3
+      lower     nil     ;set to nill indicating that we know the values rather than just an estimate
+      upper     nil
+      avg       =pos3
+  -imaginal>
+   +action>
+      isa       my-turn						;TODO staat aanpassen na process-history zodra dat werkt
+   )
+
+ ;######## Start remember sequence ###########
+;We try to retrieve the four cards in our hands and we then let SWIFT tell us what the highest and lowest values are.
+;This way we reinforce our memories of our cards but it also allows us to forget wich card is stored where seeing as we retrieve them separately.
+
+( p start-remember-sequence
+    =goal>
+        isa           goal
+        state         wait-for-turn
+    =action>
+        isa           my-turn                 ;Waarden zijn nog niet van belang hier.
+==>
+    =goal>
+        state         remember1
+    =action>          ;No strict harvesting
+    +retrieval>
+        isa         card
+        player      0
+        position    0
 )
 
-;######## Start of Turn ###########
+(p remember-first-card
+    =goal>
+     isa         goal
+     state       remember1
+    =retrieval>
+     isa         card
+     position    0
+     avg         =val
+==>
+    +imaginal>
+     pos0        =val
+    =goal>
+     isa         goal
+     state       remember2
+    +retrieval>
+     isa         card
+     player      0
+     position    1
+)
+
+(p remember-second-card
+    =goal>
+        isa         goal
+        state       remember2
+    =retrieval>
+        isa         card
+        position    1
+        avg         =val
+    =imaginal>
+       pos0        =aanwezig
+==>
+    =imaginal>
+        pos1        =val
+    =goal>
+        isa         goal
+        state       remember3
+    +retrieval>
+        isa         card
+        player      0
+        position    2
+)
+
+(p remember-third-card
+    =goal>
+        isa         goal
+        state       remember3
+    =retrieval>
+        isa         card
+        position    2
+        avg         =val
+    =imaginal>
+        pos0        =aanwezig
+        pos1        =aanwezig2
+==>
+    =imaginal>
+        pos2        =val
+    =goal>
+        isa         goal
+        state       remember4
+    +retrieval>
+        isa         card
+        player      0
+        position    3
+)
+
+(p remember-fourth-card
+    =goal>
+        isa         goal
+        state       remember4
+    =retrieval>
+        isa         card
+        position    3
+        avg         =val
+    =imaginal>
+        pos0        =aanwezig
+        pos1        =aanwezig2
+        pos2        =aanwezig3
+==>
+    =imaginal>
+        pos3        =val
+    =goal>
+        isa         goal
+        state       let-swift-rank
+    +action>
+        move        compare-cards
+        pos0        =aanwezig
+        pos1        =aanwezig2
+        pos2        =aanwezig3
+        pos3        =val
+)
+
+(p get-ranked-cards
+    =goal>
+        isa         goal
+        state       let-swift-rank
+    =imaginal>
+        pos0        =value1
+        pos1        =value2
+        pos2        =value3
+        pos3        =value4
+    =action>
+        move        compare-cards
+        pos0        =value1
+        pos1        =value2
+        pos2        =value3
+        pos3        =value4
+        min         =lowest
+        min-pos     =low-pos
+        max         =highest
+        max-pos     =high-pos
+==>
+    =goal>
+        isa         goal
+        state       start-turn
+    =imaginal>
+        min         =lowest
+        max         =highest
+        min-pos     =low-pos
+        max-pos     =high-pos
+    +action>
+        isa         moves
+)
+
+ ;######## Start of turn ###########
 
 (p start-turn-discard-empty
-=goal>
-isa         goal
-state       wait-for-turn
-=action>
-isa         moves
-discard     nil
-draw        =draw
+    =goal>
+        isa         goal
+        state       start-turn
+    =action>
+        isa         moves
+        discard     nil
+        draw        =draw
+    =imaginal>
+        min         =lowest
+        max         =highest
 ==>
-=goal>
-state       compare-draw
-=action>
-+retrieval>
-isa         card
-player      0
-> avg       =draw
+    =goal>
+        state       compare-draw
+    =action>
+    =imaginal>
 )
-
 
 (p start-my-turn
-=goal>
-isa         goal
-state       wait-for-turn
-=action>
-isa           moves
-- discard     nil
-discard       =discard
-draw          =draw
+    =goal>
+        isa           goal
+        state         start-turn
+    =action>
+        isa           moves
+        - discard     nil
+        discard       =discard
+        draw          =draw
+    =imaginal>
+        min         =lowest
+        max         =highest
 ==>
-=goal>
-state       compare-discard
-=action>   ;No strict harvesting
-+retrieval>
-isa         card
-player      0
-> avg       =draw
-
+    =goal>
+        state         compare-discard
+    =action>          ;No strict harvesting
+    =imaginal>
 )
 
 
-
-;If we were able to find a card with a higher average than the card from the discard pile in our own deck
-;then we take the card from the discard pile and swap.
-;We also let the app know that we made our decision, which can then be shown and we'll wait for our next turn.
 (p take-discard-card
-=goal>
-isa         goal
-state       compare-discard
-=retrieval>
-isa         card
-player      0
-position    =pos
-=action>
-isa         moves
-discard     =discard
-draw        =draw
-;   ?imaginal>
-;     buffer    empty
-;      state     free
+   =goal>
+      isa         goal
+      state       compare-discard
+   =imaginal>
+      max         =max
+      max-pos     =max-pos
+   =action>
+      isa         moves
+      discard     =discard
+    < discard     =max
 ==>
-=goal>
-isa         goal
-state       end-turn
-+imaginal>
-isa         card
-player      0
-position    pos
-lower       nil     ;set to nill indicating that we know the values rather than just an estimate
-upper       nil
-avg         =discard
-+action>
-action      took-discard
-position    =pos
-value       =discard
-)
+  =goal>
+      isa         goal
+      state       end-turn
+-imaginal>
++imaginal>                                                ;#### Gaat dit goed, want die andere troep zit ook nog in de imaginal buffer.
+      isa         card
+      player      0
+      position    =max-pos
+      lower       nil     ;set to nill indicating that we know the values rather than just an estimate
+      upper       nil
+      avg         =discard
+  +action>
+      action      took-discard
+      position    =max-pos
+      value       =discard
+  )
 
 
-
-
-;If we were unable to find a card of our own with a higher value than the discard pile we will not take
-;the discard card but rather we will draw a card and look at that. So we will search for a card of our own
-;with a higher value as the drawn card.
 (p do-not-take-discard-card
-=goal>
-isa         goal
-state       compare-discard
-?retrieval>
-state        error
-=action>
-isa         moves
-discard     =discard
-draw        =draw
+    =goal>
+      isa         goal
+      state       compare-discard
+    =action>
+      isa         moves
+      discard     =discard
+      draw        =draw
+    =imaginal>
+      max         =max
+    =action>
+      isa         moves
+      discard     =discard
+    >= discard     =max
 ==>
-=goal>
-isa         goal
-state       compare-draw
-=action>   ;No strict harvesting
-+retrieval>
-isa         card
-player      0
-> avg         =draw
-)
-
-;TODO: Hier productions toevoegen met speciale cases voor de drie speciale kaarten.
+  =goal>
+      isa         goal
+      state       compare-draw
+   =action>       ;No strict harvesting
+   =imaginal>
+  )
 
 
-;If we found a card with a higher value than the drawn card we will swap and let the app know what we did.
-;We also make a new chunk containing the updated information on which cards we check.
 (p take-draw-card
-=goal>
-isa         goal
-state       compare-draw
-=retrieval>
-isa         card
-player      0
-position    =pos
-=action>
-isa         moves
-;      discard     =discard
-draw        =draw
-;  ?imaginal>
-;      buffer    empty
-;      state     free
+    =goal>
+        isa         goal
+        state       compare-draw
+    =imaginal>
+        max         =max
+        max-pos     =max-pos
+    =action>
+        isa         moves
+        draw        =draw
+      < draw        =max
 ==>
-=goal>
-isa         goal
-state       end-turn
-+imaginal>
-isa         card
-player      0
-position    =pos
-lower       nil     ;set to nill indicating that we know the values rather than just an estimate
-upper       nil
-avg         =draw
-+action>
-action      took-draw
-position    =pos
-value       =draw
-)
+    =goal>
+        isa         goal
+        state       end-turn
+    -imaginal>                          ;#### Gaat dit goed, want die andere troep zit ook nog in de imaginal buffer.
+    +imaginal>
+        isa         card
+        player      0
+        position    =max-pos
+        lower       nil     ;set to nill indicating that we know the values rather than just an estimate
+        upper       nil
+        avg         =draw
+    +action>
+        action      took-draw
+        position    =max-pos
+        value       =draw
+  )
 
 
-;If we were unable to find a card with a higher score then the draw card we will discard it and end our turn.
+;If we were unable to find a card with a higher score then the draw card we will discard it and end our turn. 
 (p do-not-take-draw-card
-=goal>
-isa         goal
-state       compare-draw
-?retrieval>
-state        error
-=action>
-isa         moves
-;     discard     =discard
-draw        =draw
+    =goal>
+        isa         goal
+        state       compare-draw
+    =imaginal>
+        max         =max
+        max-pos     =max-pos
+    =action>
+        isa         moves
+        draw        =draw
+        >= draw        =max
 ==>
-=goal>
-isa         goal
-state       end-turn
-+action>
-action      discard-draw
-value       =draw
-)
+    =goal>
+        isa         goal
+        state       end-turn
+    +action>
+        action      discard-draw
+        value       =draw
+  )

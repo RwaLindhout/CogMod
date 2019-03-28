@@ -37,7 +37,10 @@
 		23D30D07221ADEDC00982D18 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D06221ADEDC00982D18 /* Deck.swift */; };
 		23D30D0B221ADF8500982D18 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D0A221ADF8500982D18 /* Card.swift */; };
 		23D30D0D221ADFA400982D18 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D0C221ADFA400982D18 /* Game.swift */; };
-		C6327CC1224BB2F600457488 /* beverbende.actr in Resources */ = {isa = PBXBuildFile; fileRef = C6327CC0224BB2F600457488 /* beverbende.actr */; };
+		865AACD4224CEAC200D91F26 /* bever.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 865AACD3224CEAC200D91F26 /* bever.jpg */; };
+		865AACD6224CEAC800D91F26 /* table.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 865AACD5224CEAC800D91F26 /* table.jpg */; };
+		86EA2F6F224CEB9C0073D068 /* beverbende-2.actr in Resources */ = {isa = PBXBuildFile; fileRef = 86EA2F6D224CEB9C0073D068 /* beverbende-2.actr */; };
+		86EA2F70224CEB9C0073D068 /* beverbende.actr in Resources */ = {isa = PBXBuildFile; fileRef = 86EA2F6E224CEB9C0073D068 /* beverbende.actr */; };
 		C6327CC7224BB62E00457488 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6327CC6224BB62E00457488 /* MyButton.swift */; };
 		C6327CCF224BCA1000457488 /* rotateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6327CCE224BCA1000457488 /* rotateImage.swift */; };
 		C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */; };
@@ -99,7 +102,10 @@
 		23D30D06221ADEDC00982D18 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		23D30D0A221ADF8500982D18 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		23D30D0C221ADFA400982D18 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		C6327CC0224BB2F600457488 /* beverbende.actr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = beverbende.actr; sourceTree = "<group>"; };
+		865AACD3224CEAC200D91F26 /* bever.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bever.jpg; sourceTree = "<group>"; };
+		865AACD5224CEAC800D91F26 /* table.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = table.jpg; sourceTree = "<group>"; };
+		86EA2F6D224CEB9C0073D068 /* beverbende-2.actr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "beverbende-2.actr"; sourceTree = "<group>"; };
+		86EA2F6E224CEB9C0073D068 /* beverbende.actr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = beverbende.actr; sourceTree = "<group>"; };
 		C6327CC6224BB62E00457488 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		C6327CCE224BCA1000457488 /* rotateImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rotateImage.swift; sourceTree = "<group>"; };
 		C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -158,8 +164,8 @@
 		230C518A223FC9A90027845F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C6327CC0224BB2F600457488 /* beverbende.actr */,
-				083449482248FCA500867CF5 /* beverbende.actr */,
+				86EA2F6D224CEB9C0073D068 /* beverbende-2.actr */,
+				86EA2F6E224CEB9C0073D068 /* beverbende.actr */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,11 +193,11 @@
 		23D30CD4221ADE1300982D18 /* BeverBende */ = {
 			isa = PBXGroup;
 			children = (
-				08EEB1D2224CCE9A0091585F /* table.jpg */,
-				08EEB1D0224CCE930091585F /* bever.jpg */,
+				865AACD5224CEAC800D91F26 /* table.jpg */,
+				865AACD3224CEAC200D91F26 /* bever.jpg */,
 				230C518A223FC9A90027845F /* Models */,
-				230C5167223FC46E0027845F /* Core ACT-R */,
 				23D30CE1221ADE1400982D18 /* Info.plist */,
+				230C5167223FC46E0027845F /* Core ACT-R */,
 				23D30D03221ADE5100982D18 /* Extra */,
 				23D30CD5221ADE1300982D18 /* AppDelegate.swift */,
 				C6327CCE224BCA1000457488 /* rotateImage.swift */,
@@ -345,13 +351,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86EA2F6F224CEB9C0073D068 /* beverbende-2.actr in Resources */,
+				86EA2F70224CEB9C0073D068 /* beverbende.actr in Resources */,
 				23D30CE0221ADE1400982D18 /* StartScreen.storyboard in Resources */,
 				C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */,
 				23D30CDD221ADE1400982D18 /* Assets.xcassets in Resources */,
-				08EEB1D1224CCE930091585F /* bever.jpg in Resources */,
+				865AACD4224CEAC200D91F26 /* bever.jpg in Resources */,
 				23D30CDB221ADE1300982D18 /* Main.storyboard in Resources */,
-				C6327CC1224BB2F600457488 /* beverbende.actr in Resources */,
-				08EEB1D3224CCE9A0091585F /* table.jpg in Resources */,
+				865AACD6224CEAC800D91F26 /* table.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
