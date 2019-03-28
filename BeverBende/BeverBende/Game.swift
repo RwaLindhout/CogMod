@@ -20,12 +20,12 @@ class Game {
     public var modelPlayer3: ModelPlayer
     public var isFinished: Bool = false
     
-    public func ACTRInit() {
+    public func cardsInit() {
+        drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+        drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
         if discardPile.cards.isEmpty {
-            drawPile.makeLastCardHighlighted()
-        } else {
-            drawPile.makeLastCardHighlighted()
-            discardPile.makeLastCardHighlighted()
+            discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+            discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
         }
     }
     
@@ -36,26 +36,16 @@ class Game {
         model.modifyLastAction(slot: "right", value: String(deck.returnCardAtPos(position: 3)))
         model.run()
         model.modifyLastAction(slot: "isa", value: "moves")
-        model.modifyLastAction(slot: "discard", value: "nil")
+        model.buffers["actions"]?.slotvals["discard"] = nil
         model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
         model.run()
         print(model.buffers)
-        
         // TODO: ACT-R Model actions are performed here
     }
     
     public func humanActions() {
-        // First turn there is nothing on the discardPile so only
-        // drawPile becomes clickable and highlighted
-        if (discardPile.cards.isEmpty) {
-            drawPile.makeLastCardClickableAndHighlighted()
-        } else {
-            // drawPile and discardPile become clickable and highlighted
-            drawPile.makeLastCardClickableAndHighlighted()
-            discardPile.makeLastCardClickableAndHighlighted()
-        }
-        playerDeck.makeCardsClickableAndHighlighted()
         if drawPile.isClickedPile {
+            print("drawPile is clicked!")
             discardPile.addCard(card: playerDeck.isClickedCard()!)
             // TODO: Add the card to the playerDeck and remove from drawpile
         }

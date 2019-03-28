@@ -40,17 +40,26 @@ class ViewController: UIViewController {
     }
     
     @IBAction func drawPileClick(_ sender: UIButton) {
-        game.drawPile.isClicked(position: -1)
+        // init drawPile
+        game.drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
+        game.drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+        game.drawPile.makeCardsFaceUp(fourCards: false, setTrueOrFalse: true)
+        print("letsgo")
+        updateViewFromModel()
+        
+        // action: make playerdeck highlighted and clickable, and discardpile as well
     }
     
     @IBAction func discardPileClick(_ sender: UIButton) {
-        game.discardPile.isClicked(position: -1)
+        game.discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
+        game.discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+        updateViewFromModel()
     }
     
     @IBAction func playerClick(_ sender: UIButton) {
         for i in 0..<4{
             if playerButtons[i] == sender {
-                game.playerDeck.isClicked(position: i)
+//                game.playerDeck.isClicked(position: i)
             }
         }
     }
@@ -83,6 +92,7 @@ class ViewController: UIViewController {
             }
             if card.isHighlighted {
                 // TODO: Card should become highlighted, for now just changes color
+        
                 button.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
             }
             if card.isClickable {
@@ -111,6 +121,9 @@ class ViewController: UIViewController {
                 // TODO: Card should become highlighted, for now just changes color
                 cardButton.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
             }
+            if deck.cards[deck.cards.endIndex-1].isFaceUp {
+                cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
+            }
             if deck.cards[deck.cards.endIndex-1].isClickable {
                 cardButton.isEnabled = true
             } else {
@@ -133,13 +146,15 @@ class ViewController: UIViewController {
     //TODO: add functions to do beverbende?
     
     private func runGame() {
+        game.cardsInit()
+        updateViewFromModel()
         while !game.isFinished {
-            // Player turn
+//             Player turn
             game.humanActions()
             updateViewFromModel()
             
             // ACT-R Model turns
-            game.ACTRInit()
+            game.cardsInit()
             updateViewFromModel()
             game.ACTRModelActions(model: game.modelPlayer1, deck: game.actrDeck1)
             updateViewFromModel()
@@ -161,10 +176,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         game = Game()
         updateViewFromModel()
-        game.modelPlayer1.loadModel(fileName: "beverbende")
+//        game.modelPlayer1.loadModel(fileName: "beverbende")
+//        game.modelPlayer1.loadedModel = "beverbende"
+        
+        
 //        game.modelPlayer2.loadModel(fileName: "beverbende")
 //        game.modelPlayer3.loadModel(fileName: "beverbende")
-        game.modelPlayer1.loadedModel = "beverbende"
         
 //        game.modelPlayer2.loadedModel = "beverbende"
 //        game.modelPlayer3.loadedModel = "beverbende"

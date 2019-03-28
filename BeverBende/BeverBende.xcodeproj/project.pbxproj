@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		083449492248FCA500867CF5 /* beverbende.actr in Resources */ = {isa = PBXBuildFile; fileRef = 083449482248FCA500867CF5 /* beverbende.actr */; };
 		230C5162223FAAC50027845F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5161223FAAC50027845F /* Player.swift */; };
 		230C5179223FC46E0027845F /* SlotAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5168223FC46E0027845F /* SlotAction.swift */; };
 		230C517A223FC46E0027845F /* BufferCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5169223FC46E0027845F /* BufferCondition.swift */; };
@@ -35,7 +36,6 @@
 		23D30D07221ADEDC00982D18 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D06221ADEDC00982D18 /* Deck.swift */; };
 		23D30D0B221ADF8500982D18 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D0A221ADF8500982D18 /* Card.swift */; };
 		23D30D0D221ADFA400982D18 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D0C221ADFA400982D18 /* Game.swift */; };
-		C61F6853224235EF00EFFD8E /* beverbende.actr in Resources */ = {isa = PBXBuildFile; fileRef = C61F6852224235EF00EFFD8E /* beverbende.actr */; };
 		C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */; };
 		C6B6CAB122269D9B00724A90 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6CAB022269D9B00724A90 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		083449482248FCA500867CF5 /* beverbende.actr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = beverbende.actr; sourceTree = "<group>"; };
 		230C5161223FAAC50027845F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		230C5168223FC46E0027845F /* SlotAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotAction.swift; sourceTree = "<group>"; };
 		230C5169223FC46E0027845F /* BufferCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferCondition.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		23D30D06221ADEDC00982D18 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		23D30D0A221ADF8500982D18 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		23D30D0C221ADFA400982D18 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		C61F6852224235EF00EFFD8E /* beverbende.actr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = beverbende.actr; path = ../../../../../Downloads/beverbende.actr; sourceTree = "<group>"; };
 		C64035562226B17A00A4FE48 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6B6CAB022269D9B00724A90 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,7 +149,7 @@
 		230C518A223FC9A90027845F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C61F6852224235EF00EFFD8E /* beverbende.actr */,
+				083449482248FCA500867CF5 /* beverbende.actr */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -333,9 +333,9 @@
 			files = (
 				23D30CE0221ADE1400982D18 /* StartScreen.storyboard in Resources */,
 				C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */,
-				C61F6853224235EF00EFFD8E /* beverbende.actr in Resources */,
 				23D30CDD221ADE1400982D18 /* Assets.xcassets in Resources */,
 				23D30CDB221ADE1300982D18 /* Main.storyboard in Resources */,
+				083449492248FCA500867CF5 /* beverbende.actr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

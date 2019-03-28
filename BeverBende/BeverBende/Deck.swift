@@ -11,6 +11,7 @@ import Foundation
 class Deck {
     private(set) var cards = [Card]()
     public var isClickedPile = false
+    
     // TODO: Create a complete deck with 52 cards
     public func createDeck() {
         for _ in 0..<6 {
@@ -55,30 +56,90 @@ class Deck {
         self.cards[3].isFaceUp = false
     }
     
-    public func makeLastCardClickableAndHighlighted() {
-        self.cards[cards.endIndex-1].isClickable = true
-        self.cards[cards.endIndex-1].isHighlighted = true
-    }
-    
-    public func makeLastCardHighlighted() {
-        self.cards[cards.endIndex-1].isHighlighted = true
-    }
-    
-    public func makeCardsClickableAndHighlighted() {
-        for index in 0..<4 {
-            self.cards[index].isHighlighted = true
-            self.cards[index].isClickable = true
-      }
-    }
-    
-    public func isClicked(position: Int){
-        if position >= 0 {
-            self.cards[position].isClicked = true
-        } else {
-            self.cards[cards.endIndex - 1].isClicked = true
-            isClickedPile = true
+    public func makeCardsClickable(fourCards: Bool, setTrueOrFalse: Bool) {
+        if fourCards {
+            for index in 0..<4 {
+                if setTrueOrFalse {
+                    self.cards[index].isClickable = true
+                } else {
+                    self.cards[index].isClickable = false
+                }
+            }
+        } else if !self.cards.isEmpty {
+            if setTrueOrFalse {
+                self.cards[cards.endIndex-1].isClickable = true
+            } else {
+                self.cards[cards.endIndex-1].isClickable = false
+            }
         }
     }
+    
+    public func makeCardsHighlighted(fourCards: Bool, setTrueOrFalse: Bool) {
+        if fourCards {
+            for index in 0..<4 {
+                if setTrueOrFalse {
+                    self.cards[index].isHighlighted = true
+                } else {
+                    self.cards[index].isHighlighted = false
+                }
+            }
+        } else if !self.cards.isEmpty {
+            if setTrueOrFalse {
+                self.cards[cards.endIndex-1].isHighlighted = true
+            } else {
+                self.cards[cards.endIndex-1].isHighlighted = false
+            }
+        }
+    }
+    
+    public func makeCardsFaceUp(fourCards: Bool, setTrueOrFalse: Bool) {
+        if fourCards {
+            for index in 0..<4 {
+                if setTrueOrFalse {
+                    self.cards[index].isFaceUp = true
+                } else {
+                    self.cards[index].isFaceUp = false
+                }
+            }
+        } else if !self.cards.isEmpty {
+            if setTrueOrFalse {
+                self.cards[cards.endIndex-1].isFaceUp = true
+                print(self.cards[cards.endIndex-1].value)
+            } else {
+                self.cards[cards.endIndex-1].isFaceUp = false
+            }
+        }
+    }
+    
+//    public func makeLastCardClickableAndHighlighted() {
+//        if !self.cards.isEmpty {
+//            self.cards[cards.endIndex-1].isClickable = true
+//            self.cards[cards.endIndex-1].isHighlighted = true
+//        }
+//    }
+//
+//    public func makeLastCardHighlighted() {
+//        if !self.cards.isEmpty {
+//            self.cards[cards.endIndex-1].isHighlighted = true
+//        }
+//    }
+//
+//    public func makeCardsClickableAndHighlighted() {
+//        for index in 0..<4 {
+//            self.cards[index].isHighlighted = true
+//            self.cards[index].isClickable = true
+//      }
+//    }
+//
+//    public func makeLastCardClickableAndFaceUp(position: Int){
+//        if position >= 0 {
+//            self.cards[position].isClicked = true
+//        } else {
+//            self.cards[cards.endIndex-1].isClicked = true
+//            self.cards[cards.endIndex-1].isFaceUp = true
+//            isClickedPile = true
+//        }
+//    }
     
     public func isClickedCard()->Card?{
         for card in self.cards{
