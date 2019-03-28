@@ -39,12 +39,12 @@ class ViewController: UIViewController {
             updateViewFromModel()
             button.setTitle("BeverBende!", for: .normal)
         default:
-            //BeverBende
+            game.beverBende()
+            showscore(end: true)
             break;
         }
     }
     
-
    
     @IBAction func drawPileClick(_ sender: UIButton) {
         // init drawPile
@@ -106,8 +106,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var drawPile: MyButton!
     
     @IBAction func score(_ sender: UIButton) {
+        showscore(end: false)
+    }
+    
+    func showscore(end: Bool){
         let alert = UIAlertController(title: "Score", message: "score", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        if end{
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
+        } else {
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        }
         self.present(alert, animated: true)
     }
     
@@ -218,7 +226,9 @@ class ViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
+       
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(patternImage: image1!)
@@ -226,7 +236,7 @@ class ViewController: UIViewController {
         
         game = Game()
         updateViewFromModel()
-       game.modelPlayer1.loadModel(fileName: "beverbende")
+        game.modelPlayer1.loadModel(fileName: "beverbende")
         game.modelPlayer1.loadedModel = "beverbende"
         
         

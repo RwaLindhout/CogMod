@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YU6-CN-7uY">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,75 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Start View Controller-->
+        <scene sceneID="31r-AB-sqq">
+            <objects>
+                <viewController id="YU6-CN-7uY" customClass="StartViewController" customModule="BeverBende" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleAspectFit" id="rZr-vb-dlO">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be4-30-oJw" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
+                                <rect key="frame" x="414" y="542" width="197" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Instructions"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.97517246007919312" green="0.26450490951538086" blue="0.041594758629798889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="instructions:" destination="YU6-CN-7uY" eventType="touchUpInside" id="LTQ-d7-6if"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nw1-fL-pXL" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
+                                <rect key="frame" x="396" y="203" width="233" height="141"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="New Game"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.97517246007919312" green="0.26450490951538086" blue="0.041594758629798889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="newGame:" destination="YU6-CN-7uY" eventType="touchUpInside" id="0i9-9k-NL2"/>
+                                    <action selector="newGame:" destination="RKM-fK-JZc" eventType="touchUpInside" id="Q7n-Y0-hSY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="W6D-Pm-2SQ" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="be4-30-oJw" secondAttribute="bottom" constant="190" id="1zF-Ck-9h5"/>
+                            <constraint firstItem="be4-30-oJw" firstAttribute="leading" secondItem="W6D-Pm-2SQ" secondAttribute="leading" constant="414" id="3wI-Bz-rB8"/>
+                            <constraint firstItem="W6D-Pm-2SQ" firstAttribute="trailing" secondItem="Nw1-fL-pXL" secondAttribute="trailing" constant="395" id="53d-vu-65g"/>
+                            <constraint firstItem="W6D-Pm-2SQ" firstAttribute="trailing" secondItem="be4-30-oJw" secondAttribute="trailing" constant="413" id="a9U-QU-pLj"/>
+                            <constraint firstItem="Nw1-fL-pXL" firstAttribute="leading" secondItem="W6D-Pm-2SQ" secondAttribute="leading" constant="396" id="dyC-fA-QYD"/>
+                            <constraint firstItem="Nw1-fL-pXL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="W6D-Pm-2SQ" secondAttribute="top" constant="247" id="gih-0N-DgO"/>
+                            <constraint firstItem="be4-30-oJw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Nw1-fL-pXL" secondAttribute="bottom" constant="100" id="sX7-kz-teq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="W6D-Pm-2SQ"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="mySegue" modalTransitionStyle="crossDissolve" id="fFp-8a-qYb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OD8-Va-6vj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="RKM-fK-JZc" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="635.7421875" y="-258.59375"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -28,7 +97,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
@@ -46,7 +115,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
@@ -64,7 +133,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
@@ -82,7 +151,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
@@ -105,7 +174,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
@@ -129,7 +198,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" red="0.97517246007919312" green="0.26450490951538086" blue="0.041594758629798889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
@@ -150,7 +219,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
@@ -171,7 +240,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
@@ -192,7 +261,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
@@ -220,7 +289,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
@@ -238,7 +307,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
@@ -256,7 +325,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
@@ -274,7 +343,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
@@ -307,7 +376,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
@@ -325,7 +394,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
@@ -343,7 +412,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
@@ -361,7 +430,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
@@ -384,7 +453,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
@@ -472,11 +541,12 @@
                         <outletCollection property="actr3Buttons" destination="sH5-Zb-4sw" collectionClass="NSMutableArray" id="y7k-hh-6aP"/>
                         <outletCollection property="actr3Buttons" destination="Fjc-Az-ZhG" collectionClass="NSMutableArray" id="Hff-nb-OtM"/>
                         <outletCollection property="actr3Buttons" destination="GLy-jJ-F8M" collectionClass="NSMutableArray" id="bkb-mW-UCF"/>
+                        <segue destination="YU6-CN-7uY" kind="presentation" identifier="backToStart" id="IR8-kk-jHq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.75" y="4.6875"/>
+            <point key="canvasLocation" x="683" y="695"/>
         </scene>
     </scenes>
 </document>

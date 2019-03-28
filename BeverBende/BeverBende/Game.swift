@@ -121,6 +121,12 @@ class Game {
         
 //    }
     
+    public func beverBende(){
+        print("yay")
+    }
+    
+    
+    
     public func initGame() {
         playerDeck.showOuterCards()
     }
