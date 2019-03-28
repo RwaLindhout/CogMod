@@ -10,7 +10,7 @@ import Foundation
 
 class Deck {
     private(set) var cards = [Card]()
-    public var isClickedPile = false
+//    public var isClickedPile = false
     
     // TODO: Create a complete deck with 52 cards
     public func createDeck() {
@@ -28,19 +28,58 @@ class Deck {
     // Initialize a player deck
     private func createPlayerDeck(drawDeck: Deck) {
         for i in 0..<4 {
-            drawCard(position: i, fromDeck: drawDeck)
+            drawCard(fromDeck: drawDeck, pos: i)
         }
     }
     
-    // Draws a card from one deck to another
-    public func drawCard(position: Int, fromDeck: Deck) {
+//    public func removeAndInsert(fromDeck: Deck){
+//        let card = fromDeck.cards.popLast()
+//        self.cards.append(card!)
+//    }
+    
+    public func swapCardsAtPos(fromDeck: Deck, pos: Int) {
         let card = fromDeck.cards.popLast()
-        self.cards.insert(card!, at:position)
+        let card_1 = self.cards[pos]
+        self.cards.remove(at: pos)
+        self.cards.insert(card!, at:pos)
+        fromDeck.cards.append(card_1)
     }
     
-    public func addCard(card: Card){        
+    public func appendCard(fromDeck: Deck, pos: Int) {
+        let card = fromDeck.cards[pos]
         self.cards.append(card)
     }
+    
+    public func popAndInsertCard(fromDeck: Deck, pos: Int) {
+        let card = fromDeck.cards.popLast()
+        self.cards.remove(at: pos)
+        self.cards.insert(card!, at:pos)
+    }
+    
+    public func removeAndAppendCard(fromDeck: Deck) {
+        let card = fromDeck.cards.popLast()
+        self.cards.append(card!)
+    }
+    
+    // Draws a card from one deck to another
+    public func drawCard(fromDeck: Deck, pos: Int) {
+        let card = fromDeck.cards.popLast()
+        self.cards.insert(card!, at:pos)
+    }
+    
+    public func returnCardAtPos(position: Int) -> Int {
+        return cards[position].value
+    }
+
+//
+//    public func removeLastCard() {
+//        self.cards.removeLast()
+//    }
+//
+//
+//    public func setCardValue(pos: Int, value: Int) {
+//        self.cards[pos].value = value
+//    }
     
     public func isEmpty() -> Bool {
         return self.cards.isEmpty
@@ -52,8 +91,9 @@ class Deck {
     }
     
     public func hideOuterCards() {
-        self.cards[0].isFaceUp = false
-        self.cards[3].isFaceUp = false
+        // todo: set this to false
+//        self.cards[0].isFaceUp = false
+//        self.cards[3].isFaceUp = false
     }
     
     public func makeCardsClickable(fourCards: Bool, setTrueOrFalse: Bool) {
@@ -111,8 +151,7 @@ class Deck {
             }
         }
     }
-    
-    
+
 //    public func makeLastCardClickableAndHighlighted() {
 //        if !self.cards.isEmpty {
 //            self.cards[cards.endIndex-1].isClickable = true
@@ -143,14 +182,14 @@ class Deck {
 //        }
 //    }
     
-    public func isClickedCard()->Card?{
-        for card in self.cards{
-            if card.isClicked{
-                return card
-            }
-        }
-        return nil
-    }
+//    public func isClickedCard()->Card?{
+//        for card in self.cards{
+//            if card.isClicked{
+//                return card
+//            }
+//        }
+//        return nil
+//    }
     
     private func initFourCards() {
         for _ in 0..<4 {
@@ -158,11 +197,6 @@ class Deck {
             cards += [card]
         }
     }
-    
-    public func returnCardAtPos(position: Int) -> Int {
-        return cards[position].value
-    }
-    
     
     // Init a deck with all the cards
     init(completeDeck: Bool) {
