@@ -15,7 +15,7 @@ struct Card: Hashable {
         return lhs.identifier == rhs.identifier
     }
     
-    public var isFaceUp = false
+    public var isFaceUp = true
     public var isHighlighted = false
     public var isClickable = false
     var value: Int
@@ -27,6 +27,10 @@ struct Card: Hashable {
     static func getUniqueIdentifier() -> Int {
         identifierFactory += 1
         return 0
+    }
+    
+    public mutating func setValue(value: Int) {
+        self.value = value
     }
     
 //    mutating func setFaceUp(faceUp: Bool) {

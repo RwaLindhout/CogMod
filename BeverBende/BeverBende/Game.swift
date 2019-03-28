@@ -43,16 +43,27 @@ class Game {
         // TODO: ACT-R Model actions are performed here
     }
     
-    public func humanActions() {
-        if drawPile.isClickedPile {
-            //discardPile.addCard(card: playerDeck.isClickedCard()!)
-            print("drawPile is clicked!")
-            discardPile.addCard(card: playerDeck.isClickedCard()!)
-            // TODO: Add the card to the playerDeck and remove from drawpile
+    public func cardActions(pos: Int, pileClicked: Int) {
+        if pileClicked == 1 {
+            // if the drawPile is clicked
+            discardPile.appendCard(fromDeck: playerDeck, pos: pos)
+            playerDeck.popAndInsertCard(fromDeck: drawPile, pos: pos)
+        } else if pileClicked == 2 {
+            // if the discardPile is clicked
+            playerDeck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
         }
+    }
+    
+//    public func humanActions() {
+//        if drawPile.isClickedPile {
+//            //discardPile.addCard(card: playerDeck.isClickedCard()!)
+//            print("drawPile is clicked!")
+//            discardPile.addCard(card: playerDeck.isClickedCard()!)
+//            // TODO: Add the card to the playerDeck and remove from drawpile
+//        }
         // TODO: Draw card from discard pile and add card to playerdeck
         
-    }
+//    }
     
     public func initGame() {
         playerDeck.showOuterCards()
