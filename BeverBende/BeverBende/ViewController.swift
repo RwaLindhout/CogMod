@@ -89,12 +89,10 @@ class ViewController: UIViewController {
             let card = deck.cards[button.tag]
             if card.isFaceUp {
                 button.setTitle(String(card.value), for:UIControl.State.normal)
-                button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 button.setBackgroundImage(nil, for: .normal)
             } else {
                 button.setTitle("", for: UIControl.State.normal)
                 button.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-                //TODO: zorg dat de goeie decks een gedraaid plaatje hebben
                 if actr1 == true {
                     let imageRotate = image!.rotate(radians: .pi/2)
                     button.setBackgroundImage(imageRotate!, for: .normal)
@@ -105,9 +103,9 @@ class ViewController: UIViewController {
                 }
                 else if actr3 == true {
                     let imageRotate = image!.rotate(radians: .pi/2*3)
-                   button.setBackgroundImage(imageRotate!, for: .normal)
+                    button.setBackgroundImage(imageRotate!, for: .normal)
                 } else {
-                button.setBackgroundImage(image!, for: .normal)
+                    button.setBackgroundImage(image!, for: UIControl.State.normal)
                 }
             }
             if card.isHighlighted {
@@ -138,7 +136,6 @@ class ViewController: UIViewController {
             cardButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
             cardButton.setBackgroundImage(image!, for: .normal)
             if deck.cards[deck.cards.endIndex-1].isHighlighted {
-                // TODO: Card should become highlighted, for now just changes color
                 cardButton.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
             }
             if deck.cards[deck.cards.endIndex-1].isFaceUp {

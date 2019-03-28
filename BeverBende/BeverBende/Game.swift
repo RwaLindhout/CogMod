@@ -43,6 +43,42 @@ class Game {
         // TODO: ACT-R Model actions are performed here
     }
     
+    private func max(model: ModelPlayer) -> (Double, Int) {
+        var highest: Double = -1
+        var highestpos: Int = 5
+        let position = ["pos0","pos1","pos2","pos3"]
+        var j = 0
+        for i in position {
+            let value = model.buffers["actions"]?.slotvals[i]?.number()
+            if value != nil {
+                if value! > highest {
+                    highest = value!
+                    highestpos = j
+                }
+            }
+            j += 1
+        }
+        return (highest,highestpos)
+    }
+        
+    private func min(model: ModelPlayer) -> (Double, Int)  {
+        var lowest: Double = 100
+        var lowestpos: Int = 5
+        let position = ["pos0","pos1","pos2","pos3"]
+        var j = 0
+        for i in position {
+            let value = model.buffers["actions"]?.slotvals[i]?.number()
+            if value != nil {
+                if value! < lowest {
+                    lowest = value!
+                    lowestpos = j
+                }
+            }
+            j += 1
+        }
+        return(lowest,lowestpos)
+    }
+    
     public func humanActions() {
         if drawPile.isClickedPile {
             //discardPile.addCard(card: playerDeck.isClickedCard()!)
