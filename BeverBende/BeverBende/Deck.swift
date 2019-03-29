@@ -32,11 +32,6 @@ class Deck {
         }
     }
     
-//    public func removeAndInsert(fromDeck: Deck){
-//        let card = fromDeck.cards.popLast()
-//        self.cards.append(card!)
-//    }
-    
     public func swapCardsAtPos(fromDeck: Deck, pos: Int) {
         let card = fromDeck.cards.popLast()
         let card_1 = self.cards[pos]
@@ -70,16 +65,6 @@ class Deck {
     public func returnCardAtPos(position: Int) -> Int {
         return cards[position].value
     }
-
-//
-//    public func removeLastCard() {
-//        self.cards.removeLast()
-//    }
-//
-//
-//    public func setCardValue(pos: Int, value: Int) {
-//        self.cards[pos].value = value
-//    }
     
     public func isEmpty() -> Bool {
         return self.cards.isEmpty
@@ -152,44 +137,6 @@ class Deck {
         }
     }
 
-//    public func makeLastCardClickableAndHighlighted() {
-//        if !self.cards.isEmpty {
-//            self.cards[cards.endIndex-1].isClickable = true
-//            self.cards[cards.endIndex-1].isHighlighted = true
-//        }
-//    }
-//
-//    public func makeLastCardHighlighted() {
-//        if !self.cards.isEmpty {
-//            self.cards[cards.endIndex-1].isHighlighted = true
-//        }
-//    }
-//
-//    public func makeCardsClickableAndHighlighted() {
-//        for index in 0..<4 {
-//            self.cards[index].isHighlighted = true
-//            self.cards[index].isClickable = true
-//      }
-//    }
-//
-//    public func makeLastCardClickableAndFaceUp(position: Int){
-//        if position >= 0 {
-//            self.cards[position].isClicked = true
-//        } else {
-//            self.cards[cards.endIndex-1].isClicked = true
-//            self.cards[cards.endIndex-1].isFaceUp = true
-//            isClickedPile = true
-//        }
-//    }
-    
-//    public func isClickedCard()->Card?{
-//        for card in self.cards{
-//            if card.isClicked{
-//                return card
-//            }
-//        }
-//        return nil
-//    }
     
     private func initFourCards() {
         for _ in 0..<4 {

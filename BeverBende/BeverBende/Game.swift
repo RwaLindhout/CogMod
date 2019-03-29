@@ -125,8 +125,7 @@ class Game {
         print("yay")
     }
     
-    
-    
+
     public func initGame() {
         playerDeck.showOuterCards()
     }
@@ -139,7 +138,6 @@ class Game {
         self.drawPile = Deck(completeDeck: true)
         self.playerDeck = Deck(drawPile: drawPile)
         self.actrDeck1 = Deck(drawPile: drawPile)
-        print(self.actrDeck1.cards)
         self.actrDeck2 = Deck(drawPile: drawPile)
         self.actrDeck3 = Deck(drawPile: drawPile)
         self.discardPile = Deck()

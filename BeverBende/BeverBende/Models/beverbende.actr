@@ -67,9 +67,6 @@
       isa       start-info
       left      =pos0
       right     =pos3
-;  ?imaginal>
-;      buffer    empty
-;      state     free
 ==>
   =goal>
       isa       goal
@@ -95,9 +92,6 @@
       isa       start-info
       left      =pos0
       right     =pos3
-;   ?imaginal>
-;      buffer    empty
-;      state     free
 ==>
   =goal>
       isa       goal
@@ -113,6 +107,118 @@
    +action>
       isa       my-turn						;TODO staat aanpassen na process-history zodra dat werkt
    )
+
+;######## History Sequence ##########
+
+
+;You know the exact value of card seeing as you know the value of the discard card. (Update upper limit, lower limit & new-avg)
+(p history-took-discard
+    =goal>
+        isa         goal
+        state       process-history
+    =action>
+        isa         history
+        action      took-discard
+        player      =player
+        position   =pos
+        lower       =lower
+        upper       =upper
+        new-avg     =val
+==>
+    =goal>
+        isa         goal
+        state       process-history
+    +imaginal>
+        isa         card
+        player      =player
+        position    =pos
+        lower       =lower     ;set to nill indicating that we know the values rather than just an estimate
+        upper       =upper     ;set to nill indicating that we know the values rather than just an estimate
+        avg         =val
+    -imaginal>
+    +action>
+        action      process-history
+)
+
+
+;You know the upper limit of the value of a card seeing as you can see the card that was discarded for this one.
+;(Update upper limit, & new-avg)
+(p history-took-draw
+    =goal>
+        isa         goal
+        state       process-history
+    =action>
+        isa         history
+        action      took-draw
+        player      =player
+        postition   =pos
+        lower       =lower
+        upper       =upper
+        new-avg     =val
+==>
+    =goal>
+        isa         goal
+        state       process-history
+    +imaginal>
+        isa         card
+        player      =player
+        position    =pos
+        lower       =lower
+        upper       =upper
+        avg         =val
+    -imaginal>
+    +action>
+        action      process-history
+)
+
+
+
+;Deze productie moet of 4 keer worden aangeroepen of moet vier kaarten meerkijgen aangezien je bij een discard drwa concludeerd dat alle kaarten lager zijn dan dat.
+;Here you know that all 4 cards are lower than the discarded card presumably. So you repeat this production four time.
+;We can update the upper limit of a card. (Update upper limit, & new-avg)
+(p history-discard-draw
+    =goal>
+        isa         goal
+        state       process-history
+    =action>
+        isa         history
+        action      discard-draw
+        player      =player
+        position   =pos
+        lower       =lower
+        upper       =upper
+        new-avg     =val
+==>
+    =goal>
+        isa         goal
+        state       process-history
+    +imaginal>
+        isa         card
+        player      =player
+        position    =pos
+        lower       =lower
+        upper       =upper
+        avg         =val
+    -imaginal>
+    +action>
+        action      process-history
+)
+
+(p history-processing-done
+    =goal>
+        isa         goal
+        state       process-history
+    =action>
+        isa         history
+        action      done
+==>
+    =goal>
+        isa         goal
+        state       wait-for-turn
+    +action>
+        action      my-turn
+)
+
 
  ;######## Start remember sequence ###########
 ;We try to retrieve the four cards in our hands and we then let SWIFT tell us what the highest and lowest values are.
