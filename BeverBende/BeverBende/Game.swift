@@ -30,6 +30,7 @@ class Game {
     }
     
     public func ACTRModelActions(model: ModelPlayer, deck: Deck) {
+        //Initialize model
         model.run()
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
@@ -37,9 +38,8 @@ class Game {
         //Start turn
         model.run()
         model.run()
-        
+        //Get max and minimum value of the four cards of the model and return the highest and lowest to ACT-R
         let max_tuple = max(model: model)
-        print(max_tuple)
         let max_val = max_tuple.0
         let max_pos = max_tuple.1
         model.modifyLastAction(slot: "isa", value: "compare-cards")
@@ -48,19 +48,47 @@ class Game {
         let min_tuple = min(model: model)
         let min_val = min_tuple.0
         let min_pos = min_tuple.1
-        print(min_tuple)
         model.modifyLastAction(slot: "min", value: String(min_val))
         model.modifyLastAction(slot: "min-pos", value: String(min_pos))
-        print(model.buffers)
+        
         model.run()
         
         model.modifyLastAction(slot: "isa", value: "moves")
         model.buffers["actions"]?.slotvals["discard"] = nil
-        model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
-        print(model.buffers)
+        //model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
+        model.modifyLastAction(slot: "draw", value: "sneak-peek")
+
+        model.run()
+        
+        //If the action required is a sneakpeek
+        if model.buffers["action"]?.slotvals["action"]?.text() == "peek" {
+            //Either ACT-R doesn't know where to look, then a random card will be looked at. Otherwise the speciefied card will be used.
+            if model.buffers["action"]?.slotvals["position"]?.text() == "random"{
+                //let Swift pick a random card to look at
+                let position = Int(arc4random_uniform(3))
+                let value = deck.returnCardAtPos(position: position)
+                model.modifyLastAction(slot: "isa", value: "peek")
+                model.modifyLastAction(slot: "position", value: String(position))
+                model.modifyLastAction(slot: "value", value: String(value))
+                
+            } else {
+                //Look at the card chosen by ACT-R. 
+                let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
+                let value = deck.returnCardAtPos(position: position)
+                model.modifyLastAction(slot: "isa", value: "peek")
+                model.modifyLastAction(slot: "position", value: String(position))
+                model.modifyLastAction(slot: "value", value: String(value))
+                }
+        }
+        
         model.run()
         print(model.buffers)
+        
+        //print(model.dm.chunks)
+        //print(model.dm.chunks["player3"]?.activation())
         // TODO: ACT-R Model actions are performed here
+        
+       
     }
     
     public func cardActions(pos: Int, pileClicked: Int) {
