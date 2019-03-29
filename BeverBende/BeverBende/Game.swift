@@ -111,15 +111,16 @@ class Game {
     }
     
     public func cardActions(pos: Int, pileClicked: Int, deck: Deck) {
+        // if the drawPile is clicked
         if pileClicked == 1 {
-            // if the drawPile is clicked
             discardPile.appendCard(fromDeck: playerDeck, pos: pos)
-            deck.popAndInsertCard(fromDeck: drawPile, pos: pos)
+            deck.popAndInsertCard(fromDeck: drawPile, pos: pos)s
         } else if pileClicked == 2 {
             // if the discardPile is clicked
             deck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
         }
     }
+    
         
     private func max(model: ModelPlayer) -> (Double, Int) {
         var highest: Double = -1

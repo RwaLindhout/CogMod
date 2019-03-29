@@ -262,39 +262,39 @@ class ViewController: UIViewController {
     
     private func runACTR() {
         var tmp = 0
-        while !game.isFinished {
-            // ACT-R Model turns
-            game.cardsInit(ACTR: true)
-            updateViewFromModel()
-            print("working")
-            tmp = tmp + 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
-                self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
-                self.updateViewFromModel()
-                
-//                // ACT-R Model turns
-//                self.game.cardsInit(ACTR: true)
+//        while !game.isFinished {
+//            // ACT-R Model turns
+//            game.cardsInit(ACTR: true)
+//            updateViewFromModel()
+//            print("working")
+//            tmp = tmp + 1
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+//                let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+//                self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
 //                self.updateViewFromModel()
-//                let (action1, position1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
-//                self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-//                    self.updateViewFromModel()
 //
-//                    // ACT-R Model turns
-//                    self.game.cardsInit(ACTR: true)
-//                    self.updateViewFromModel()
-//                    let (action2, position2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
-//                    self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-//                        self.updateViewFromModel()
-//                    }
-//                }
-            }
-            if tmp == 3 {
-                game.isFinished = true
-            }
-            
+////                // ACT-R Model turns
+////                self.game.cardsInit(ACTR: true)
+////                self.updateViewFromModel()
+////                let (action1, position1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
+////                self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
+////                DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+////                    self.updateViewFromModel()
+////
+////                    // ACT-R Model turns
+////                    self.game.cardsInit(ACTR: true)
+////                    self.updateViewFromModel()
+////                    let (action2, position2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
+////                    self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
+////                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+////                        self.updateViewFromModel()
+////                    }
+////                }
+//            }
+//            if tmp == 3 {
+//                game.isFinished = true
+//            }
+        
 //            game.cardsInit()
 //            updateViewFromModel()
 //            game.ACTRModelActions(model: game.modelPlayer2, deck: game.actrDeck2)
@@ -304,7 +304,7 @@ class ViewController: UIViewController {
 //            updateViewFromModel()
 //            game.ACTRModelActions(model: game.modelPlayer3, deck: game.actrDeck3)
 //            updateViewFromModel()
-        }
+ //       }
     }
     
     
