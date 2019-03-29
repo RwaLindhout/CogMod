@@ -44,9 +44,20 @@ class Game {
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
         model.modifyLastAction(slot: "right", value: String(deck.returnCardAtPos(position: 3)))
+        
         //Start turn
         model.run()
+//        print(model.dm.chunks)
+//        model.dm.addToDM(model.dm.chunks["imaginal2"]!)
+//        model.dm.addToDM(model.dm.chunks["imaginal3"]!)
+//        model.dm.chunks["imaginal2"]?.addReference()
+//        model.dm.chunks["imaginal2"]?.addReference()
+//        print(model.dm.chunks["player1"]?.activation())
+//        print(model.dm.chunks["player4"]?.activation())
+//        print(model.dm.chunks["imaginal2"]?.activation())
+//        print(model.dm.chunks["imaginal3"]?.activation())
         model.run()
+        
         //Get max and minimum value of the four cards of the model and return the highest and lowest to ACT-R
         let max_tuple = max(model: model)
         let max_val = max_tuple.0
@@ -59,15 +70,18 @@ class Game {
         let min_pos = min_tuple.1
         model.modifyLastAction(slot: "min", value: String(min_val))
         model.modifyLastAction(slot: "min-pos", value: String(min_pos))
-        
+
         model.run()
         
         model.modifyLastAction(slot: "isa", value: "moves")
         model.buffers["actions"]?.slotvals["discard"] = nil
         //model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
-        model.modifyLastAction(slot: "draw", value: "sneak-peek")
+        model.modifyLastAction(slot: "draw", value: "swap")
 
         model.run()
+
+        
+        
         
         //If the action required is a sneakpeek
         if model.buffers["action"]?.slotvals["action"]?.text() == "peek" {
@@ -79,24 +93,28 @@ class Game {
                 model.modifyLastAction(slot: "isa", value: "peek")
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
-                
             } else {
-                //Look at the card chosen by ACT-R. 
+                //Look at the card chosen by ACT-R.
                 let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
                 let value = deck.returnCardAtPos(position: position)
                 model.modifyLastAction(slot: "isa", value: "peek")
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
                 }
+        } else if model.buffers["action"]?.slotvals["action"]?.text() == "find-swap"{
+            let lowest_opponent_card = min_opponents(model: model)
+            print(lowest_opponent_card)
+            model.modifyLastAction(slot: "isa", value: "swap")
+            model.modifyLastAction(slot: "player", value: String(lowest_opponent_card.0))
+            model.modifyLastAction(slot: "position", value: String(lowest_opponent_card.1))
+            model.modifyLastAction(slot: "value", value: String(lowest_opponent_card.2))
+            
         }
-        
         model.run()
-        print(model.buffers)
-        
         //print(model.dm.chunks)
         //print(model.dm.chunks["player3"]?.activation())
         // TODO: ACT-R Model actions are performed here
-        print(model.buffers["action"]?.slotvals["action"]?.text())
+//        print(model.buffers["action"]?.slotvals["action"]?.text())
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
             return (0, 0)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-draw" {
@@ -155,6 +173,69 @@ class Game {
             j += 1
         }
         return(lowest,lowestpos)
+    }
+    
+    private func min_opponents(model: ModelPlayer) -> (Int, Int, Double)  {
+        var lowest: Double = 100
+        var lowestpos: Int = -1
+        var player: Int = -1
+        var lowest_chunk: String = ""
+        let position = ["opp11","opp12","opp13","opp14","opp21","opp22","opp23","opp24","opp31","opp32","opp33","opp34"]
+        for i in position {
+            let value = model.dm.chunks[i]?.slotvals["avg"]?.number()
+            if value != nil {
+                if model.dm.chunks[i]!.activation() >= model.dm.retrievalThreshold{
+                    if value! < lowest {
+                        lowest = value!
+                        lowest_chunk = i
+                    }
+                }
+            }
+        }
+            //Misselijk makende switch
+            switch lowest_chunk {
+            case "opp11":
+                lowestpos = 0
+                player = 1
+            case "opp12":
+                lowestpos = 1
+                player = 1
+            case "opp13":
+                lowestpos = 2
+                player = 1
+            case "opp14":
+                lowestpos = 3
+                player = 1
+            case "opp21":
+                lowestpos = 0
+                player = 2
+            case "opp22":
+                lowestpos = 1
+                player = 2
+            case "opp23":
+                lowestpos = 2
+                player = 2
+            case "opp24":
+                lowestpos = 3
+                player = 2
+            case "opp31":
+                lowestpos = 0
+                player = 3
+            case "opp32":
+                lowestpos = 1
+                player = 3
+            case "opp33":
+                lowestpos = 2
+                player = 3
+            case "opp34":
+                lowestpos = 3
+                player = 3
+            default:
+                lowestpos = -1
+                player = -1
+    
+        }
+        return(player,lowestpos, lowest)
     }
     
 //    public func humanActions() {

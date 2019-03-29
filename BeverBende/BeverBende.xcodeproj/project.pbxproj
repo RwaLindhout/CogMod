@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
 		08EEB1D5224D0F4D0091585F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EEB1D4224D0F4D0091585F /* Actions.swift */; };
 		230C5162223FAAC50027845F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5161223FAAC50027845F /* Player.swift */; };
 		230C5179223FC46E0027845F /* SlotAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5168223FC46E0027845F /* SlotAction.swift */; };
@@ -64,7 +63,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-
 		08EEB1D4224D0F4D0091585F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		230C5161223FAAC50027845F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		230C5168223FC46E0027845F /* SlotAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotAction.swift; sourceTree = "<group>"; };
