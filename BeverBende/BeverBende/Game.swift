@@ -122,9 +122,11 @@ class Game {
 //    }
     
     public func beverBende(){
-        print("yay")
+        playerDeck.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
+        actrDeck1.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
+        actrDeck2.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
+        actrDeck3.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
     }
-    
 
     public func initGame() {
         playerDeck.showOuterCards()
@@ -133,7 +135,9 @@ class Game {
     public func hideCard() {
         playerDeck.hideOuterCards()
     }
-        
+    
+    
+    
     init() {
         self.drawPile = Deck(completeDeck: true)
         self.playerDeck = Deck(drawPile: drawPile)

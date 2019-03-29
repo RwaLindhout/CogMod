@@ -11,7 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     let image = UIImage(named: "bever.jpg")
     let image1 = UIImage(named: "table.jpg")
+    let vergrootglas = UIImage(named: "vergrootglas.png")
+    let ruil = UIImage(named: "ruil.png")
+    
     private lazy var game = Game()
+    private var score = [0,0,0,0]
+    private var beverBendeCount = 0
     
     // 0 for nothing, 1 for drawPile, 2 for discardPile
     private var pileClicked = 0
@@ -39,10 +44,27 @@ class ViewController: UIViewController {
             updateViewFromModel()
             button.setTitle("BeverBende!", for: .normal)
         default:
-            game.beverBende()
-            showscore(end: true)
+            beverbende()
             break;
         }
+    }
+    
+    private func beverbende(){
+        game.beverBende()
+        beverBendeCount += 1
+        score[0] += game.playerDeck.sumCards()
+        score[1] += game.actrDeck1.sumCards()
+        score[2] += game.actrDeck2.sumCards()
+        score[3] += game.actrDeck3.sumCards()
+        if beverBendeCount == 5 {
+            showscore(end: true)
+        } else {
+            showscore(end: false)
+        }
+        let newGame = Game()
+        game = newGame
+        clickCount = 0
+        self.beverBendeButton.setTitle("Start!", for: .normal)
     }
     
 
@@ -103,9 +125,9 @@ class ViewController: UIViewController {
     }
     
     func showscore(end: Bool){
-        let alert = UIAlertController(title: "Score", message: "score", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Score", message: "You: "+String(score[0])+"\nOpponent 1: "+String(score[1])+"\nOpponent 2: "+String(score[2])+"\nOpponent3: "+String(score[3]), preferredStyle: .alert)
         if end{
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
+            alert.addAction(UIAlertAction(title: "End Game", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
         } else {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         }
@@ -118,9 +140,17 @@ class ViewController: UIViewController {
             let button = cardButton[index]
             let card = deck.cards[button.tag]
             if card.isFaceUp {
-                button.setTitle(String(card.value), for:UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
-                button.setBackgroundImage(nil, for: .normal)
+                if card.type == 1 {
+                    button.setBackgroundImage(ruil, for: .normal)
+                    button.setTitle("", for: .normal)
+                } else if card.type == 2{
+                    button.setBackgroundImage(vergrootglas, for: .normal)
+                    button.setTitle("", for: .normal)
+                } else {
+                    button.setTitle(String(card.value), for:UIControl.State.normal)
+                    button.setBackgroundImage(nil, for: .normal)
+                }
             } else {
                 button.setTitle("", for: UIControl.State.normal)
                 button.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
@@ -136,7 +166,7 @@ class ViewController: UIViewController {
                     let imageRotate = image!.rotate(radians: .pi/2*3)
                     button.setBackgroundImage(imageRotate, for: .normal)
                 } else {
-                    button.setBackgroundImage(image!, for: .normal)
+                    button.setBackgroundImage(image, for: .normal)
                 }
             }
             if card.isHighlighted {
@@ -163,8 +193,19 @@ class ViewController: UIViewController {
         // If deck is not empty, and is a drawPile, then set
         // color to white, and the title to the last value in the collection of cards
         } else if !isDrawPile {
-            cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
-            cardButton.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+            if deck.cards[deck.cards.endIndex-1].type == 1 {
+                cardButton.setBackgroundImage(ruil, for: .normal)
+                cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
+                cardButton.setTitle("", for: .normal)
+            } else if deck.cards[deck.cards.endIndex-1].type == 2{
+                cardButton.setBackgroundImage(vergrootglas, for: .normal)
+                cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
+                cardButton.setTitle("", for: .normal)
+            } else {
+                cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
+                cardButton.setBackgroundImage(nil, for: .normal)
+                cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
+            }
         // If the deck is the drawPile
         } else {
             cardButton.setTitle("", for: UIControl.State.normal)
@@ -174,9 +215,20 @@ class ViewController: UIViewController {
                 cardButton.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
             }
             if deck.cards[deck.cards.endIndex-1].isFaceUp {
-                cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
-                cardButton.setBackgroundImage(nil, for: .normal)
-                cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
+                if deck.cards[deck.cards.endIndex-1].type == 1 {
+                    cardButton.setBackgroundImage(ruil, for: .normal)
+                    cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                    cardButton.setTitle("", for: .normal)
+                } else if deck.cards[deck.cards.endIndex-1].type == 2{
+                    cardButton.setBackgroundImage(vergrootglas, for: .normal)
+                    cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                    cardButton.setTitle("", for: .normal)
+                } else {
+                    cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                    cardButton.setBackgroundImage(nil, for: .normal)
+                    cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
+                }
+                
             }
             if deck.cards[deck.cards.endIndex-1].isClickable {
                 cardButton.isEnabled = true
@@ -240,7 +292,5 @@ class ViewController: UIViewController {
 //        game.modelPlayer3.loadedModel = "beverbende"
         // Do any additional setup after loading the view.
     }
-    
-    
 }
 

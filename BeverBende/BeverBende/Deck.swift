@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//9* ruilen, 7 * spieken
 class Deck {
     private(set) var cards = [Card]()
 //    public var isClickedPile = false
@@ -17,9 +17,17 @@ class Deck {
         for _ in 0..<6 {
             // TODO: add correct cards to the deck when initialized
             for i in 0..<10 {
-                let card = Card(value: i)
+                let card = Card(value: i, type: 0)
                 cards += [card]
             }
+        }
+        for _ in 0..<10 {
+            let card = Card(value: 100, type: 1)
+            cards += [card]
+        }
+        for _ in 0..<7 {
+            let card = Card(value: 100, type: 2)
+            cards += [card]
         }
         // Shuffles the entire deck
         cards.shuffle()
@@ -136,11 +144,18 @@ class Deck {
             }
         }
     }
-
+    
+    public func sumCards() -> Int{
+        var sum = 0
+        for i in 0..<4{
+            sum += self.cards[i].value
+        }
+        return sum
+    }
     
     private func initFourCards() {
         for _ in 0..<4 {
-            let card = Card(value: 5)
+            let card = Card(value: 5, type:0)
             cards += [card]
         }
     }
