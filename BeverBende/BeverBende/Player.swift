@@ -18,10 +18,44 @@ class ModelPlayer: Model {
     public var actions = [Actions]()
     
     // Make a new action and add it to an array of actions
-    public func addActions(action: Int, player: Int, position: Int, estimatedValue: Int) {
-        let action = Actions(action: action, player: player, position: position, estimatedValue: estimatedValue)
-        actions += [action]
-        // todo: these actions should be sent to the actr model
+    public func addActions(actionNum: Int, player: Int, position: Int, estimatedValue: Int) {
+        if actionNum == 2 {
+            // todo: lower and upper to -1 actually should be set to nil
+            let action = Actions(action: actionNum, player: player, position: position, lower: -1, upper: -1, estimatedValue: estimatedValue)
+            actions += [action]
+        } else {
+            let action = Actions(action: actionNum, player: player, position: position, lower: 0, upper: estimatedValue * 2, estimatedValue: estimatedValue)
+            actions += [action]
+        }
+        
+        if player == 0 {
+            humanPlayer.setCardValueAtPos(position: position, value: estimatedValue)
+        } else if playerNumber == 1 {
+            if player == 2 {
+                otherPlayer2.setCardValueAtPos(position: position, value: estimatedValue)
+            } else if player == 3 {
+                otherPlayer3.setCardValueAtPos(position: position, value: estimatedValue)
+            }
+        } else if playerNumber == 2 {
+            if player == 1 {
+                otherPlayer2.setCardValueAtPos(position: position, value: estimatedValue)
+            } else if player == 3 {
+                otherPlayer3.setCardValueAtPos(position: position, value: estimatedValue)
+            }
+        } else if player == 3 {
+            if player == 1 {
+                otherPlayer2.setCardValueAtPos(position: position, value: estimatedValue)
+            } else if player == 2 {
+                otherPlayer3.setCardValueAtPos(position: position, value: estimatedValue)
+            }
+        }
+        
+        // if there are 4 actions in the array, remove the first one
+        if actions.count == 4 {
+            actions.removeFirst(1)
+        }
+        
+        // todo: these actions should be sent to the ACTR model
     }
     
     init(playerNumber: Int) {

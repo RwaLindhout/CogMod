@@ -12,12 +12,16 @@ struct Actions {
     public var action: Int
     public var player: Int
     public var position: Int
+    public var lower: Int
+    public var upper: Int
     public var estimatedValue: Int
     
-    init(action: Int, player: Int, position: Int, estimatedValue: Int) {
+    init(action: Int, player: Int, position: Int, lower: Int, upper: Int, estimatedValue: Int) {
         self.action = action
         self.player = player
         self.position = position
+        self.lower = lower
+        self.upper = upper
         self.estimatedValue = estimatedValue
     }
 }
