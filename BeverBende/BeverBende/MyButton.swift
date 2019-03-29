@@ -13,17 +13,17 @@ import UIKit
     override func layoutSubviews() {
         super.layoutSubviews()
         
-     //   updateCornerRadius()
+        updateCornerRadius()
     }
     
     @IBInspectable var rounded: Bool = false {
         didSet {
-     //       updateCornerRadius()
+            updateCornerRadius()
         }
     }
     
     func updateCornerRadius() {
-        layer.cornerRadius = rounded ? frame.size.height / 5 : 0
+        layer.cornerRadius = rounded ? frame.size.height / 3 : 0
     }
     
     @IBInspectable

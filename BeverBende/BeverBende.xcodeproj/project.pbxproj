@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		08EEB1D5224D0F4D0091585F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EEB1D4224D0F4D0091585F /* Actions.swift */; };
 		230C5162223FAAC50027845F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5161223FAAC50027845F /* Player.swift */; };
 		230C5179223FC46E0027845F /* SlotAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230C5168223FC46E0027845F /* SlotAction.swift */; };
@@ -30,7 +31,6 @@
 		23D30CD8221ADE1300982D18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CD7221ADE1300982D18 /* ViewController.swift */; };
 		23D30CDB221ADE1300982D18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CD9221ADE1300982D18 /* Main.storyboard */; };
 		23D30CDD221ADE1400982D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CDC221ADE1400982D18 /* Assets.xcassets */; };
-		23D30CE0221ADE1400982D18 /* StartScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D30CDE221ADE1400982D18 /* StartScreen.storyboard */; };
 		23D30CEB221ADE1400982D18 /* BeverBendeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CEA221ADE1400982D18 /* BeverBendeTests.swift */; };
 		23D30CF6221ADE1400982D18 /* BeverBendeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30CF5221ADE1400982D18 /* BeverBendeUITests.swift */; };
 		23D30D07221ADEDC00982D18 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D30D06221ADEDC00982D18 /* Deck.swift */; };
@@ -64,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+
 		08EEB1D4224D0F4D0091585F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		230C5161223FAAC50027845F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		230C5168223FC46E0027845F /* SlotAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotAction.swift; sourceTree = "<group>"; };
@@ -88,7 +89,6 @@
 		23D30CD7221ADE1300982D18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		23D30CDA221ADE1300982D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23D30CDC221ADE1400982D18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		23D30CDF221ADE1400982D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StartScreen.storyboard; sourceTree = "<group>"; };
 		23D30CE1221ADE1400982D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23D30CE6221ADE1400982D18 /* BeverBendeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeverBendeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D30CEA221ADE1400982D18 /* BeverBendeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeverBendeTests.swift; sourceTree = "<group>"; };
@@ -198,7 +198,6 @@
 				23D30D03221ADE5100982D18 /* Extra */,
 				23D30CD5221ADE1300982D18 /* AppDelegate.swift */,
 				C6327CCE224BCA1000457488 /* rotateImage.swift */,
-				23D30CDE221ADE1400982D18 /* StartScreen.storyboard */,
 				C6B6CAB022269D9B00724A90 /* StartViewController.swift */,
 				23D30CD7221ADE1300982D18 /* ViewController.swift */,
 				23D30CD9221ADE1300982D18 /* Main.storyboard */,
@@ -351,7 +350,6 @@
 			files = (
 				86EA2F6F224CEB9C0073D068 /* beverbende-2.actr in Resources */,
 				86EA2F70224CEB9C0073D068 /* beverbende.actr in Resources */,
-				23D30CE0221ADE1400982D18 /* StartScreen.storyboard in Resources */,
 				C64035572226B17A00A4FE48 /* LaunchScreen.storyboard in Resources */,
 				23D30CDD221ADE1400982D18 /* Assets.xcassets in Resources */,
 				865AACD4224CEAC200D91F26 /* bever.jpg in Resources */,
@@ -449,14 +447,6 @@
 				23D30CDA221ADE1300982D18 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		23D30CDE221ADE1400982D18 /* StartScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23D30CDF221ADE1400982D18 /* Base */,
-			);
-			name = StartScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

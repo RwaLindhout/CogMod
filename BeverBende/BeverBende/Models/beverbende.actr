@@ -467,6 +467,7 @@
         isa         moves
         draw        =draw
       < draw        =max
+      - draw        sneak-peek
 ==>
     =goal>
         isa         goal
@@ -498,6 +499,7 @@
         isa         moves
         draw        =draw
         >= draw        =max
+        - draw      sneak-peek
 ==>
     =goal>
         isa         goal
@@ -506,3 +508,79 @@
         action      discard-draw
         value       =draw
   )
+
+
+
+;############# Sneak peek Sequence #############
+
+(p compare-draw-sneak-peak
+    =goal>
+        isa             goal
+        state           compare-draw
+    =action>
+        isa             moves               ;Discard is no longer important seeing as you have already decided not to use that.
+        draw            sneak-peek                    ;Draw card has to be a sneak-peak card
+==>
+    =goal>
+        state           find-card-to-peek
+    =action>        ;No strict harvesting
+    +retrieval>
+        isa             card
+        player          0
+        - upper         nil                         ;Limits should not be nil, indidcating that we aren't sure
+        - lower         nil
+
+)
+
+;You could not find a card which you without certainty, then we will look at a random card
+(p no-peek-card-found
+    =goal>
+        state       find-card-to-peek
+    ?retrieval>
+        state        error
+==>
+    =goal>
+        state       peek-at-card
+    +action>
+        action      peek
+        position    random            ;Let swift randomly select one of your own four cards to look at if you cannot find a proper card.
+)
+
+
+;We found a card that we are uncertain of and we then turn control over to swift such that it will get that value for us.
+(p peek-card-found
+    =goal>
+        state           find-card-to-peek
+    =retrieval>
+        isa             card
+        position        =pos            ;player us niet nodig aangezien swift wel weet wanneer dit aangeroepen wordt
+        - lower         nil            ;Deze tetst zijn eigenlijk overbodig, maar voor de zekerheid even toegevoegd.
+        - upper         nil
+==>
+    =goal>
+        state           peek-at-card
+    +action>
+        action          peek
+        position        =pos
+)
+
+(p update-card-after-peak
+    =goal>
+        state       peek-at-card
+    =action>
+        action      peek
+        position    =pos
+        value       =val
+==>
+    =goal>
+        state       wait-for-turn
+    +imaginal>
+        isa         card
+        player      0
+        position    =pos
+        lower       nil     ;set to nill indicating that we know the values rather than just an estimate
+        upper       nil
+        avg         =val
+    +action>
+        action      peek-done
+)
