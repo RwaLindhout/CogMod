@@ -18,9 +18,10 @@ struct Card: Hashable {
     public var isFaceUp = true
     public var isHighlighted = false
     public var isClickable = false
-    var value: Int
+    public var value: Int
     private var identifier: Int
     public var isClicked = false
+    public var type: Int
     
     static var identifierFactory = 0
 
@@ -37,8 +38,9 @@ struct Card: Hashable {
 //        self.isFaceUp = faceUp
 //    }
     
-    init(value: Int) {
+    init(value: Int, type: Int) {
         self.identifier = Card.getUniqueIdentifier()
         self.value = value
+        self.type = type
     }
 }

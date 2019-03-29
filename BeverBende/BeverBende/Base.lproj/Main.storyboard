@@ -19,28 +19,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be4-30-oJw" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
-                                <rect key="frame" x="414" y="542" width="197" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nw1-fL-pXL" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
+                                <rect key="frame" x="395.5" y="203" width="233" height="141"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Instructions"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.97517246007919312" green="0.26450490951538086" blue="0.041594758629798889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="instructions:" destination="YU6-CN-7uY" eventType="touchUpInside" id="LTQ-d7-6if"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nw1-fL-pXL" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
-                                <rect key="frame" x="396" y="203" width="233" height="141"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="141" id="dug-Rn-cx5"/>
+                                    <constraint firstAttribute="width" constant="233" id="plV-Ur-KVZ"/>
+                                </constraints>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="New Game"/>
@@ -58,16 +43,37 @@
                                     <action selector="newGame:" destination="RKM-fK-JZc" eventType="touchUpInside" id="Q7n-Y0-hSY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be4-30-oJw" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
+                                <rect key="frame" x="428.5" y="544" width="167" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="oNd-cy-vHw"/>
+                                    <constraint firstAttribute="width" constant="167" id="w6H-0d-s44"/>
+                                </constraints>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Instructions"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.97517246007919312" green="0.26450490951538086" blue="0.041594758629798889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="instructions:" destination="YU6-CN-7uY" eventType="touchUpInside" id="LTQ-d7-6if"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="W6D-Pm-2SQ" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="be4-30-oJw" secondAttribute="bottom" constant="190" id="1zF-Ck-9h5"/>
-                            <constraint firstItem="be4-30-oJw" firstAttribute="leading" secondItem="W6D-Pm-2SQ" secondAttribute="leading" constant="414" id="3wI-Bz-rB8"/>
-                            <constraint firstItem="W6D-Pm-2SQ" firstAttribute="trailing" secondItem="Nw1-fL-pXL" secondAttribute="trailing" constant="395" id="53d-vu-65g"/>
-                            <constraint firstItem="W6D-Pm-2SQ" firstAttribute="trailing" secondItem="be4-30-oJw" secondAttribute="trailing" constant="413" id="a9U-QU-pLj"/>
-                            <constraint firstItem="Nw1-fL-pXL" firstAttribute="leading" secondItem="W6D-Pm-2SQ" secondAttribute="leading" constant="396" id="dyC-fA-QYD"/>
-                            <constraint firstItem="Nw1-fL-pXL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="W6D-Pm-2SQ" secondAttribute="top" constant="247" id="gih-0N-DgO"/>
-                            <constraint firstItem="be4-30-oJw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Nw1-fL-pXL" secondAttribute="bottom" constant="100" id="sX7-kz-teq"/>
+                            <constraint firstItem="be4-30-oJw" firstAttribute="centerX" secondItem="W6D-Pm-2SQ" secondAttribute="centerX" id="71G-7D-HqF"/>
+                            <constraint firstItem="W6D-Pm-2SQ" firstAttribute="bottom" secondItem="be4-30-oJw" secondAttribute="bottom" constant="188" id="BaK-lA-G2B"/>
+                            <constraint firstItem="Nw1-fL-pXL" firstAttribute="centerX" secondItem="W6D-Pm-2SQ" secondAttribute="centerX" id="fcy-ii-Ga6"/>
+                            <constraint firstItem="be4-30-oJw" firstAttribute="top" secondItem="Nw1-fL-pXL" secondAttribute="bottom" constant="200" id="hgd-iz-ESc"/>
+                            <constraint firstItem="Nw1-fL-pXL" firstAttribute="top" secondItem="W6D-Pm-2SQ" secondAttribute="top" constant="183" id="mcR-Vp-1UA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W6D-Pm-2SQ"/>
                     </view>
@@ -168,6 +174,10 @@
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ho1-bF-7K4" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                 <rect key="frame" x="622" y="296" width="135" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="177" id="ALh-Xd-unT"/>
+                                    <constraint firstAttribute="width" constant="135" id="o80-z7-hZX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Draw"/>
@@ -433,6 +443,10 @@
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2C-Zn-DVQ" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
                                 <rect key="frame" x="267" y="296" width="135" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="177" id="X21-AF-DgJ"/>
+                                    <constraint firstAttribute="width" constant="135" id="elZ-5g-lR2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Discard Pile"/>
