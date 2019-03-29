@@ -38,12 +38,37 @@ class Game {
             }
         }
     }
+    // took-drawpile action = 1
+    // nieuw geschatte waarde afgespeelde waarde op discardpile / 2
     
-    public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int) {
+    // took-discard action = 2
+    // dan weet je zeker welke waarde er ligt, want dat is waarde van discardPile kaart
+    
+    
+    private func ACTRUpdateKnowledge(model: ModelPlayer, deck: Deck, action: Int, position: Int, value: Int) {
+        let playerNumber = model.playerNumber
+        if playerNumber == 1 {
+            modelPlayer2.addActions(actionNum: action, player: 1, position: position, estimatedValue: value)
+            modelPlayer3.addActions(actionNum: action, player: 1, position: position, estimatedValue: value)
+        } else if playerNumber == 2 {
+            modelPlayer1.addActions(actionNum: action, player: 2, position: position, estimatedValue: value)
+            modelPlayer3.addActions(actionNum: action, player: 2, position: position, estimatedValue: value)
+        } else if playerNumber == 3 {
+            modelPlayer1.addActions(actionNum: action, player: 3, position: position, estimatedValue: value)
+            modelPlayer2.addActions(actionNum: action, player: 3, position: position, estimatedValue: value)
+        }
+    }
+    
+    
+    public func initACTRModelActions(model: ModelPlayer, deck: Deck) {
         model.run()
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
         model.modifyLastAction(slot: "right", value: String(deck.returnCardAtPos(position: 3)))
+    }
+    
+    
+    public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int) {
         //Start turn
         model.run()
         model.run()
@@ -64,8 +89,8 @@ class Game {
         
         model.modifyLastAction(slot: "isa", value: "moves")
         model.buffers["actions"]?.slotvals["discard"] = nil
-        //model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
-        model.modifyLastAction(slot: "draw", value: "sneak-peek")
+        model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
+//        model.modifyLastAction(slot: "draw", value: "sneak-peek")
 
         model.run()
         
@@ -101,9 +126,22 @@ class Game {
             return (0, 0)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-draw" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
+            // should be the value of the card that will be swapped and put in the discardpile later on
+            var value = deck.cards[position].value / 2
+            // needed so that special cards still have avg of 5
+            if value == 50 {
+                value = 5
+            }
+            ACTRUpdateKnowledge(model: model, deck: deck, action: 1, position: position, value: value)
             return (1, position)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-discard" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
+            var value = discardPile.cards[discardPile.cards.endIndex].value / 2
+            // needed so that special cards still have avg of 5
+            if value == 50 {
+                value = 5
+            }
+            ACTRUpdateKnowledge(model: model, deck: deck, action: 2, position: position, value: value)
             return (2, position)
         } else {
             return (-1, -1)
@@ -113,8 +151,8 @@ class Game {
     public func cardActions(pos: Int, pileClicked: Int, deck: Deck) {
         // if the drawPile is clicked
         if pileClicked == 1 {
-            discardPile.appendCard(fromDeck: playerDeck, pos: pos)
-            deck.popAndInsertCard(fromDeck: drawPile, pos: pos)s
+            discardPile.appendCard(fromDeck: deck, pos: pos)
+            deck.popAndInsertCard(fromDeck: drawPile, pos: pos)
         } else if pileClicked == 2 {
             // if the discardPile is clicked
             deck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
@@ -158,17 +196,6 @@ class Game {
         return(lowest,lowestpos)
     }
     
-//    public func humanActions() {
-//        if drawPile.isClickedPile {
-//            //discardPile.addCard(card: playerDeck.isClickedCard()!)
-//            print("drawPile is clicked!")
-//            discardPile.addCard(card: playerDeck.isClickedCard()!)
-//            // TODO: Add the card to the playerDeck and remove from drawpile
-//        }
-        // TODO: Draw card from discard pile and add card to playerdeck
-        
-//    }
-    
     public func beverBende(){
         playerDeck.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
         actrDeck1.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
@@ -183,8 +210,6 @@ class Game {
     public func hideCard() {
         playerDeck.hideOuterCards()
     }
-    
-    
     
     init() {
         self.drawPile = Deck(completeDeck: true)

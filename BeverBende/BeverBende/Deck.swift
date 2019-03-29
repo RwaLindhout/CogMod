@@ -21,14 +21,14 @@ class Deck {
                 cards += [card]
             }
         }
-        for _ in 0..<10 {
-            let card = Card(value: 100, type: 1)
-            cards += [card]
-        }
-        for _ in 0..<7 {
-            let card = Card(value: 100, type: 2)
-            cards += [card]
-        }
+//        for _ in 0..<10 {
+//            let card = Card(value: 100, type: 1)
+//            cards += [card]
+//        }
+//        for _ in 0..<7 {
+//            let card = Card(value: 100, type: 2)
+//            cards += [card]
+//        }
         // Shuffles the entire deck
         cards.shuffle()
     }
@@ -72,6 +72,10 @@ class Deck {
     
     public func returnCardAtPos(position: Int) -> Int {
         return cards[position].value
+    }
+    
+    public func setCardValueAtPos(position: Int, value: Int) {
+        cards[position].value = value
     }
     
     public func isEmpty() -> Bool {
