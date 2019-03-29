@@ -468,6 +468,8 @@
         draw        =draw
       < draw        =max
       - draw        sneak-peek
+      - draw        swap
+
 ==>
     =goal>
         isa         goal
@@ -500,6 +502,7 @@
         draw        =draw
         >= draw        =max
         - draw      sneak-peek
+        - draw      swap
 ==>
     =goal>
         isa         goal
@@ -583,4 +586,116 @@
         avg         =val
     +action>
         action      peek-done
+        position    =pos
+)
+
+;############# Swap Sequence ###########
+
+
+; 1. Model trekt swap kaart
+; 2. Model vraagt via DM op welke kaart de hoogste waarde heeft. Ik weet niet of je een max waarde op kunt vragen, anders moet dit wellicht via Swift, maar ik weet nog niet hoe.
+; 3a. Ofwel: Model vraagt een kaart op met de laagste geschatte waarde voor de tegenstanders. Ik weet niet of dit kan, maar dan vraag je dus een kaart met de laagste waarde en speler is niet 0 op.
+; 3b. Of: Model vraagt kaart op waarvoor geldt dat die lager is dan je eigen hoogste waarde uit stap 2 en waarvoor geldt dat positie niet speler 0 is.
+; 4. Als je een kaart gevonden hebt die aan de voorwaarden voldoet dan swap je en zo niet dan speel je hem af. Hier zijn dus twee productions voor nodig.
+
+
+(p compare-draw-swap
+    =goal>
+        isa             goal
+        state           compare-draw
+    =action>
+        isa             moves                   ;Discard is no longer important seeing as you have already decided not to use that.
+        draw            swap                    ;Draw card has to be a sneak-peak card
+    =imaginal>
+        max             =max
+        max-pos         =max-pos
+==>
+    =goal>
+        state           compare-swap
+    =action>
+    =imaginal>
+    +action>
+        action          find-swap
+
+)
+
+(p update-own-card-swap
+    =goal>
+        isa             goal
+        state           compare-swap
+    =action>
+        isa             swap
+        player          =player
+        position        =position
+        value           =value
+    =imaginal>
+        max             =max
+        max-pos         =max-pos
+        > max           =value
+==>
+    =goal>
+        state           update-opponent-card
+    -imaginal>
+    +imaginal>
+        isa             card                    ;update our own hand first
+        player          0
+        position        =max-pos
+        upper           nil
+        lower           nil
+        avg             =value
+    =action>
+        old-pos         =max-pos
+        old-val         =max
+
+)
+
+(p discard-swap
+    =goal>
+        isa             goal
+        state           compare-swap
+    =action>
+        isa             swap
+        player          =player
+        position        =position
+        value           =value
+    =imaginal>
+        max             =max
+        max-pos         =max-pos
+        <= max           =value
+==>
+    =goal>
+        state           wait-for-turn
+    +action>
+        action          discard-swap
+
+)
+
+(p update-opponent-card-swap
+    =goal>
+        isa             goal
+        state           update-opponent-card
+    =action>
+        isa             swap
+        player          =player
+        position        =position
+        value           =value
+        old-pos         =max-pos
+        old-val         =max
+==>
+    =goal>
+        state           wait-for-turn
+    -imaginal>
+    +imaginal>
+        isa             card                    ;update our own hand first
+        player          =player
+        position        =position
+        upper           nil
+        lower           nil
+        avg             =max
+    +action>
+        isa             took-swap
+        player1         0
+        pos1            =max-pos
+        player2         =player
+        pos2            =position
 )
