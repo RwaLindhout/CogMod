@@ -20,16 +20,27 @@ class Game {
     public var modelPlayer3: ModelPlayer
     public var isFinished: Bool = false
     
-    public func cardsInit() {
-        drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
-        drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-        if discardPile.cards.isEmpty {
-            discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
-            discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
+    public func cardsInit(ACTR: Bool) {
+        if ACTR {
+            drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+            drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+            if discardPile.cards.isEmpty {
+                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+                discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+
+            }
+        } else {
+            drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+            drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
+            if discardPile.cards.isEmpty {
+                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+                discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
+            }
         }
     }
     
-    public func ACTRModelActions(model: ModelPlayer, deck: Deck) {
+    
+    public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int) {
         model.run()
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
@@ -57,20 +68,31 @@ class Game {
         model.modifyLastAction(slot: "isa", value: "moves")
         model.buffers["actions"]?.slotvals["discard"] = nil
         model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
-        print(model.buffers)
         model.run()
         print(model.buffers)
         // TODO: ACT-R Model actions are performed here
+        print(model.buffers["action"]?.slotvals["action"]?.text())
+        if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
+            return (0, 0)
+        } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-draw" {
+            let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
+            return (1, position)
+        } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-discard" {
+            let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
+            return (2, position)
+        } else {
+            return (-1, -1)
+        }
     }
     
-    public func cardActions(pos: Int, pileClicked: Int) {
+    public func cardActions(pos: Int, pileClicked: Int, deck: Deck) {
         if pileClicked == 1 {
             // if the drawPile is clicked
             discardPile.appendCard(fromDeck: playerDeck, pos: pos)
-            playerDeck.popAndInsertCard(fromDeck: drawPile, pos: pos)
+            deck.popAndInsertCard(fromDeck: drawPile, pos: pos)
         } else if pileClicked == 2 {
             // if the discardPile is clicked
-            playerDeck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
+            deck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
         }
     }
         
