@@ -132,7 +132,7 @@ class Game {
         // if the drawPile is clicked
         if pileClicked == 1 {
             discardPile.appendCard(fromDeck: playerDeck, pos: pos)
-            deck.popAndInsertCard(fromDeck: drawPile, pos: pos)s
+            deck.popAndInsertCard(fromDeck: drawPile, pos: pos)
         } else if pileClicked == 2 {
             // if the discardPile is clicked
             deck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
