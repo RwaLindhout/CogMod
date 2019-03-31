@@ -254,10 +254,22 @@ class ViewController: UIViewController {
             game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
         // else if action is took-draw
         } else if action == 1 {
-            game.cardActions(pos: actr1Buttons[position].tag, pileClicked: 1, deck: deck)
+            //Look for the button corresponding to the correct tag
+            for button in actr1Buttons{
+                print(button.tag)
+                if button.tag == position{
+                    game.cardActions(pos: button.tag, pileClicked: 1, deck: deck)
+                }
+            }
         // else action is took-discard
         } else {
-            game.cardActions(pos: actr1Buttons[position].tag, pileClicked: 2, deck: deck)
+            //Look for the button corresponding to the correct tag
+            for button in actr1Buttons{
+                print(button.tag)
+                if button.tag == position{
+                   game.cardActions(pos: button.tag, pileClicked: 2, deck: deck)
+                }
+            }
         }
     }
     
@@ -273,8 +285,8 @@ class ViewController: UIViewController {
                 if action != -1 {
                     self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
                     self.updateViewFromModel()
-                    print(self.game.modelPlayer2.actions)
-                    print(self.game.modelPlayer2.otherPlayer2.cards)
+//                    print(self.game.modelPlayer1.actions)
+//                    print(self.game.modelPlayer1.otherPlayer2.cards)
                 }
                 self.game.cardsInit(ACTR: true)
                 self.updateViewFromModel()
@@ -283,19 +295,21 @@ class ViewController: UIViewController {
                     let (action1, position1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
                     if action1 != -1 {
                         self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
-                        print(self.game.modelPlayer1.actions)
-                        print(self.game.modelPlayer1.otherPlayer2.cards)
+//                        print(self.game.modelPlayer2.actions)
+//                        print(self.game.modelPlayer2.otherPlayer2.cards)
                     }
-                    self.updateViewFromModel()
                     self.game.cardsInit(ACTR: true)
+                    self.updateViewFromModel()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                         self.updateViewFromModel()
                         let (action2, position2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
                         if action2 != -1 {
                             self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
-                            print(self.game.modelPlayer2.actions)
-                            print(self.game.modelPlayer2.otherPlayer2.cards)
+//                            print(self.game.modelPlayer3.actions)
+//                            print(self.game.modelPlayer3.otherPlayer2.cards)
                         }
+//                        self.game.cardsInit(ACTR: true)
+                        self.updateViewFromModel()
                     }
                 }
             }

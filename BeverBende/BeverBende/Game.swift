@@ -65,6 +65,7 @@ class Game {
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
         model.modifyLastAction(slot: "right", value: String(deck.returnCardAtPos(position: 3)))
+        print(model.buffers)
     }
     
     
@@ -98,7 +99,12 @@ class Game {
         model.run()
         
         model.modifyLastAction(slot: "isa", value: "moves")
-        model.buffers["actions"]?.slotvals["discard"] = nil
+        //If discard pile is empty give nil to ACT-R otherwise give the value of the card at the top of the discard pile
+        if discardPile.isEmpty(){
+            model.buffers["actions"]?.slotvals["discard"] = nil
+        }else{
+            model.modifyLastAction(slot: "discard", value: String(discardPile.returnCardAtPos(position: discardPile.cards.endIndex-1)))
+        }
         model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
 //        model.modifyLastAction(slot: "draw", value: "sneak-peek")
 
@@ -150,7 +156,7 @@ class Game {
             return (1, position)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-discard" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
-            var value = discardPile.cards[discardPile.cards.endIndex].value / 2
+            var value = discardPile.cards[discardPile.cards.endIndex-1].value / 2
             // needed so that special cards still have avg of 5
             if value == 50 {
                 value = 5
