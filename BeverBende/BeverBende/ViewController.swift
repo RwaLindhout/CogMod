@@ -88,6 +88,10 @@ class ViewController: UIViewController {
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
         game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         game.drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
+        //added the 2 followinglines to make a turn start by discarding a drawn card as well
+        //This mnight need to be changed again once the cards are no longer open.
+        runACTR()
+        game.cardsInit(ACTR: false)
         updateViewFromModel()
     }
     
@@ -256,7 +260,6 @@ class ViewController: UIViewController {
         } else if action == 1 {
             //Look for the button corresponding to the correct tag
             for button in actr1Buttons{
-                print(button.tag)
                 if button.tag == position{
                     game.cardActions(pos: button.tag, pileClicked: 1, deck: deck)
                 }
@@ -265,7 +268,6 @@ class ViewController: UIViewController {
         } else {
             //Look for the button corresponding to the correct tag
             for button in actr1Buttons{
-                print(button.tag)
                 if button.tag == position{
                    game.cardActions(pos: button.tag, pileClicked: 2, deck: deck)
                 }

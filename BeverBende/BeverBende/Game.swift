@@ -65,22 +65,16 @@ class Game {
         model.modifyLastAction(slot: "isa", value: "start-info")
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
         model.modifyLastAction(slot: "right", value: String(deck.returnCardAtPos(position: 3)))
+        model.run()
+        model.dm.addToDM(model.dm.chunks["imaginal2"]!)
+        model.dm.addToDM(model.dm.chunks["imaginal3"]!)
+        //debug print
         print(model.buffers)
     }
     
     
     public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int) {
         //Start turn
-        model.run()
-//        print(model.dm.chunks)
-//        model.dm.addToDM(model.dm.chunks["imaginal2"]!)
-//        model.dm.addToDM(model.dm.chunks["imaginal3"]!)
-//        model.dm.chunks["imaginal2"]?.addReference()
-//        model.dm.chunks["imaginal2"]?.addReference()
-//        print(model.dm.chunks["player1"]?.activation())
-//        print(model.dm.chunks["player4"]?.activation())
-//        print(model.dm.chunks["imaginal2"]?.activation())
-//        print(model.dm.chunks["imaginal3"]?.activation())
         model.run()
         
         //Get max and minimum value of the four cards of the model and return the highest and lowest to ACT-R
@@ -138,8 +132,8 @@ class Game {
             
         }
         model.run()
-        //print(model.dm.chunks)
-        //print(model.dm.chunks["player3"]?.activation())
+//        print(model.buffers)
+//        print(model.actions)
         // TODO: ACT-R Model actions are performed here
 //        print(model.buffers["action"]?.slotvals["action"]?.text())
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
@@ -156,7 +150,7 @@ class Game {
             return (1, position)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-discard" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
-            var value = discardPile.cards[discardPile.cards.endIndex-1].value / 2
+            var value = discardPile.cards[discardPile.cards.endIndex-1].value  //hoeft niet te delen door twee hier, want je weet de waarde exact
             // needed so that special cards still have avg of 5
             if value == 50 {
                 value = 5
