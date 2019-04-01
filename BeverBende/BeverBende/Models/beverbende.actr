@@ -350,18 +350,68 @@
         min-pos     =low-pos
         max         =highest
         max-pos     =high-pos
+        sum         =sum
 ==>
     =goal>
         isa         goal
-        state       start-turn
+        state       request-beverbende
     =imaginal>
         min         =lowest
         max         =highest
         min-pos     =low-pos
         max-pos     =high-pos
-    +action>
-        isa         moves
+        sum         =sum
+;  +action>
+;       isa         moves
 )
+
+ ;######### Does the model want to call beverbende? ########
+
+(p do-i-wanna-call-beverbende
+    =goal>
+        isa         goal
+        state       request-beverbende
+    =imaginal>
+        sum         =val
+==>
+    =goal>
+        isa         goal
+        state       compare-beverbende
+    +action>
+        isa          beverbende
+        total        =val
+)
+
+(p beverbende
+    =goal>
+        isa         goal
+        state       compare-beverbende
+    =action>
+        isa         beverbende
+        choice      yes
+==>
+    =goal>
+        isa         goal
+        state       end-turn
+    +action>
+        action      beverbende
+)
+
+(p do-not-call-beverbende
+    =goal>
+        isa         goal
+        state       compare-beverbende
+    =action>
+        isa         beverbende
+        choice      no
+==>
+    =goal>
+        isa         goal
+        state       start-turn
+    +action>
+        action      moves
+)
+
 
  ;######## Start of turn ###########
 

@@ -59,6 +59,12 @@ class Game {
         }
     }
     
+    ///Had dit bedacht om menselijke actie aan history toe te voegen, maar nog niet helemaal uitgedacht. 
+    public func ACTRUpdateHumanKnowledge(action: Int, position: Int, value: Int) {
+        modelPlayer1.addActions(actionNum: action, player: 0, position: position, estimatedValue: value)
+        modelPlayer2.addActions(actionNum: action, player: 0, position: position, estimatedValue: value)
+        modelPlayer3.addActions(actionNum: action, player: 0, position: position, estimatedValue: value)
+    }
     
     public func initACTRModelActions(model: ModelPlayer, deck: Deck) {
         model.run()
@@ -85,34 +91,65 @@ class Game {
             model.modifyLastAction(slot: "isa", value: "history")
             model.modifyLastAction(slot: "position", value: String(action.position))
             model.modifyLastAction(slot: "action", value: action.action == 1 ? "took-draw" : "took-discard")
-            model.modifyLastAction(slot: "player", value: String(action.player))
+//            model.modifyLastAction(slot: "player", value: String(action.player))
             model.modifyLastAction(slot: "new-avg", value: String(action.estimatedValue))
+            
+            //Make sure the player numbers used in Swift match up with those in ACT-R
+            if(model.playerNumber == 1){
+                if(action.player == 0 ){
+                    //The human player is opponent 3 for model 1
+                    model.modifyLastAction(slot: "player", value: "3")
+                }else if(action.player == 1 ){
+                    //The first model is the model itself, so a 0
+                    model.modifyLastAction(slot: "player", value: "0")
+                }else if(action.player == 2 ){
+                    //The second model is opponent 1 for model 1
+                    model.modifyLastAction(slot: "player", value: "1")
+                }else if(action.player == 3 ){
+                    //The third model is opponent 2 for model 1
+                    model.modifyLastAction(slot: "player", value: "2")
+                }
+            } else  if(model.playerNumber == 2){
+                if(action.player == 0 ){
+                    //The human player is opponent 2 for model 2
+                    model.modifyLastAction(slot: "player", value: "2")
+                }else if(action.player == 1 ){
+                    //The first model is opponent 3 for model 2
+                    model.modifyLastAction(slot: "player", value: "3")
+                }else if(action.player == 2 ){
+                    //The second model is the model itself, so  a 0
+                    model.modifyLastAction(slot: "player", value: "0")
+                }else if(action.player == 3 ){
+                    //The third model is opponent 1 for model 2
+                    model.modifyLastAction(slot: "player", value: "1")
+                }
+            } else  if(model.playerNumber == 3){
+                if(action.player == 0 ){
+                    //The human player is opponent 1 for model 3
+                    model.modifyLastAction(slot: "player", value: "1")
+                }else if(action.player == 1 ){
+                    //The first model is opponent 2 for model 3
+                    model.modifyLastAction(slot: "player", value: "2")
+                }else if(action.player == 2 ){
+                    //The second model is opponent 3 for model 3
+                    model.modifyLastAction(slot: "player", value: "3")
+                }else if(action.player == 3 ){
+                    //The third model is the model itself, so a 0.
+                    model.modifyLastAction(slot: "player", value: "0")
+                }
+            }
+            
             model.run()
-            
-            
-//            if(model.playerNumber == 1){
-//                if(action.player == 1 ){
-//                    //player becomes 2
-//                    model.modifyLastAction(slot: "player", value: "2")
-//                }else if(action.player == 2 ){
-//                    //player becomes 3
-//                    model.modifyLastAction(slot: "player", value: "3")
-//                }else if(action.player == 3 ){
-//                    //player becomes human player
-//                    model.modifyLastAction(slot: "player", value: "1")
-//                }
-//            }
-//
         }
         //No more previous move to process to act-r can start turn
         model.modifyLastAction(slot: "isa", value: "history")
         model.modifyLastAction(slot: "action", value: "done")
         model.run()
         
-        
+       
         //Start turn
         model.run()
-        
+        print(model.buffers)
         //Get max and minimum value of the four cards of the model and return the highest and lowest to ACT-R
         let max_tuple = max(model: model)
         let max_val = max_tuple.0
@@ -125,9 +162,40 @@ class Game {
         let min_pos = min_tuple.1
         model.modifyLastAction(slot: "min", value: String(min_val))
         model.modifyLastAction(slot: "min-pos", value: String(min_pos))
+        //Get value of current hand according to model
+        let total = sum(model:model)
+        model.modifyLastAction(slot: "sum", value: String(total))
+        
+        print("sum cards: \(total)")
+        print("sum cards opp1: \(model.otherPlayer2.sumCards())")
+        print("sum cards opp2: \(model.otherPlayer3.sumCards())")
+        print("sum cards human: \(model.humanPlayer.sumCards())")
 
         model.run()
         
+        //Do I wanna call beverbende?
+        let my_score = model.buffers["action"]?.slotvals["total"]?.number()
+        if( callBeverbende(model: my_score!, opponent1: Double(model.otherPlayer2.sumCards()), opponent2: Double(model.otherPlayer3.sumCards()), opponent3: Double(model.humanPlayer.sumCards()))){
+               //We wanna call beverbende
+            model.modifyLastAction(slot: "isa", value: "beverbende")
+            model.modifyLastAction(slot: "choice", value: "yes")
+            model.run()
+        }else{
+            //we do not wanna call beverbende
+            model.modifyLastAction(slot: "isa", value: "beverbende")
+            model.modifyLastAction(slot: "choice", value: "no")
+            model.run()
+        }
+        
+        //Beverbende has been called, so that must be excecuted in swift as well.
+         if model.buffers["action"]?.slotvals["action"]?.text() == "beverbende" {
+            //Beverbende has been called by the model
+            //TODO: Implement what happens when beverbende is called.
+            beverBende() //geen idee wat deze functie doet maar hij is wel gedefined.
+        }
+        
+        
+        //Beverbende has not been called so we continue with our turn
         model.modifyLastAction(slot: "isa", value: "moves")
         //If discard pile is empty give nil to ACT-R otherwise give the value of the card at the top of the discard pile
         if discardPile.isEmpty(){
@@ -168,7 +236,7 @@ class Game {
         }
         model.run()
         print(model.buffers)
-//        print(model.actions)
+        print(model.actions)
         // TODO: ACT-R Model actions are performed here
 //        print(model.buffers["action"]?.slotvals["action"]?.text())
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
@@ -208,6 +276,15 @@ class Game {
         }
     }
     
+    public func callBeverbende(model: Double, opponent1: Double, opponent2: Double, opponent3: Double) -> (Bool){
+        let win_factor = 1.5     //Opponents cards have to be 10% higher
+        if ( (opponent1 >= model*win_factor) && (opponent2 >= model*win_factor)  &&  (opponent3 >= model*win_factor) ){
+            return true
+        }else{
+            return false
+        }
+    }
+    
         
     private func max(model: ModelPlayer) -> (Double, Int) {
         var highest: Double = -1
@@ -226,7 +303,19 @@ class Game {
         }
         return (highest,highestpos)
     }
-        
+    
+    private func sum(model: ModelPlayer) -> Int {
+        let position = ["pos0","pos1","pos2","pos3"]
+        var sum: Int = 0
+        for i in position {
+            let value = model.buffers["action"]?.slotvals[i]?.number()
+            if value != nil {
+                sum = sum + Int(value!)
+            }
+        }
+        return sum
+    }
+    
     private func min(model: ModelPlayer) -> (Double, Int)  {
         var lowest: Double = 100
         var lowestpos: Int = 5

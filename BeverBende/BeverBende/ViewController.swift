@@ -99,15 +99,20 @@ class ViewController: UIViewController {
         for i in 0..<4 {
             if playerButtons[i] == sender {
                 if pileClicked == 1 {
+                    //took draw
+                    game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.drawPile.returnCardAtPos(position: game.drawPile.cards.endIndex-1))/2)
                     // put card on discardPile and put drawPile card on correct place in playerDeck
                     game.cardActions(pos: playerButtons[i].tag, pileClicked: 1, deck: game.playerDeck)
                 } else if pileClicked == 2 {
+                    //took discard
+                    game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.discardPile.returnCardAtPos(position: game.discardPile.cards.endIndex-1))/2)
                     // discardPile is clicked
                     game.cardActions(pos: playerButtons[i].tag, pileClicked: 2, deck: game.playerDeck)
                 }
             }
         }
         pileClicked = 0
+        
         // todo: turn of human is over, now the act-r models should run
         runACTR()
         game.cardsInit(ACTR: false)
@@ -310,7 +315,7 @@ class ViewController: UIViewController {
 //                            print(self.game.modelPlayer3.actions)
 //                            print(self.game.modelPlayer3.otherPlayer2.cards)
                         }
-//                        self.game.cardsInit(ACTR: true)
+                        self.game.cardsInit(ACTR: true)
                         self.updateViewFromModel()
                     }
                 }
