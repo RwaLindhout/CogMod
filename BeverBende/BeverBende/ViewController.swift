@@ -26,6 +26,9 @@ class ViewController: UIViewController {
     // BeverBende
     var clickCount = 0
     
+    
+    
+    
     @IBAction func centralButton(_ sender: UIButton) {
         clickCount+=1
         centralButtonClick(button: sender, clicks: clickCount)
@@ -51,6 +54,7 @@ class ViewController: UIViewController {
     
     private func beverbende(){
         game.beverBende()
+        updateViewFromModel()
         beverBendeCount += 1
         score[0] += game.playerDeck.sumCards()
         score[1] += game.actrDeck1.sumCards()
@@ -70,7 +74,7 @@ class ViewController: UIViewController {
 
     @IBAction func drawPileClick(_ sender: UIButton) {
         pileClicked = 1
-        
+        game.drawPile.makeCardsFaceUp(fourCards: false, setTrueOrFalse: true)
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
         game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         updateViewFromModel()
@@ -109,6 +113,7 @@ class ViewController: UIViewController {
         }
         pileClicked = 0
         // todo: turn of human is over, now the act-r models should run
+
         runACTR()
         game.cardsInit(ACTR: false)
         updateViewFromModel()
@@ -132,12 +137,14 @@ class ViewController: UIViewController {
         if end{
             alert.addAction(UIAlertAction(title: "End Game", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
         } else {
+            alert.addAction(UIAlertAction(title: "Back to Menu", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         }
         self.present(alert, animated: true)
     }
     
-
+   
+    
     private func updateDeck(cardButton: [MyButton]!, deck: Deck, actr1 : Bool, actr2: Bool, actr3: Bool) {
         for index in cardButton.indices {
             let button = cardButton[index]
@@ -178,6 +185,8 @@ class ViewController: UIViewController {
                 } else {
                 button.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
                 }
+            } else if !card.isHighlighted {
+                button.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             }
             if card.isClickable {
                 button.isEnabled = true
@@ -216,6 +225,8 @@ class ViewController: UIViewController {
             cardButton.setBackgroundImage(image!, for: .normal)
             if deck.cards[deck.cards.endIndex-1].isHighlighted {
                 cardButton.borderColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+            } else if !deck.cards[deck.cards.endIndex-1].isHighlighted{
+                cardButton.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             }
             if deck.cards[deck.cards.endIndex-1].isFaceUp {
                 if deck.cards[deck.cards.endIndex-1].type == 1 {
@@ -231,7 +242,6 @@ class ViewController: UIViewController {
                     cardButton.setBackgroundImage(nil, for: .normal)
                     cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
                 }
-                
             }
             if deck.cards[deck.cards.endIndex-1].isClickable {
                 cardButton.isEnabled = true
@@ -253,23 +263,131 @@ class ViewController: UIViewController {
    
     // todo: this function should also update all the representations of cards
     private func updateACTRActions(action: Int, position: Int, deck: Deck) {
+        var chooseDeck = 5
+        let decks = [actr1Buttons,actr2Buttons,actr3Buttons]
+        if deck === game.actrDeck1 {
+            chooseDeck = 0
+        } else if deck === game.actrDeck2 {
+            chooseDeck = 1
+        } else if deck === game.actrDeck3 {
+            chooseDeck = 2
+        }
+        let buttons = decks[chooseDeck]
         // if action is discard-draw
         if action == 0 {
             game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
+            UIViewPropertyAnimator.runningPropertyAnimator(
+                withDuration: 1,
+                delay: 0,
+                options: [],
+                animations: {
+                    self.drawPile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }, completion: { _ in
+                UIViewPropertyAnimator.runningPropertyAnimator(
+                    withDuration: 1,
+                    delay: 0,
+                    options: [],
+                    animations: {
+                        self.drawPile.transform = CGAffineTransform.identity
+                }, completion: { _ in
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 0,
+                        options: [],
+                        animations: {
+                            self.discardPile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                    }, completion: { _ in
+                        UIViewPropertyAnimator.runningPropertyAnimator(
+                            withDuration: 1,
+                            delay: 0,
+                            options: [],
+                            animations: {
+                                self.discardPile.transform = CGAffineTransform.identity
+                                self.updateViewFromModel()
+                        })
+                    })
+                })
+            })
         // else if action is took-draw
         } else if action == 1 {
             //Look for the button corresponding to the correct tag
-            for button in actr1Buttons{
+            for button in buttons! {
                 if button.tag == position{
                     game.cardActions(pos: button.tag, pileClicked: 1, deck: deck)
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 0,
+                        options: [],
+                        animations: {
+                            button.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                            self.drawPile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                        }, completion: { _ in
+                            UIViewPropertyAnimator.runningPropertyAnimator(
+                                withDuration: 1,
+                                delay: 0,
+                                options: [],
+                                animations: {
+                                    button.transform = CGAffineTransform.identity
+                                    self.drawPile.transform = CGAffineTransform.identity
+                           })
+                       })
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 2,
+                        options: [],
+                        animations: {
+                            self.discardPile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                    }, completion: { _ in
+                        UIViewPropertyAnimator.runningPropertyAnimator(
+                            withDuration: 1,
+                            delay: 0,
+                            options: [],
+                            animations: {
+                                self.discardPile.transform = CGAffineTransform.identity
+                                self.updateViewFromModel()
+                        })
+                    })
                 }
             }
         // else action is took-discard
         } else {
             //Look for the button corresponding to the correct tag
-            for button in actr1Buttons{
+            for button in buttons! {
                 if button.tag == position{
-                   game.cardActions(pos: button.tag, pileClicked: 2, deck: deck)
+                    game.cardActions(pos: button.tag, pileClicked: 2, deck: deck)
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 0,
+                        options: [],
+                        animations: {
+                            button.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                            self.discardPile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                        }, completion: { _ in
+                            UIViewPropertyAnimator.runningPropertyAnimator(
+                                withDuration: 1,
+                                delay: 0,
+                                options: [],
+                                animations: {
+                                    button.transform = CGAffineTransform.identity
+                                    self.discardPile.transform = CGAffineTransform.identity
+                            })
+                        })
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 0,
+                        options: [],
+                        animations: {
+                            self.discardPile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                    }, completion: { _ in
+                        UIViewPropertyAnimator.runningPropertyAnimator(
+                            withDuration: 1,
+                            delay: 0,
+                            options: [],
+                            animations: {
+                                self.discardPile.transform = CGAffineTransform.identity
+                                self.updateViewFromModel()
+                        })
+                    })
                 }
             }
         }
@@ -286,13 +404,11 @@ class ViewController: UIViewController {
                 let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
                 if action != -1 {
                     self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
-                    self.updateViewFromModel()
 //                    print(self.game.modelPlayer1.actions)
 //                    print(self.game.modelPlayer1.otherPlayer2.cards)
                 }
                 self.game.cardsInit(ACTR: true)
-                self.updateViewFromModel()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+               DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                     
                     let (action1, position1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
                     if action1 != -1 {
@@ -301,7 +417,6 @@ class ViewController: UIViewController {
 //                        print(self.game.modelPlayer2.otherPlayer2.cards)
                     }
                     self.game.cardsInit(ACTR: true)
-                    self.updateViewFromModel()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                         self.updateViewFromModel()
                         let (action2, position2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
@@ -311,10 +426,10 @@ class ViewController: UIViewController {
 //                            print(self.game.modelPlayer3.otherPlayer2.cards)
                         }
 //                        self.game.cardsInit(ACTR: true)
-                        self.updateViewFromModel()
                     }
                 }
             }
+            game.cardsInit(ACTR: false)
             updateViewFromModel()
             game.isFinished = true
         }

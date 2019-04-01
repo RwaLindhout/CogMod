@@ -176,6 +176,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="177" id="ALh-Xd-unT"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="135" id="JOY-my-9Jm"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="177" id="K7X-zx-0MY"/>
                                     <constraint firstAttribute="width" constant="135" id="o80-z7-hZX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -444,8 +446,10 @@
                                 <rect key="frame" x="267" y="296" width="135" height="177"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="177" id="Dtv-TP-UoI"/>
                                     <constraint firstAttribute="height" constant="177" id="X21-AF-DgJ"/>
                                     <constraint firstAttribute="width" constant="135" id="elZ-5g-lR2"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="135" id="hOs-Y9-xIf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -486,7 +490,6 @@
                             <constraint firstItem="N2C-Zn-DVQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="267" id="Bba-3u-dDH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FSO-bz-kbO" secondAttribute="bottom" constant="200" id="Ex4-Qn-7Wb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N2C-Zn-DVQ" secondAttribute="bottom" constant="295" id="HkU-JZ-w5h"/>
-                            <constraint firstItem="N2C-Zn-DVQ" firstAttribute="leading" secondItem="FSO-bz-kbO" secondAttribute="trailing" constant="100" id="IxF-Gu-X63"/>
                             <constraint firstItem="FSO-bz-kbO" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="MeJ-1C-IxU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N2C-Zn-DVQ" secondAttribute="trailing" constant="622" id="NM1-6i-ufy"/>
                             <constraint firstItem="73m-l9-vrc" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="QGv-CO-PWX"/>

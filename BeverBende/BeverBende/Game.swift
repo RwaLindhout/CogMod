@@ -22,10 +22,12 @@ class Game {
     
     public func cardsInit(ACTR: Bool) {
         if ACTR {
-            drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+            drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: false)
             drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+            playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+            playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
             if discardPile.cards.isEmpty {
-                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: false)
                 discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
 
             }
