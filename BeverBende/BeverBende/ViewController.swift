@@ -283,7 +283,7 @@ class ViewController: UIViewController {
             game.cardsInit(ACTR: true)
             updateViewFromModel()
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+                 let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
                 if action != -1 {
                     self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
                     self.updateViewFromModel()
