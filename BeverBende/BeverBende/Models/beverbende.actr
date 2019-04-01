@@ -121,8 +121,8 @@
         action      took-discard
         player      =player
         position   =pos
-;       lower       =lower
-;       upper       =upper
+        lower       nil
+        upper       nil
         new-avg     =val
 ==>
     =goal>
@@ -132,8 +132,8 @@
         isa         card
         player      =player
         position    =pos
-;        lower       =lower     ;set to nill indicating that we know the values rather than just an estimate
-;        upper       =upper     ;set to nill indicating that we know the values rather than just an estimate
+        lower       nil
+        upper       nil
         avg         =val
     -imaginal>
     +action>
@@ -152,8 +152,8 @@
         action      took-draw
         player      =player
         position   =pos
-;       lower       =lower
-;        upper       =upper
+       lower       =lower
+        upper       =upper
         new-avg     =val
 ==>
     =goal>
@@ -163,8 +163,8 @@
         isa         card
         player      =player
         position    =pos
-;       lower       =lower
-;       upper       =upper
+        lower       =lower
+        upper       =upper
         avg         =val
     -imaginal>
     +action>
@@ -185,8 +185,8 @@
         action      discard-draw
         player      =player
         position   =pos
-;        lower       =lower
-;       upper       =upper
+        lower       =lower
+        upper       =upper
         new-avg     =val
 ==>
     =goal>
@@ -196,8 +196,8 @@
         isa         card
         player      =player
         position    =pos
-;       lower       =lower
-;       upper       =upper
+        lower       =lower
+        upper       =upper
         avg         =val
     -imaginal>
     +action>

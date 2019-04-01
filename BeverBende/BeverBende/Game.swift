@@ -92,10 +92,22 @@ class Game {
 
             model.modifyLastAction(slot: "isa", value: "history")
             model.modifyLastAction(slot: "position", value: String(action.position))
-            model.modifyLastAction(slot: "action", value: action.action == 1 ? "took-draw" : "took-discard")
-//            model.modifyLastAction(slot: "player", value: String(action.player))
             model.modifyLastAction(slot: "new-avg", value: String(action.estimatedValue))
             
+            //Add action and limits accordingly
+            if(action.action == 1){
+                //Action  was took draw
+                model.modifyLastAction(slot: "action", value: "took-draw")
+                model.modifyLastAction(slot: "upper", value: String(action.upper))
+                model.modifyLastAction(slot: "lower", value: String(action.lower))
+            }else if(action.action == 2){
+                //Action was took discard
+                model.modifyLastAction(slot: "action", value: "took-discard")
+                model.buffers["action"]?.slotvals["upper"] = nil
+                model.buffers["action"]?.slotvals["lower"] = nil
+            }
+                
+                
             //Make sure the player numbers used in Swift match up with those in ACT-R
             if(model.playerNumber == 1){
                 if(action.player == 0 ){
@@ -141,6 +153,7 @@ class Game {
                 }
             }
             
+            print(model.buffers)
             model.run()
         }
         //No more previous move to process to act-r can start turn
@@ -201,7 +214,7 @@ class Game {
         model.modifyLastAction(slot: "isa", value: "moves")
         //If discard pile is empty give nil to ACT-R otherwise give the value of the card at the top of the discard pile
         if discardPile.isEmpty(){
-            model.buffers["actions"]?.slotvals["discard"] = nil
+            model.buffers["action"]?.slotvals["discard"] = nil
         }else{
             model.modifyLastAction(slot: "discard", value: String(discardPile.returnCardAtPos(position: discardPile.cards.endIndex-1)))
         }
