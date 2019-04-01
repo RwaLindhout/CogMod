@@ -95,7 +95,7 @@
 ==>
   =goal>
       isa       goal
-      state     wait-for-turn				;TODO staat aanpassen na process-history zodra dat werkt
+      state     process-history				;TODO staat aanpassen na process-history zodra dat werkt
   +imaginal>
       isa       card
       player    0
@@ -105,7 +105,7 @@
       avg       =pos3
   -imaginal>
    +action>
-      isa       my-turn						;TODO staat aanpassen na process-history zodra dat werkt
+      isa       history						;TODO staat aanpassen na process-history zodra dat werkt
    )
 
 ;######## History Sequence ##########
@@ -121,8 +121,8 @@
         action      took-discard
         player      =player
         position   =pos
-        lower       =lower
-        upper       =upper
+;       lower       =lower
+;       upper       =upper
         new-avg     =val
 ==>
     =goal>
@@ -132,8 +132,8 @@
         isa         card
         player      =player
         position    =pos
-        lower       =lower     ;set to nill indicating that we know the values rather than just an estimate
-        upper       =upper     ;set to nill indicating that we know the values rather than just an estimate
+;        lower       =lower     ;set to nill indicating that we know the values rather than just an estimate
+;        upper       =upper     ;set to nill indicating that we know the values rather than just an estimate
         avg         =val
     -imaginal>
     +action>
@@ -151,9 +151,9 @@
         isa         history
         action      took-draw
         player      =player
-        postition   =pos
-        lower       =lower
-        upper       =upper
+        position   =pos
+;       lower       =lower
+;        upper       =upper
         new-avg     =val
 ==>
     =goal>
@@ -163,8 +163,8 @@
         isa         card
         player      =player
         position    =pos
-        lower       =lower
-        upper       =upper
+;       lower       =lower
+;       upper       =upper
         avg         =val
     -imaginal>
     +action>
@@ -185,8 +185,8 @@
         action      discard-draw
         player      =player
         position   =pos
-        lower       =lower
-        upper       =upper
+;        lower       =lower
+;       upper       =upper
         new-avg     =val
 ==>
     =goal>
@@ -196,8 +196,8 @@
         isa         card
         player      =player
         position    =pos
-        lower       =lower
-        upper       =upper
+;       lower       =lower
+;       upper       =upper
         avg         =val
     -imaginal>
     +action>
@@ -216,7 +216,7 @@
         isa         goal
         state       wait-for-turn
     +action>
-        action      my-turn
+        isa      my-turn
 )
 
 

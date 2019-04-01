@@ -76,6 +76,42 @@ class Game {
     
     
     public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int) {
+        //Start by looking at previous moves mnade by opponents 
+        print(model.playerNumber)
+        for action in model.actions{
+            print(action)
+            print("position: \(action.position)")
+            print("player: \(action.player)")
+            print("estimated value: \(action.estimatedValue)")
+
+            model.modifyLastAction(slot: "isa", value: "history")
+            model.modifyLastAction(slot: "position", value: String(action.position))
+            model.modifyLastAction(slot: "action", value: action.action == 1 ? "took-draw" : "took-discard")
+            model.modifyLastAction(slot: "player", value: String(action.player))
+            model.modifyLastAction(slot: "new-avg", value: String(action.estimatedValue))
+            model.run()
+            
+            
+//            if(model.playerNumber == 1){
+//                if(action.player == 1 ){
+//                    //player becomes 2
+//                    model.modifyLastAction(slot: "player", value: "2")
+//                }else if(action.player == 2 ){
+//                    //player becomes 3
+//                    model.modifyLastAction(slot: "player", value: "3")
+//                }else if(action.player == 3 ){
+//                    //player becomes human player
+//                    model.modifyLastAction(slot: "player", value: "1")
+//                }
+//            }
+//
+        }
+        //No more previous move to process to act-r can start turn
+        model.modifyLastAction(slot: "isa", value: "history")
+        model.modifyLastAction(slot: "action", value: "done")
+        model.run()
+        
+        
         //Start turn
         model.run()
         
@@ -102,7 +138,6 @@ class Game {
             model.modifyLastAction(slot: "discard", value: String(discardPile.returnCardAtPos(position: discardPile.cards.endIndex-1)))
         }
         model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
-//        model.modifyLastAction(slot: "draw", value: "sneak-peek")
 
         model.run()
 
@@ -134,7 +169,7 @@ class Game {
             
         }
         model.run()
-//        print(model.buffers)
+        print(model.buffers)
 //        print(model.actions)
         // TODO: ACT-R Model actions are performed here
 //        print(model.buffers["action"]?.slotvals["action"]?.text())
