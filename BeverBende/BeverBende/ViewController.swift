@@ -103,10 +103,9 @@ class ViewController: UIViewController {
         for i in 0..<4 {
             if playerButtons[i] == sender {
                 if pileClicked == 1 {
-                    //took draw
-                    //game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.drawPile.returnCardAtPos(position: game.drawPile.cards.endIndex-1))/2)
                     // put card on discardPile and put drawPile card on correct place in playerDeck
                     game.cardActions(pos: playerButtons[i].tag, pileClicked: 1, deck: game.playerDeck)
+                    //took draw
                     game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.discardPile.returnCardAtPos(position: game.discardPile.cards.endIndex-1))/2)
                 } else if pileClicked == 2 {
                     //took discard

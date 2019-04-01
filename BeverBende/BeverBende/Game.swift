@@ -94,7 +94,7 @@ class Game {
             model.modifyLastAction(slot: "position", value: String(action.position))
             model.modifyLastAction(slot: "new-avg", value: String(action.estimatedValue))
             
-            //Add action and limits accordingly
+            //Add action and limits to the chunks for the history
             if(action.action == 1){
                 //Action  was took draw
                 model.modifyLastAction(slot: "action", value: "took-draw")
@@ -156,7 +156,7 @@ class Game {
             print(model.buffers)
             model.run()
         }
-        //No more previous move to process to act-r can start turn
+        //No more previous moves/history left to process so act-r can start turn
         model.modifyLastAction(slot: "isa", value: "history")
         model.modifyLastAction(slot: "action", value: "done")
         model.run()
@@ -188,7 +188,7 @@ class Game {
 
         model.run()
         
-        //Do I wanna call beverbende?
+        //Does the model wanna call beverbende?
         let my_score = model.buffers["action"]?.slotvals["total"]?.number()
         if( callBeverbende(model: my_score!, opponent1: Double(model.otherPlayer2.sumCards()), opponent2: Double(model.otherPlayer3.sumCards()), opponent3: Double(model.humanPlayer.sumCards()))){
                //We wanna call beverbende
@@ -196,7 +196,7 @@ class Game {
             model.modifyLastAction(slot: "choice", value: "yes")
             model.run()
         }else{
-            //we do not wanna call beverbende
+            //We do not wanna call beverbende
             model.modifyLastAction(slot: "isa", value: "beverbende")
             model.modifyLastAction(slot: "choice", value: "no")
             model.run()
@@ -252,13 +252,8 @@ class Game {
         model.run()
         print(model.buffers)
         print(model.actions)
-        print("sum cards: \(total)")
-        print("sum cards opp1: \(model.otherPlayer2.sumCards())")
-        print("sum cards opp2: \(model.otherPlayer3.sumCards())")
-        print("sum cards human: \(model.humanPlayer.sumCards())")
 
         // TODO: ACT-R Model actions are performed here
-//        print(model.buffers["action"]?.slotvals["action"]?.text())
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
             return (0, 0)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-draw" {
@@ -296,8 +291,9 @@ class Game {
         }
     }
     
+    //Check whether a hand is smaller than all the other by a certain percentage to decide if we want to call beverbende.
     public func callBeverbende(model: Double, opponent1: Double, opponent2: Double, opponent3: Double) -> (Bool){
-        let win_factor = 1.5     //Opponents cards have to be 10% higher
+        let win_factor = 1.5     //Opponents cards have to be 50% higher
         if ( (opponent1 >= model*win_factor) && (opponent2 >= model*win_factor)  &&  (opponent3 >= model*win_factor) ){
             return true
         }else{
@@ -354,7 +350,7 @@ class Game {
         return(lowest,lowestpos)
     }
     
-    
+    //Get the opponent card with the smallest estimated value
     private func min_opponents(model: ModelPlayer) -> (Int, Int, Double)  {
         var lowest: Double = 100
         var lowestpos: Int = -1
