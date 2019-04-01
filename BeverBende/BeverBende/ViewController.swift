@@ -104,9 +104,10 @@ class ViewController: UIViewController {
             if playerButtons[i] == sender {
                 if pileClicked == 1 {
                     //took draw
-                    game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.drawPile.returnCardAtPos(position: game.drawPile.cards.endIndex-1))/2)
+                    //game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.drawPile.returnCardAtPos(position: game.drawPile.cards.endIndex-1))/2)
                     // put card on discardPile and put drawPile card on correct place in playerDeck
                     game.cardActions(pos: playerButtons[i].tag, pileClicked: 1, deck: game.playerDeck)
+                    game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.discardPile.returnCardAtPos(position: game.discardPile.cards.endIndex-1))/2)
                 } else if pileClicked == 2 {
                     //took discard
                     game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.discardPile.returnCardAtPos(position: game.discardPile.cards.endIndex-1))/2)
@@ -406,7 +407,7 @@ class ViewController: UIViewController {
             game.cardsInit(ACTR: true)
             updateViewFromModel()
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                 let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+                let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
                 if action != -1 {
                     self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
 //                    print(self.game.modelPlayer1.actions)

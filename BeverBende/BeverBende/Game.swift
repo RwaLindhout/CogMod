@@ -239,6 +239,11 @@ class Game {
         model.run()
         print(model.buffers)
         print(model.actions)
+        print("sum cards: \(total)")
+        print("sum cards opp1: \(model.otherPlayer2.sumCards())")
+        print("sum cards opp2: \(model.otherPlayer3.sumCards())")
+        print("sum cards human: \(model.humanPlayer.sumCards())")
+
         // TODO: ACT-R Model actions are performed here
 //        print(model.buffers["action"]?.slotvals["action"]?.text())
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
