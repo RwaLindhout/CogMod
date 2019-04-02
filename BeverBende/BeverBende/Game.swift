@@ -265,25 +265,20 @@ class Game {
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-draw" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
             // should be the value of the card that will be swapped and put in the discardpile later on
-            var value = deck.cards[position].value / 2
+            let value = deck.cards[position].value / 2
             // needed so that special cards still have avg of 5
-            if value == 50 {
-                value = 5
-            }
             ACTRUpdateKnowledge(model: model, deck: deck, action: 1, position: position, value: value)
             return (1, position)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-discard" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
-            var value = discardPile.cards[discardPile.cards.endIndex-1].value  //hoeft niet te delen door twee hier, want je weet de waarde exact
+            let value = discardPile.cards[discardPile.cards.endIndex-1].value  //hoeft niet te delen door twee hier, want je weet de waarde exact
             // needed so that special cards still have avg of 5
-            if value == 50 {
-                value = 5
-            }
             ACTRUpdateKnowledge(model: model, deck: deck, action: 2, position: position, value: value)
             return (2, position)
         } else {
             return (-1, -1)
         }
+        // three other case: took-swap en discard-swap, peek-done
     }
     
     public func cardActions(pos: Int, pileClicked: Int, deck: Deck) {

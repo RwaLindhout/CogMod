@@ -47,7 +47,18 @@ class Deck {
             tmp.cards = Array(slice)
             tmp.cards.shuffle()
             self.cards = tmp.cards
+            fromDeck.cards = [fromDeck.cards.popLast()!]
         }
+    }
+    
+    // you call this function playerDeck.swapPlayerCardsAtPos(fromDeck: actrDeck1, posFrom: 3, posTo: 2)
+    public func swapPlayerCardsAtPos(fromDeck: Deck, posFrom: Int, posTo: Int) {
+        let card = fromDeck.cards[posFrom]
+        let card1 = self.cards[posTo]
+        fromDeck.cards.remove(at: posFrom)
+        self.cards.remove(at: posTo)
+        fromDeck.cards.insert(card, at: posFrom)
+        self.cards.insert(card1, at: posTo)
     }
     
     public func swapCardsAtPos(fromDeck: Deck, pos: Int) {

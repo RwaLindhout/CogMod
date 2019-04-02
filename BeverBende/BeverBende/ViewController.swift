@@ -86,6 +86,10 @@ class ViewController: UIViewController {
         // If the previous pileClicked was the drawPile
         if pileClicked == 1 {
             game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
+            // if the drawPile is now empty, put discard cards on the draw pile
+            if game.drawPile.isEmpty() {
+                game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
+            }
         }
         pileClicked = 2
         
@@ -284,6 +288,10 @@ class ViewController: UIViewController {
         // if action is discard-draw
         if action == 0 {
             game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
+            // if the drawPile is now empty, put discard cards on the draw pile
+            if game.drawPile.isEmpty() {
+                game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
+            }
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: 1,
                 delay: 0,
@@ -322,6 +330,10 @@ class ViewController: UIViewController {
             for button in buttons! {
                 if button.tag == position{
                     game.cardActions(pos: button.tag, pileClicked: 1, deck: deck)
+                    // if the drawPile is now empty, put discard cards on the draw pile
+                    if game.drawPile.isEmpty() {
+                        game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
+                    }
                     UIViewPropertyAnimator.runningPropertyAnimator(
                         withDuration: 1,
                         delay: 0,
@@ -411,7 +423,7 @@ class ViewController: UIViewController {
         
         game.cardsInit(ACTR: true)
         updateViewFromModel()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
             if action != -1 {
                 self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
@@ -419,7 +431,7 @@ class ViewController: UIViewController {
 //                    print(self.game.modelPlayer1.otherPlayer2.cards)
             }
             self.game.cardsInit(ACTR: true)
-           DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+           DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             
                 let (action1, position1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
                 if action1 != -1 {
@@ -428,7 +440,7 @@ class ViewController: UIViewController {
 //                        print(self.game.modelPlayer2.otherPlayer2.cards)
                 }
                 self.game.cardsInit(ACTR: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     self.updateViewFromModel()
                     let (action2, position2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
                     if action2 != -1 {
@@ -443,8 +455,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-//        game.cardsInit(ACTR: false)
-//        updateViewFromModel()
     }
     
     
