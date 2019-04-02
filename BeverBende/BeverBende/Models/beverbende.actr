@@ -108,8 +108,10 @@
       isa       history						;TODO staat aanpassen na process-history zodra dat werkt
    )
 
-;######## History Sequence ##########
 
+
+
+;######## History Sequence ##########
 
 ;You know the exact value of card seeing as you know the value of the discard card. (Update upper limit, lower limit & new-avg)
 (p history-took-discard
@@ -392,7 +394,7 @@
 ==>
     =goal>
         isa         goal
-        state       end-turn
+        state       process-history
     +action>
         action      beverbende
 )
@@ -467,7 +469,7 @@
 ==>
   =goal>
       isa         goal
-      state       end-turn
+      state       process-history
 -imaginal>
 +imaginal>                                                ;#### Gaat dit goed, want die andere troep zit ook nog in de imaginal buffer.
       isa         card
@@ -523,7 +525,7 @@
 ==>
     =goal>
         isa         goal
-        state       end-turn
+        state       process-history
     -imaginal>                          ;#### Gaat dit goed, want die andere troep zit ook nog in de imaginal buffer.
     +imaginal>
         isa         card
@@ -556,7 +558,7 @@
 ==>
     =goal>
         isa         goal
-        state       end-turn
+        state       process-history
     +action>
         action      discard-draw
         value       =draw
@@ -566,7 +568,7 @@
 
 ;############# Sneak peek Sequence #############
 
-(p compare-draw-sneak-peak
+(p compare-draw-sneak-peek
     =goal>
         isa             goal
         state           compare-draw
@@ -617,7 +619,7 @@
         position        =pos
 )
 
-(p update-card-after-peak
+(p update-card-after-peek
     =goal>
         state       peek-at-card
     =action>
@@ -626,7 +628,7 @@
         value       =val
 ==>
     =goal>
-        state       wait-for-turn
+        state       process-history
     +imaginal>
         isa         card
         player      0
@@ -655,7 +657,7 @@
         state           compare-draw
     =action>
         isa             moves                   ;Discard is no longer important seeing as you have already decided not to use that.
-        draw            swap                    ;Draw card has to be a sneak-peak card
+        draw            swap                    ;Draw card has to be a sneak-peek card
     =imaginal>
         max             =max
         max-pos         =max-pos
@@ -714,7 +716,7 @@
         <= max           =value
 ==>
     =goal>
-        state           wait-for-turn
+        state           process-history
     +action>
         action          discard-swap
 
@@ -733,7 +735,7 @@
         old-val         =max
 ==>
     =goal>
-        state           wait-for-turn
+        state           process-history
     -imaginal>
     +imaginal>
         isa             card                    ;update our own hand first

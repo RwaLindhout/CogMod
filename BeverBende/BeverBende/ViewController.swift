@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     let ruil = UIImage(named: "ruil.png")
     
     private lazy var game = Game()
+    private lazy var newGame = Game()
     private var score = [0,0,0,0]
     private var beverBendeCount = 0
     
@@ -26,9 +27,7 @@ class ViewController: UIViewController {
     // BeverBende
     var clickCount = 0
     
-    
-    
-    
+
     @IBAction func centralButton(_ sender: UIButton) {
         clickCount+=1
         centralButtonClick(button: sender, clicks: clickCount)
@@ -52,7 +51,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func beverbende(){
+    public func beverbende(){
         game.beverBende()
         updateViewFromModel(updateDiscardPile: true)
         beverBendeCount += 1
@@ -65,10 +64,11 @@ class ViewController: UIViewController {
         } else {
             showscore(end: false)
         }
-        let newGame = Game()
+        newGame = Game()
         game = newGame
         clickCount = 0
         self.beverBendeButton.setTitle("Start!", for: .normal)
+        // now everything should start again
     }
     
 
@@ -107,6 +107,10 @@ class ViewController: UIViewController {
                     game.cardActions(pos: playerButtons[i].tag, pileClicked: 1, deck: game.playerDeck)
                     //took draw
                     game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.discardPile.returnCardAtPos(position: game.discardPile.cards.endIndex-1))/2)
+                    // if the drawPile is now empty, put discard cards on the draw pile
+                    if game.drawPile.isEmpty() {
+                        game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile) 
+                    }
                 } else if pileClicked == 2 {
                     //took discard
                     game.ACTRUpdateHumanKnowledge(action: 1, position: playerButtons[i].tag, value: (game.discardPile.returnCardAtPos(position: game.discardPile.cards.endIndex-1))/2)
@@ -148,7 +152,6 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-   
     
     private func updateDeck(cardButton: [MyButton]!, deck: Deck, actr1 : Bool, actr2: Bool, actr3: Bool) {
         for index in cardButton.indices {
@@ -156,10 +159,10 @@ class ViewController: UIViewController {
             let card = deck.cards[button.tag]
             if card.isFaceUp {
                 button.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
-                if card.type == 1 {
+                if card.type == "swap" {
                     button.setBackgroundImage(ruil, for: .normal)
                     button.setTitle("", for: .normal)
-                } else if card.type == 2{
+                } else if card.type == "sneak-peek"{
                     button.setBackgroundImage(vergrootglas, for: .normal)
                     button.setTitle("", for: .normal)
                 } else {
@@ -206,11 +209,11 @@ class ViewController: UIViewController {
         // If deck is not empty, and is a drawPile, then set
         // color to white, and the title to the last value in the collection of cards
         } else if !isDrawPile {
-            if deck.cards[deck.cards.endIndex-1].type == 1 {
+            if deck.cards[deck.cards.endIndex-1].type == "swap" {
                 cardButton.setBackgroundImage(ruil, for: .normal)
                 cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
                 cardButton.setTitle("", for: .normal)
-            } else if deck.cards[deck.cards.endIndex-1].type == 2{
+            } else if deck.cards[deck.cards.endIndex-1].type == "sneak-peek" {
                 cardButton.setBackgroundImage(vergrootglas, for: .normal)
                 cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
                 cardButton.setTitle("", for: .normal)
@@ -230,11 +233,11 @@ class ViewController: UIViewController {
                 cardButton.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             }
             if deck.cards[deck.cards.endIndex-1].isFaceUp {
-                if deck.cards[deck.cards.endIndex-1].type == 1 {
+                if deck.cards[deck.cards.endIndex-1].type == "swap" {
                     cardButton.setBackgroundImage(ruil, for: .normal)
                     cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
                     cardButton.setTitle("", for: .normal)
-                } else if deck.cards[deck.cards.endIndex-1].type == 2{
+                } else if deck.cards[deck.cards.endIndex-1].type == "sneak-peek" {
                     cardButton.setBackgroundImage(vergrootglas, for: .normal)
                     cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
                     cardButton.setTitle("", for: .normal)
@@ -262,6 +265,7 @@ class ViewController: UIViewController {
         updateDeck(cardButton: actr1Buttons, deck: game.actrDeck1, actr1: true,actr2:false,actr3:false)
         updateDeck(cardButton: actr2Buttons, deck: game.actrDeck2,actr1:false,actr2:true,actr3:false)
         updateDeck(cardButton: actr3Buttons, deck: game.actrDeck3,actr1:false,actr2:false,actr3:true)
+
     }
    
     // todo: this function should also update all the representations of cards
@@ -397,59 +401,57 @@ class ViewController: UIViewController {
     }
     
     private func runACTR() {
-        game.initACTRModelActions(model: game.modelPlayer1, deck: game.actrDeck1)
-        game.initACTRModelActions(model: game.modelPlayer2, deck: game.actrDeck2)
-        game.initACTRModelActions(model: game.modelPlayer3, deck: game.actrDeck3)
-        while !game.isFinished {
-            game.cardsInit(ACTR: true)
-            self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
-            self.updateViewFromModel(updateDiscardPile: false)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-                
-                let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
-                if action != -1 {
-                    self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
-                    
+        if !game.isFinished {
+            game.initACTRModelActions(model: game.modelPlayer1, deck: game.actrDeck1)
+            game.initACTRModelActions(model: game.modelPlayer2, deck: game.actrDeck2)
+            game.initACTRModelActions(model: game.modelPlayer3, deck: game.actrDeck3)
+            game.isFinished = true
+        }
+        
+        game.cardsInit(ACTR: true)
+        self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
+        self.updateViewFromModel(updateDiscardPile: false)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+            if action != -1 {
+                self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
 //                    print(self.game.modelPlayer1.actions)
 //                    print(self.game.modelPlayer1.otherPlayer2.cards)
-                }
-                self.game.cardsInit(ACTR: true)
-                self.updateViewFromModel(updateDiscardPile: false)
-               DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
+            }
+            self.game.cardsInit(ACTR: true)
+           DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                 self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
                 self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
                 self.updateViewFromModel(updateDiscardPile: false)
-                    let (action1, position1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
-                    if action1 != -1 {
-                        self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
+                let (action1, position1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
+                if action1 != -1 {
+                    self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
 //                        print(self.game.modelPlayer2.actions)
 //                        print(self.game.modelPlayer2.otherPlayer2.cards)
-                    }
-                    self.game.cardsInit(ACTR: true)
-                    self.updateViewFromModel(updateDiscardPile: false)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.5    ) {
+                }
+                self.game.cardsInit(ACTR: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                     self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
                     self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
                     self.updateViewFromModel(updateDiscardPile: false)
-                        let (action2, position2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
-                        if action2 != -1 {
-                            self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
+                    self.updateViewFromModel(updateDiscardPile: false)
+                    let (action2, position2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
+                    if action2 != -1 {
+                        self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
 //                            print(self.game.modelPlayer3.actions)
 //                            print(self.game.modelPlayer3.otherPlayer2.cards)
-                        }
-                        self.game.cardsInit(ACTR: true)
-                        self.updateViewFromModel(updateDiscardPile: false)
-
                     }
-                self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
-                self.updateViewFromModel(updateDiscardPile: false)
+                    self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+                    self.updateViewFromModel(updateDiscardPile: false)
+                    self.game.cardsInit(ACTR: false)
+                    self.updateViewFromModel(updateDiscardPile: false)
+
                 }
-            }
-            game.cardsInit(ACTR: false)
-            updateViewFromModel(updateDiscardPile: false)
-            game.isFinished = true
         }
+//        game.cardsInit(ACTR: false)
+//        updateViewFromModel()
     }
+}
     
     
     override func viewDidLoad() {
@@ -460,7 +462,10 @@ class ViewController: UIViewController {
         self.beverBendeButton.setTitle("Start!", for: .normal)
         
         game = Game()
+
         updateViewFromModel(updateDiscardPile: true)
+
+        print("models loaded")
         game.modelPlayer1.loadModel(fileName: "beverbende")
         game.modelPlayer1.loadedModel = "beverbende"
         

@@ -17,18 +17,18 @@ class Deck {
         for _ in 0..<6 {
             // TODO: add correct cards to the deck when initialized
             for i in 0..<10 {
-                let card = Card(value: i, type: 0)
+                let card = Card(value: i)
                 cards += [card]
             }
         }
-//        for _ in 0..<10 {
-//            let card = Card(value: 100, type: 1)
-//            cards += [card]
-//        }
-//        for _ in 0..<7 {
-//            let card = Card(value: 100, type: 2)
-//            cards += [card]
-//        }
+        for _ in 0..<10 {
+            let card = Card(value: 5, type: "swap")
+            cards += [card]
+        }
+        for _ in 0..<7 {
+            let card = Card(value: 5, type: "sneak-peek")
+            cards += [card]
+        }
         // Shuffles the entire deck
         cards.shuffle()
     }
@@ -37,6 +37,16 @@ class Deck {
     private func createPlayerDeck(drawDeck: Deck) {
         for i in 0..<4 {
             drawCard(fromDeck: drawDeck, pos: i)
+        }
+    }
+    
+    public func reshuffleAndInsert(fromDeck: Deck) {
+        if self.cards.isEmpty {
+            let tmp = Deck()
+            let slice = fromDeck.cards.dropLast()
+            tmp.cards = Array(slice)
+            tmp.cards.shuffle()
+            self.cards = tmp.cards
         }
     }
     
@@ -74,6 +84,10 @@ class Deck {
         return cards[position].value
     }
     
+    public func returnStringAtPos(position: Int) -> String {
+        return cards[position].type
+    }
+    
     public func setCardValueAtPos(position: Int, value: Int) {
         cards[position].value = value
     }
@@ -89,8 +103,8 @@ class Deck {
     
     public func hideOuterCards() {
         // todo: set this to false
- //       self.cards[0].isFaceUp = false
-  //      self.cards[3].isFaceUp = false
+    //    self.cards[0].isFaceUp = false
+     //   self.cards[3].isFaceUp = false
     }
     
     public func makeCardsClickable(fourCards: Bool, setTrueOrFalse: Bool) {
@@ -159,7 +173,7 @@ class Deck {
     
     private func initFourCards() {
         for _ in 0..<4 {
-            let card = Card(value: 5, type:0)
+            let card = Card(value: 5)
             cards += [card]
         }
     }

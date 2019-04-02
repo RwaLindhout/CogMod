@@ -207,6 +207,7 @@ class Game {
             //Beverbende has been called by the model
             //TODO: Implement what happens when beverbende is called.
             beverBende() //geen idee wat deze functie doet maar hij is wel gedefined.
+            //functie die in viewcontroller staat aanpassen zodat het hier werkt 
         }
         
         
@@ -218,7 +219,13 @@ class Game {
         }else{
             model.modifyLastAction(slot: "discard", value: String(discardPile.returnCardAtPos(position: discardPile.cards.endIndex-1)))
         }
-        model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
+        if drawPile.returnStringAtPos(position: drawPile.cards.endIndex-1) == "peek" {
+            model.modifyLastAction(slot: "draw", value: "peek")
+        } else if drawPile.returnStringAtPos(position: drawPile.cards.endIndex-1) == "sneak-peek" {
+            model.modifyLastAction(slot: "draw", value: "sneak-peek")
+        } else {
+            model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
+        }
 
         model.run()
 
@@ -251,7 +258,6 @@ class Game {
         }
         model.run()
         print(model.buffers)
-        print(model.actions)
 
         // TODO: ACT-R Model actions are performed here
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
