@@ -218,7 +218,13 @@ class Game {
         }else{
             model.modifyLastAction(slot: "discard", value: String(discardPile.returnCardAtPos(position: discardPile.cards.endIndex-1)))
         }
-        model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
+        if drawPile.returnStringAtPos(position: drawPile.cards.endIndex-1) == "peek" {
+            model.modifyLastAction(slot: "draw", value: "peek")
+        } else if drawPile.returnStringAtPos(position: drawPile.cards.endIndex-1) == "sneak-peek" {
+            model.modifyLastAction(slot: "draw", value: "sneak-peek")
+        } else {
+            model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
+        }
 
         model.run()
 

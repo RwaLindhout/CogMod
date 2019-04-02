@@ -566,7 +566,7 @@
 
 ;############# Sneak peek Sequence #############
 
-(p compare-draw-sneak-peak
+(p compare-draw-sneak-peek
     =goal>
         isa             goal
         state           compare-draw
@@ -617,7 +617,7 @@
         position        =pos
 )
 
-(p update-card-after-peak
+(p update-card-after-peek
     =goal>
         state       peek-at-card
     =action>
@@ -655,7 +655,7 @@
         state           compare-draw
     =action>
         isa             moves                   ;Discard is no longer important seeing as you have already decided not to use that.
-        draw            swap                    ;Draw card has to be a sneak-peak card
+        draw            swap                    ;Draw card has to be a sneak-peek card
     =imaginal>
         max             =max
         max-pos         =max-pos
