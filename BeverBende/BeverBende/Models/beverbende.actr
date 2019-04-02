@@ -745,7 +745,7 @@
         lower           nil
         avg             =max
     +action>
-        isa             took-swap
+        action          took-swap
         player1         0
         pos1            =max-pos
         player2         =player

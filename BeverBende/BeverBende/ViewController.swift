@@ -419,6 +419,7 @@ class ViewController: UIViewController {
 //                    print(self.game.modelPlayer1.otherPlayer2.cards)
             }
             self.game.cardsInit(ACTR: true)
+            self.updateViewFromModel()
            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             
                 let (action1, position1, beverbende1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
@@ -432,6 +433,7 @@ class ViewController: UIViewController {
 //                        print(self.game.modelPlayer2.otherPlayer2.cards)
                 }
                 self.game.cardsInit(ACTR: true)
+                self.updateViewFromModel()
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                     self.updateViewFromModel()
                     let (action2, position2, beverbende2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)

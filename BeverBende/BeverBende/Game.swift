@@ -221,14 +221,13 @@ class Game {
         }else{
             model.modifyLastAction(slot: "discard", value: String(discardPile.returnCardAtPos(position: discardPile.cards.endIndex-1)))
         }
-        if drawPile.returnStringAtPos(position: drawPile.cards.endIndex-1) == "peek" {
-            model.modifyLastAction(slot: "draw", value: "peek")
+        if drawPile.returnStringAtPos(position: drawPile.cards.endIndex-1) == "swap" {
+            model.modifyLastAction(slot: "draw", value: "swap")
         } else if drawPile.returnStringAtPos(position: drawPile.cards.endIndex-1) == "sneak-peek" {
             model.modifyLastAction(slot: "draw", value: "sneak-peek")
         } else {
             model.modifyLastAction(slot: "draw", value: String(drawPile.returnCardAtPos(position: drawPile.cards.endIndex-1)))
         }
-
         model.run()
 
         //If the action required is a sneakpeek
@@ -277,11 +276,31 @@ class Game {
             // needed so that special cards still have avg of 5
             ACTRUpdateKnowledge(model: model, deck: deck, action: 2, position: position, value: value)
             return (2, position, false)
+        } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-swap" {
+            //Implement a swap
+            let position1 = Int((model.buffers["action"]?.slotvals["pos1"]?.number())!)
+            let position2 = Int((model.buffers["action"]?.slotvals["pos2"]?.number())!)
+            let model_player = Int((model.buffers["action"]?.slotvals["player1"]?.number())!)
+            let opponent = Int((model.buffers["action"]?.slotvals["player2"]?.number())!)
+            //Get the playernumbers in the correct swift convention
+            let model_deck =  getSwiftPlayerNumber(model: model.playerNumber, player: model_player)
+            let opponent_deck =  getSwiftPlayerNumber(model: model.playerNumber, player: opponent)
+            //Swap player1 pos1 with player 2 pos 2
+            model_deck.swapPlayerCardsAtPos(fromDeck: opponent_deck, posFrom: position2, posTo: position1)
+            //Historie wordt nog niet geupdate met een swap move
+            return (0, 0, false)
+        } else if model.buffers["action"]?.slotvals["action"]?.text() == "discard-swap" {
+            //Model discarded a swap, so nothing changes other than that the card goes from drawpile to discardpile
+            
+            return (-1, -1, false)
+        } else if model.buffers["action"]?.slotvals["action"]?.text() == "peek-done" {
+            //Model looked at one of its cards: representation needs to be updated and card from draw to discard. 
+            return (-1, -1, false)
         } else {
             return (-1, -1, false)
         }
     }
-    
+
     public func cardActions(pos: Int, pileClicked: Int, deck: Deck) {
         // if the drawPile is clicked
         if pileClicked == 1 {
@@ -414,6 +433,55 @@ class Game {
     
         }
         return(player,lowestpos, lowest)
+    }
+    
+    
+    public func getSwiftPlayerNumber(model: Int, player: Int) -> (Deck){
+        //Make sure the player numbers used in Swift match up with those in ACT-R
+        if(model == 1){
+            if(player == 0 ){
+                //The model is talking about itself
+                return actrDeck1
+            }else if(player == 1 ){
+                //First opponent of model 1 is model 2 in swift
+                return actrDeck2
+            }else if(player == 2 ){
+                //second opponent of model 1 is model 3 in swift
+                return actrDeck3
+            }else if(player == 3 ){
+                //Third opponent of model 1 is the human player in swift
+                return playerDeck
+            }
+        } else if(model == 2){
+            if(player == 0 ){
+                //The model is talking about itself
+                return actrDeck2
+            }else if(player == 1 ){
+                //First opponent of model 2 is model 3 in swift
+                return actrDeck3
+            }else if(player == 2 ){
+                //second opponent of model 2 is the human player in swift
+                return playerDeck
+            }else if(player == 3 ){
+                //Third opponent of model 2 is model 1 in swift
+                return actrDeck1
+            }
+        } else if(model == 3){
+            if(player == 0 ){
+                //The model is talking about itself
+                return actrDeck3
+            }else if(player == 1 ){
+                //First opponent of model 3 is the human player
+                return playerDeck
+            }else if(player == 2 ){
+                //second opponent of model 3 is model 1 in swift
+                return actrDeck1
+            }else if(player == 3 ){
+                //Third opponent of model 3 is model 2 in swift
+                return actrDeck2
+            }
+        }
+        return Deck()
     }
 
     public func beverBende(){
