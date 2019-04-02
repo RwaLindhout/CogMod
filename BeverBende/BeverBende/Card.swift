@@ -15,7 +15,7 @@ struct Card: Hashable {
 //        return lhs.identifier == rhs.identifier
 //    }
     
-    public var isFaceUp = true
+    public var isFaceUp = false
     public var isHighlighted = false
     public var isClickable = false
     public var isClicked = false

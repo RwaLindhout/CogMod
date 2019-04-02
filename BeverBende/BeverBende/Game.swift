@@ -19,7 +19,7 @@ class Game {
     public var modelPlayer2: ModelPlayer
     public var modelPlayer3: ModelPlayer
     public var isFinished: Bool = false
-    public var score = [0,0,0,0]
+    
     
     public func cardsInit(ACTR: Bool) {
         if ACTR {
@@ -422,10 +422,7 @@ class Game {
         actrDeck2.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
         actrDeck3.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
         
-        score[0] += playerDeck.sumCards()
-        score[1] += actrDeck1.sumCards()
-        score[2] += actrDeck2.sumCards()
-        score[3] += actrDeck3.sumCards()
+   
     }
     
 

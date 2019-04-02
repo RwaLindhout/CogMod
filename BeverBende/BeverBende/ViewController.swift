@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     let vergrootglas = UIImage(named: "vergrootglas.png")
     let ruil = UIImage(named: "ruil.png")
     
+    private var score = [0,0,0,0]
+    
     private lazy var game = Game()
     private lazy var newGame = Game()
     private var beverBendeCount = 0
@@ -25,7 +27,7 @@ class ViewController: UIViewController {
     // and the turn of the player should start, later this button should be used to call
     // BeverBende
     var clickCount = 0
-    
+    var endGame = false
 
     @IBAction func centralButton(_ sender: UIButton) {
         clickCount+=1
@@ -45,6 +47,7 @@ class ViewController: UIViewController {
             updateViewFromModel(updateDiscardPile: true)
             button.setTitle("BeverBende!", for: .normal)
         default:
+            endGame = true
             beverbende()
             break;
         }
@@ -53,6 +56,10 @@ class ViewController: UIViewController {
     public func beverbende(){
         game.beverBende()
         updateViewFromModel(updateDiscardPile: true)
+        score[0] += game.playerDeck.sumCards()
+        score[1] += game.actrDeck1.sumCards()
+        score[2] += game.actrDeck2.sumCards()
+        score[3] += game.actrDeck3.sumCards()
         beverBendeCount += 1
         if beverBendeCount == 5 {
             showscore(end: true)
@@ -69,6 +76,7 @@ class ViewController: UIViewController {
     
 
     @IBAction func drawPileClick(_ sender: UIButton) {
+
         pileClicked = 1
         game.drawPile.makeCardsFaceUp(fourCards: false, setTrueOrFalse: true)
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
@@ -116,12 +124,11 @@ class ViewController: UIViewController {
             }
         }
         pileClicked = 0
-        
         // todo: turn of human is over, now the act-r models should run
-
         runACTR()
         game.cardsInit(ACTR: false)
         updateViewFromModel(updateDiscardPile: true)
+        
     }
     
     @IBOutlet var playerButtons: [MyButton]!
@@ -138,7 +145,7 @@ class ViewController: UIViewController {
     }
     
     func showscore(end: Bool){
-        let alert = UIAlertController(title: "Score", message: "You: "+String(game.score[0])+"\nOpponent 1: "+String(game.score[1])+"\nOpponent 2: "+String(game.score[2])+"\nOpponent3: "+String(game.score[3]), preferredStyle: .alert)
+        let alert = UIAlertController(title: "Score", message: "You: "+String(score[0])+"\nOpponent 1: "+String(score[1])+"\nOpponent 2: "+String(score[2])+"\nOpponent3: "+String(score[3]), preferredStyle: .alert)
         if end{
             alert.addAction(UIAlertAction(title: "End Game", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
         } else {
@@ -261,11 +268,12 @@ class ViewController: UIViewController {
         updateDeck(cardButton: actr1Buttons, deck: game.actrDeck1, actr1: true,actr2:false,actr3:false)
         updateDeck(cardButton: actr2Buttons, deck: game.actrDeck2,actr1:false,actr2:true,actr3:false)
         updateDeck(cardButton: actr3Buttons, deck: game.actrDeck3,actr1:false,actr2:false,actr3:true)
-
     }
    
     // todo: this function should also update all the representations of cards
     private func updateACTRActions(action: Int, position: Int, deck: Deck) {
+        let alert = UIAlertController(title: "", message: "Your turn!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         var chooseDeck = 5
         let decks = [actr1Buttons,actr2Buttons,actr3Buttons]
         if deck === game.actrDeck1 {
@@ -307,6 +315,9 @@ class ViewController: UIViewController {
                             animations: {
                                 self.discardPile.transform = CGAffineTransform.identity
                                 self.updateViewFromModel(updateDiscardPile: true)
+                                if chooseDeck == 2 {
+                                    self.present(alert, animated: true)
+                                }
                         })
                     })
                 })
@@ -348,6 +359,9 @@ class ViewController: UIViewController {
                             animations: {
                                 self.discardPile.transform = CGAffineTransform.identity
                                 self.updateViewFromModel(updateDiscardPile: true)
+                                if chooseDeck == 2 {
+                                    self.present(alert, animated: true)
+                                }
                         })
                     })
                 }
@@ -373,24 +387,12 @@ class ViewController: UIViewController {
                                 animations: {
                                     button.transform = CGAffineTransform.identity
                                     self.discardPile.transform = CGAffineTransform.identity
+                                    self.updateViewFromModel(updateDiscardPile: true)
+                                    if chooseDeck == 2 {
+                                        self.present(alert, animated: true)
+                                    }
                             })
                         })
-                    UIViewPropertyAnimator.runningPropertyAnimator(
-                        withDuration: 1,
-                        delay: 2,
-                        options: [],
-                        animations: {
-                            self.discardPile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                    }, completion: { _ in
-                        UIViewPropertyAnimator.runningPropertyAnimator(
-                            withDuration: 1,
-                            delay: 0,
-                            options: [],
-                            animations: {
-                                self.discardPile.transform = CGAffineTransform.identity
-                                self.updateViewFromModel(updateDiscardPile: true)
-                        })
-                    })
                 }
             }
         }
@@ -403,11 +405,15 @@ class ViewController: UIViewController {
             game.initACTRModelActions(model: game.modelPlayer3, deck: game.actrDeck3)
             game.isFinished = true
         }
-        
         game.cardsInit(ACTR: true)
         self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         self.updateViewFromModel(updateDiscardPile: false)
+        
+        if endGame {
+            game.beverBende()
+        } else {
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            
             let (action, position, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
             if(beverbende == true){
                 self.beverbende()
@@ -418,8 +424,9 @@ class ViewController: UIViewController {
 //                    print(self.game.modelPlayer1.actions)
 //                    print(self.game.modelPlayer1.otherPlayer2.cards)
             }
-            self.game.cardsInit(ACTR: true)
+            
            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                self.game.cardsInit(ACTR: true)
                 self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
                 self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
                 self.updateViewFromModel(updateDiscardPile: false)
@@ -434,13 +441,12 @@ class ViewController: UIViewController {
 //                        print(self.game.modelPlayer2.actions)
 //                        print(self.game.modelPlayer2.otherPlayer2.cards)
                 }
-                self.game.cardsInit(ACTR: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-
+              DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                    self.game.cardsInit(ACTR: true)
                     self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
                     self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
                     self.updateViewFromModel(updateDiscardPile: false)
-            
+                
                     let (action2, position2, beverbende2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
                     if(beverbende2 == true){
                         self.beverbende()
@@ -451,17 +457,16 @@ class ViewController: UIViewController {
 //                            print(self.game.modelPlayer3.actions)
 //                            print(self.game.modelPlayer3.otherPlayer2.cards)
                     }
-                    self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
-                    self.updateViewFromModel(updateDiscardPile: false)
-                    self.game.cardsInit(ACTR: false)
-                    self.updateViewFromModel(updateDiscardPile: false)
-
+                
+                self.game.cardsInit(ACTR: false)
+                self.updateViewFromModel(updateDiscardPile: false)
                 }
+            }
         }
-//        game.cardsInit(ACTR: false)
-//        updateViewFromModel()
+        self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+        self.updateViewFromModel(updateDiscardPile: false)
+        }
     }
-}
     
     private func loadModels(game: Game){
         print("models loaded")
