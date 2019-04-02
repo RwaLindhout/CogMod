@@ -419,7 +419,7 @@ class ViewController: UIViewController {
 //                    print(self.game.modelPlayer1.otherPlayer2.cards)
             }
             self.game.cardsInit(ACTR: true)
-            self.updateViewFromModel()
+            self.updateViewFromModel(updateDiscardPile: false)
            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                 self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
                 self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
@@ -436,7 +436,7 @@ class ViewController: UIViewController {
 //                        print(self.game.modelPlayer2.otherPlayer2.cards)
                 }
                 self.game.cardsInit(ACTR: true)
-                self.updateViewFromModel()
+                self.updateViewFromModel(updateDiscardPile: false)
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
 
                     self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
