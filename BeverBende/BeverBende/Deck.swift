@@ -114,8 +114,8 @@ class Deck {
     
     public func hideOuterCards() {
         // todo: set this to false
-     //   self.cards[0].isFaceUp = false
-  //      self.cards[3].isFaceUp = false
+        self.cards[0].isFaceUp = false
+        self.cards[3].isFaceUp = false
     }
     
     public func makeCardsClickable(fourCards: Bool, setTrueOrFalse: Bool) {
@@ -172,6 +172,10 @@ class Deck {
                 self.cards[cards.endIndex-1].isFaceUp = false
             }
         }
+    }
+    
+    public func makeCardFaceUp(index: Int) {
+        self.cards[index].isFaceUp = true
     }
     
     public func sumCards() -> Int{
