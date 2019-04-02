@@ -47,7 +47,18 @@ class Deck {
             tmp.cards = Array(slice)
             tmp.cards.shuffle()
             self.cards = tmp.cards
+            fromDeck.cards = [fromDeck.cards.popLast()!]
         }
+    }
+    
+    // you call this function playerDeck.swapPlayerCardsAtPos(fromDeck: actrDeck1, posFrom: 3, posTo: 2)
+    public func swapPlayerCardsAtPos(fromDeck: Deck, posFrom: Int, posTo: Int) {
+        let card = fromDeck.cards[posFrom]
+        let card1 = self.cards[posTo]
+        fromDeck.cards.remove(at: posFrom)
+        self.cards.remove(at: posTo)
+        fromDeck.cards.insert(card, at: posFrom)
+        self.cards.insert(card1, at: posTo)
     }
     
     public func swapCardsAtPos(fromDeck: Deck, pos: Int) {
@@ -56,17 +67,6 @@ class Deck {
         self.cards.remove(at: pos)
         self.cards.insert(card!, at:pos)
         fromDeck.cards.append(card_1)
-    }
-    
-    // you call this function playerDeck.swapPlayerCardsAtPos(fromDeck: actrDeck1, posFrom: 3, posTo: 2)
-    //Van actrr deck naar playerdeck, pos from is van act-r deck en to is naar playaaahhh deck
-    public func swapPlayerCardsAtPos(fromDeck: Deck, posFrom: Int, posTo: Int) {
-        let card = fromDeck.cards[posFrom]
-        let card1 = self.cards[posTo]
-        fromDeck.cards.remove(at: posFrom)
-        self.cards.remove(at: posTo)
-        fromDeck.cards.insert(card1, at: posFrom)
-        self.cards.insert(card, at: posTo)
     }
     
     public func appendCard(fromDeck: Deck, pos: Int) {
@@ -82,6 +82,9 @@ class Deck {
     
     public func removeAndAppendCard(fromDeck: Deck) {
         let card = fromDeck.cards.popLast()
+        if card?.type == "peek" || card?.type == "sneak-peek" {
+            makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+        }
         self.cards.append(card!)
     }
     

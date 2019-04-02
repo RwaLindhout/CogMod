@@ -10,11 +10,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.301275"
+            timestampString = "575914470.802325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeverBende/ViewController.swift"
+            timestampString = "575914470.803026"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "updateACTRActions(action:position:deck:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +42,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.3018661"
+            timestampString = "575914470.803543"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "updateViewFromModel(updateDiscardPile:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeverBende/ViewController.swift"
+            timestampString = "575914470.8040479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeverBende/ViewController.swift"
+            timestampString = "575914470.804549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
             landmarkName = "updateACTRActions(action:position:deck:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.302295"
+            timestampString = "575914470.805059"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
             landmarkName = "updateACTRActions(action:position:deck:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.302716"
+            timestampString = "575914470.805674"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
             landmarkName = "updateACTRActions(action:position:deck:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.303142"
+            timestampString = "575914470.8061841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
             landmarkName = "updateACTRActions(action:position:deck:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,12 +138,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.30356"
+            timestampString = "575914470.806681"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
-            landmarkName = "runACTR()"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
+            landmarkName = "updateACTRActions(action:position:deck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +154,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.3039809"
+            timestampString = "575914470.807129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
-            landmarkName = "runACTR()"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
+            landmarkName = "updateACTRActions(action:position:deck:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeverBende/Deck.swift"
+            timestampString = "575914470.807573"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "reshuffleAndInsert(fromDeck:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeverBende/Deck.swift"
+            timestampString = "575914470.807651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "swapPlayerCardsAtPos(fromDeck:posFrom:posTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,44 +202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.304387"
+            timestampString = "575914470.807716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "432"
-            endingLineNumber = "432"
-            landmarkName = "runACTR()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.304794"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "431"
-            endingLineNumber = "431"
-            landmarkName = "runACTR()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeverBende/ViewController.swift"
-            timestampString = "575891767.305216"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
-            landmarkName = "runACTR()"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "beverbende()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

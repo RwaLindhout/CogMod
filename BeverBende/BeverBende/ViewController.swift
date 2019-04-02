@@ -63,6 +63,8 @@ class ViewController: UIViewController {
             game.resolveSpecialCards(deck: game.actrDeck2, pos: actr2Buttons[i].tag)
             game.resolveSpecialCards(deck: game.actrDeck3, pos: actr3Buttons[i].tag)
         }
+
+        updateViewFromModel(updateDiscardPile: true)
         score[0] += game.playerDeck.sumCards()
         score[1] += game.actrDeck1.sumCards()
         score[2] += game.actrDeck2.sumCards()
@@ -78,7 +80,6 @@ class ViewController: UIViewController {
         } else {
             showscore(end: false)
         }
-       
     }
     
     public func startNewGame(){
@@ -150,6 +151,10 @@ class ViewController: UIViewController {
         // If the previous pileClicked was the drawPile
         if pileClicked == 1 {
             game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
+            // if the drawPile is now empty, put discard cards on the draw pile
+            if game.drawPile.isEmpty() {
+                game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
+            }
         }
         pileClicked = 2
         
@@ -157,7 +162,7 @@ class ViewController: UIViewController {
         game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         game.drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
         //added the 2 followinglines to make a turn start by discarding a drawn card as well
-        //This mnight need to be changed again once the cards are no longer open.
+        //This might need to be changed again once the cards are no longer open.
         runACTR()
         game.cardsInit(ACTR: false)
         updateViewFromModel(updateDiscardPile: true)
@@ -200,7 +205,6 @@ class ViewController: UIViewController {
         runACTR()
         game.cardsInit(ACTR: false)
         updateViewFromModel(updateDiscardPile: true)
-        
     }
     
     @IBOutlet var playerButtons: [MyButton]!
@@ -217,7 +221,7 @@ class ViewController: UIViewController {
     }
     
     func showscore(end: Bool){
-        let alert = UIAlertController(title: "Score", message: "You: "+String(score[0])+"\nOpponent 1: "+String(score[1])+"\nOpponent 2: "+String(score[2])+"\nOpponent3: "+String(score[3]), preferredStyle: .alert)
+        let alert = UIAlertController(title: "Score", message: "You: "+String(score[0])+"\nOpponent 1: "+String(score[1])+"\nOpponent 2: "+String(score[2])+"\nOpponent 3: "+String(score[3]), preferredStyle: .alert)
         if end{
             alert.addAction(UIAlertAction(title: "End Game", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
         } else {
@@ -299,6 +303,11 @@ class ViewController: UIViewController {
                 cardButton.setBackgroundImage(nil, for: .normal)
                 cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
             }
+            if deck.cards[deck.cards.endIndex-1].isClickable {
+                cardButton.isEnabled = true
+            } else {
+                cardButton.isEnabled = false
+            }
         // If the deck is the drawPile
         } else {
             cardButton.setTitle("", for: UIControl.State.normal)
@@ -365,6 +374,10 @@ class ViewController: UIViewController {
         // if action is discard-draw
         if action == 0 {
             game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
+            // if the drawPile is now empty, put discard cards on the draw pile
+            if game.drawPile.isEmpty() {
+                game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
+            }
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: 1 ,
                 delay: 0,
@@ -407,6 +420,10 @@ class ViewController: UIViewController {
                 if button.tag == position{
                     game.cardActions(pos: button.tag, pileClicked: 1, deck: deck)
                     button.isEnabled = false
+                    // if the drawPile is now empty, put discard cards on the draw pile
+                    if game.drawPile.isEmpty() {
+                        game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
+                    }
                     UIViewPropertyAnimator.runningPropertyAnimator(
                         withDuration: 1,
                         delay: 0,

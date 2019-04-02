@@ -36,6 +36,9 @@ class Game {
             drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
             drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
             if discardPile.cards.isEmpty {
+                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: false)
+                discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+            } else {
                 discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
                 discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
             }
@@ -193,7 +196,7 @@ class Game {
         
         //Does the model wanna call beverbende?
         let my_score = model.buffers["action"]?.slotvals["total"]?.number()
-        if( callBeverbende(model: my_score!, opponent1: Double(model.otherPlayer2.sumCards()), opponent2: Double(model.otherPlayer3.sumCards()), opponent3: Double(model.humanPlayer.sumCards()))){
+        if( callBeverbende(model: my_score!, opponent1: Double(model.otherPlayer2.sumCards()), opponent2: Double(model.otherPlayer3.sumCards()), opponent3: Double(model.humanPlayer.sumCards()))) {
                //We wanna call beverbende
             model.modifyLastAction(slot: "isa", value: "beverbende")
             model.modifyLastAction(slot: "choice", value: "yes")
@@ -301,6 +304,7 @@ class Game {
         } else {
             return (-1, -1, false)
         }
+        // three other case: took-swap en discard-swap, peek-done
     }
 
     public func cardActions(pos: Int, pileClicked: Int, deck: Deck) {
@@ -311,6 +315,10 @@ class Game {
         } else if pileClicked == 2 {
             // if the discardPile is clicked
             deck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
+        }
+        if discardPile.cards[discardPile.cards.endIndex-1].type == "sneak-peek" ||
+            discardPile.cards[discardPile.cards.endIndex-1].type == "swap" {
+            discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
         }
     }
     
