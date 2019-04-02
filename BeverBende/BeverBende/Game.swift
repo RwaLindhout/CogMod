@@ -240,6 +240,7 @@ class Game {
                 model.modifyLastAction(slot: "isa", value: "peek")
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
+                return (3, position, false)
             } else {
                 //Look at the card chosen by ACT-R.
                 let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
@@ -247,6 +248,7 @@ class Game {
                 model.modifyLastAction(slot: "isa", value: "peek")
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
+                return (3, position, false)
                 }
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "find-swap"{
             let lowest_opponent_card = min_opponents(model: model)
@@ -484,11 +486,10 @@ class Game {
         return Deck()
     }
     
-    public func resolveSpecialCards(deck: Deck){
-        for i in 0..<4 {
-            if deck.returnStringAtPos(position: i) ==  "swap" || deck.returnStringAtPos(position: i) == "sneak-peek" {
-                deck.swapCardsAtPos(fromDeck: drawPile, pos: i)
-            }
+    public func resolveSpecialCards(deck: Deck, pos: Int){
+        while deck.returnStringAtPos(position: pos) ==  "swap" || deck.returnStringAtPos(position: pos) == "sneak-peek" {
+            deck.popAndInsertCard(fromDeck: drawPile, pos: pos)
+            
         }
     }
 

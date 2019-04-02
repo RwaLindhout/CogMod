@@ -57,24 +57,35 @@ class ViewController: UIViewController {
     }
     
     public func beverbende(){
-        game.resolveSpecialCards(deck: game.playerDeck)
-        game.resolveSpecialCards(deck: game.actrDeck1)
-        game.resolveSpecialCards(deck: game.actrDeck2)
-        game.resolveSpecialCards(deck: game.actrDeck3)
+        for i in 0..<4 {
+            game.resolveSpecialCards(deck: game.playerDeck, pos: playerButtons[i].tag)
+            game.resolveSpecialCards(deck: game.actrDeck1, pos: actr1Buttons[i].tag)
+            game.resolveSpecialCards(deck: game.actrDeck2, pos: actr2Buttons[i].tag)
+            game.resolveSpecialCards(deck: game.actrDeck3, pos: actr3Buttons[i].tag)
+        }
         score[0] += game.playerDeck.sumCards()
         score[1] += game.actrDeck1.sumCards()
         score[2] += game.actrDeck2.sumCards()
         score[3] += game.actrDeck3.sumCards()
+        game.playerDeck.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
+        game.actrDeck1.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
+        game.actrDeck2.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
+        game.actrDeck3.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
+        updateViewFromModel(updateDiscardPile: true)
         beverBendeCount += 1
         if beverBendeCount == 5 {
             showscore(end: true)
         } else {
             showscore(end: false)
         }
+       
+    }
+    
+    public func startNewGame(){
         newGame = Game()
         game = newGame
-        updateViewFromModel(updateDiscardPile: true)
-        loadModels(game: game)
+        self.updateViewFromModel(updateDiscardPile: true)
+        self.loadModels(game: game)
         clickCount = 0
         self.beverBendeButton.setTitle("Start!", for: .normal)
         // now everything should start again
@@ -135,7 +146,7 @@ class ViewController: UIViewController {
         chooseSwapCard(button: sender)
     }
     
-    @IBAction func discardPileClick(_ sender: UIButton) {
+    @IBAction func discardPileClick(_ sender: MyButton) {
         // If the previous pileClicked was the drawPile
         if pileClicked == 1 {
             game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
@@ -157,7 +168,10 @@ class ViewController: UIViewController {
             if playerButtons[i] == sender {
                 if pileClicked == 1 {
                     if special == 1{
+                        playerButtons[i].isEnabled = false
                         game.playerDeck.swapPlayerCardsAtPos(fromDeck: swapDeck, posFrom: swapPos, posTo: playerButtons[i].tag)
+                        game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
+                        
                     }
                     if special == 2 {
                         game.playerDeck.makeCardFaceUp(index: playerButtons[i].tag)
@@ -208,7 +222,7 @@ class ViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "End Game", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
         } else {
             alert.addAction(UIAlertAction(title: "Back to Menu", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in self.startNewGame()}))
         }
         self.present(alert, animated: true)
     }
@@ -233,6 +247,7 @@ class ViewController: UIViewController {
             } else {
                 button.setTitle("", for: UIControl.State.normal)
                 button.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+                button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 if actr1 == true {
                     let imageRotate = image!.rotate(radians: .pi/2)
                     button.setBackgroundImage(imageRotate, for: .normal)
@@ -266,20 +281,21 @@ class ViewController: UIViewController {
         // If deck is empty, make button transparent, for visibility this is now brown
         if deck.isEmpty() {
             cardButton.setTitle("", for: UIControl.State.normal)
+            cardButton.setBackgroundImage(nil, for: .normal)
             cardButton.backgroundColor = #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
         // If deck is not empty, and is a drawPile, then set
         // color to white, and the title to the last value in the collection of cards
         } else if !isDrawPile {
             if deck.cards[deck.cards.endIndex-1].type == "swap" {
                 cardButton.setBackgroundImage(ruil, for: .normal)
-                cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
+                cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
                 cardButton.setTitle("", for: .normal)
             } else if deck.cards[deck.cards.endIndex-1].type == "sneak-peek" {
                 cardButton.setBackgroundImage(vergrootglas, for: .normal)
-                cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
+                cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
                 cardButton.setTitle("", for: .normal)
             } else {
-                cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
+                cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
                 cardButton.setBackgroundImage(nil, for: .normal)
                 cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
             }
@@ -390,6 +406,7 @@ class ViewController: UIViewController {
             for button in buttons! {
                 if button.tag == position{
                     game.cardActions(pos: button.tag, pileClicked: 1, deck: deck)
+                    button.isEnabled = false
                     UIViewPropertyAnimator.runningPropertyAnimator(
                         withDuration: 1,
                         delay: 0,
@@ -428,12 +445,38 @@ class ViewController: UIViewController {
                     })
                 }
             }
-        // else action is took-discard
-        } else {
+
+        } else if action == 3 {
+            for button in buttons!{
+                if button.tag == position{
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 0,
+                        options: [],
+                        animations: {
+                            button.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                    }, completion: { _ in
+                        UIViewPropertyAnimator.runningPropertyAnimator(
+                            withDuration: 1,
+                            delay: 0,
+                            options: [],
+                            animations: {
+                                button.transform = CGAffineTransform.identity
+                                self.updateViewFromModel(updateDiscardPile: true)
+                                if chooseDeck == 2 {
+                                    self.present(alert, animated: true)
+                                }
+                        })
+                    })
+                }
+            }
+        } //else action is took-discard
+            else {
             //Look for the button corresponding to the correct tag
             for button in buttons! {
                 if button.tag == position{
                     game.cardActions(pos: button.tag, pileClicked: 2, deck: deck)
+                    button.isEnabled = false
                     UIViewPropertyAnimator.runningPropertyAnimator(
                         withDuration: 1,
                         delay: 0,
@@ -478,6 +521,7 @@ class ViewController: UIViewController {
             if !self.endGame {
                 self.game.playerDeck.makeCardsFaceUp(fourCards: true, setTrueOrFalse: false)
                 let (action, position, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+                
                 if(beverbende == true){
                     self.beverbende()
                     return
