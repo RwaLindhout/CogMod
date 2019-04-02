@@ -177,6 +177,10 @@ class Deck {
         }
     }
     
+    public func makeCardFaceUp(index: Int) {
+        self.cards[index].isFaceUp = true
+    }
+    
     public func sumCards() -> Int{
         var sum = 0
         for i in 0..<4{
