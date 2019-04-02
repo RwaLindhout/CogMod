@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     
     private lazy var game = Game()
     private lazy var newGame = Game()
-    private var score = [0,0,0,0]
     private var beverBendeCount = 0
     
     // 0 for nothing, 1 for drawPile, 2 for discardPile
@@ -55,10 +54,6 @@ class ViewController: UIViewController {
         game.beverBende()
         updateViewFromModel()
         beverBendeCount += 1
-        score[0] += game.playerDeck.sumCards()
-        score[1] += game.actrDeck1.sumCards()
-        score[2] += game.actrDeck2.sumCards()
-        score[3] += game.actrDeck3.sumCards()
         if beverBendeCount == 5 {
             showscore(end: true)
         } else {
@@ -66,6 +61,7 @@ class ViewController: UIViewController {
         }
         newGame = Game()
         game = newGame
+        loadModels(game: game)
         clickCount = 0
         self.beverBendeButton.setTitle("Start!", for: .normal)
         // now everything should start again
@@ -142,7 +138,7 @@ class ViewController: UIViewController {
     }
     
     func showscore(end: Bool){
-        let alert = UIAlertController(title: "Score", message: "You: "+String(score[0])+"\nOpponent 1: "+String(score[1])+"\nOpponent 2: "+String(score[2])+"\nOpponent3: "+String(score[3]), preferredStyle: .alert)
+        let alert = UIAlertController(title: "Score", message: "You: "+String(game.score[0])+"\nOpponent 1: "+String(game.score[1])+"\nOpponent 2: "+String(game.score[2])+"\nOpponent3: "+String(game.score[3]), preferredStyle: .alert)
         if end{
             alert.addAction(UIAlertAction(title: "End Game", style: .default, handler: { _ in self.performSegue(withIdentifier: "backToStart", sender: nil)}))
         } else {
@@ -412,7 +408,11 @@ class ViewController: UIViewController {
         game.cardsInit(ACTR: true)
         updateViewFromModel()
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            let (action, position) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+            let (action, position, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+            if(beverbende == true){
+                self.beverbende()
+                return
+            }
             if action != -1 {
                 self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
 //                    print(self.game.modelPlayer1.actions)
@@ -421,7 +421,11 @@ class ViewController: UIViewController {
             self.game.cardsInit(ACTR: true)
            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             
-                let (action1, position1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
+                let (action1, position1, beverbende1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
+                if(beverbende1 == true){
+                    self.beverbende()
+                    return
+                }
                 if action1 != -1 {
                     self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
 //                        print(self.game.modelPlayer2.actions)
@@ -430,7 +434,11 @@ class ViewController: UIViewController {
                 self.game.cardsInit(ACTR: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                     self.updateViewFromModel()
-                    let (action2, position2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
+                    let (action2, position2, beverbende2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
+                    if(beverbende2 == true){
+                        self.beverbende()
+                        return
+                    }
                     if action2 != -1 {
                         self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
 //                            print(self.game.modelPlayer3.actions)
@@ -447,6 +455,17 @@ class ViewController: UIViewController {
 //        updateViewFromModel()
     }
     
+    private func loadModels(game: Game){
+        print("models loaded")
+        game.modelPlayer1.loadModel(fileName: "beverbende")
+        game.modelPlayer1.loadedModel = "beverbende"
+        
+        game.modelPlayer2.loadModel(fileName: "beverbende")
+        game.modelPlayer2.loadedModel = "beverbende"
+        
+        game.modelPlayer3.loadModel(fileName: "beverbende")
+        game.modelPlayer3.loadedModel = "beverbende"
+    }
     
     override func viewDidLoad() {
        

@@ -19,6 +19,7 @@ class Game {
     public var modelPlayer2: ModelPlayer
     public var modelPlayer3: ModelPlayer
     public var isFinished: Bool = false
+    public var score = [0,0,0,0]
     
     public func cardsInit(ACTR: Bool) {
         if ACTR {
@@ -61,7 +62,7 @@ class Game {
         }
     }
     
-    ///Had dit bedacht om menselijke actie aan history toe te voegen, maar nog niet helemaal uitgedacht. 
+    //Add human actions to the history of the models
     public func ACTRUpdateHumanKnowledge(action: Int, position: Int, value: Int) {
         modelPlayer1.addActions(actionNum: action, player: 0, position: position, estimatedValue: value)
         modelPlayer2.addActions(actionNum: action, player: 0, position: position, estimatedValue: value)
@@ -74,6 +75,8 @@ class Game {
         model.modifyLastAction(slot: "left", value: String(deck.returnCardAtPos(position: 0)))
         model.modifyLastAction(slot: "right", value: String(deck.returnCardAtPos(position: 3)))
         model.run()
+        print(model.dm.chunks)
+        print("test")
         model.dm.addToDM(model.dm.chunks["imaginal2"]!)
         model.dm.addToDM(model.dm.chunks["imaginal3"]!)
         //debug print
@@ -81,7 +84,7 @@ class Game {
     }
     
     
-    public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int) {
+    public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int, Bool) {
         //Start by looking at previous moves mnade by opponents 
         print(model.playerNumber)
         for action in model.actions{
@@ -205,9 +208,8 @@ class Game {
         //Beverbende has been called, so that must be excecuted in swift as well.
          if model.buffers["action"]?.slotvals["action"]?.text() == "beverbende" {
             //Beverbende has been called by the model
-            //TODO: Implement what happens when beverbende is called.
-            beverBende() //geen idee wat deze functie doet maar hij is wel gedefined.
-            //functie die in viewcontroller staat aanpassen zodat het hier werkt 
+            //beverbende will be called from the ViewController
+            return(-2,-2,true)
         }
         
         
@@ -261,28 +263,22 @@ class Game {
 
         // TODO: ACT-R Model actions are performed here
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
-            return (0, 0)
+            return (0, 0, false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-draw" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
             // should be the value of the card that will be swapped and put in the discardpile later on
-            var value = deck.cards[position].value / 2
+            let value = deck.cards[position].value / 2
             // needed so that special cards still have avg of 5
-            if value == 50 {
-                value = 5
-            }
             ACTRUpdateKnowledge(model: model, deck: deck, action: 1, position: position, value: value)
-            return (1, position)
+            return (1, position, false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-discard" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
-            var value = discardPile.cards[discardPile.cards.endIndex-1].value  //hoeft niet te delen door twee hier, want je weet de waarde exact
+            let value = discardPile.cards[discardPile.cards.endIndex-1].value  //hoeft niet te delen door twee hier, want je weet de waarde exact
             // needed so that special cards still have avg of 5
-            if value == 50 {
-                value = 5
-            }
             ACTRUpdateKnowledge(model: model, deck: deck, action: 2, position: position, value: value)
-            return (2, position)
+            return (2, position, false)
         } else {
-            return (-1, -1)
+            return (-1, -1, false)
         }
     }
     
@@ -425,7 +421,13 @@ class Game {
         actrDeck1.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
         actrDeck2.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
         actrDeck3.makeCardsFaceUp(fourCards: true, setTrueOrFalse: true)
+        
+        score[0] += playerDeck.sumCards()
+        score[1] += actrDeck1.sumCards()
+        score[2] += actrDeck2.sumCards()
+        score[3] += actrDeck3.sumCards()
     }
+    
 
     public func initGame() {
         playerDeck.showOuterCards()
