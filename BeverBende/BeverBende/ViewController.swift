@@ -54,8 +54,10 @@ class ViewController: UIViewController {
     }
     
     public func beverbende(){
-        game.beverBende()
-        updateViewFromModel(updateDiscardPile: true)
+        game.resolveSpecialCards(deck: game.playerDeck)
+        game.resolveSpecialCards(deck: game.actrDeck1)
+        game.resolveSpecialCards(deck: game.actrDeck2)
+        game.resolveSpecialCards(deck: game.actrDeck3)
         score[0] += game.playerDeck.sumCards()
         score[1] += game.actrDeck1.sumCards()
         score[2] += game.actrDeck2.sumCards()
@@ -68,6 +70,7 @@ class ViewController: UIViewController {
         }
         newGame = Game()
         game = newGame
+        updateViewFromModel(updateDiscardPile: true)
         loadModels(game: game)
         clickCount = 0
         self.beverBendeButton.setTitle("Start!", for: .normal)
@@ -81,9 +84,41 @@ class ViewController: UIViewController {
         game.drawPile.makeCardsFaceUp(fourCards: false, setTrueOrFalse: true)
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
         game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
+        if game.drawPile.returnStringAtPos(position: game.drawPile.cards.endIndex-1) == "swap" {
+            game.actrDeck1.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
+            game.actrDeck2.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
+            game.actrDeck3.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
+        }
+        if game.drawPile.returnStringAtPos(position: game.drawPile.cards.endIndex-1) == "sneak=peek" {
+            
+        }
         updateViewFromModel(updateDiscardPile: true)
         
         // action: make playerdeck highlighted and clickable, and discardpile as well
+    }
+    
+    func chooseSwapCard(button: MyButton)  {
+        for i in 0..<4 {
+            if actr1Buttons[i] == button {
+                game.playerDeck.swapCardsAtPos(fromDeck: game.actrDeck1, pos: i)
+            }
+            if actr2Buttons[i] == button {
+                game.playerDeck.swapCardsAtPos(fromDeck: game.actrDeck2, pos: i)
+            }
+            if actr3Buttons[i] == button {
+                game.playerDeck.swapCardsAtPos(fromDeck: game.actrDeck3, pos: i)
+            }
+        }
+        game.actrDeck1.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck2.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck3.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+    }
+    
+    @IBAction func swapCardButton(_ sender: MyButton) {
+        if pileClicked == 1 {
+            chooseSwapCard(button: sender)
+        }
+        
     }
     
     @IBAction func discardPileClick(_ sender: UIButton) {
@@ -398,6 +433,11 @@ class ViewController: UIViewController {
         }
     }
     
+//    private func lastRound(player: Int) {
+//        let decks = [game.playerDeck,game.actrDeck1,game.actrDeck2,game.actrDeck3]
+        
+ //   }
+    
     private func runACTR() {
         if !game.isFinished {
             game.initACTRModelActions(model: game.modelPlayer1, deck: game.actrDeck1)
@@ -405,66 +445,69 @@ class ViewController: UIViewController {
             game.initACTRModelActions(model: game.modelPlayer3, deck: game.actrDeck3)
             game.isFinished = true
         }
+        
         game.cardsInit(ACTR: true)
+        
         self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         self.updateViewFromModel(updateDiscardPile: false)
         
-        if endGame {
-            game.beverBende()
-        } else {
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            
-            let (action, position, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
-            if(beverbende == true){
-                self.beverbende()
-                return
-            }
-            if action != -1 {
-                self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
-//                    print(self.game.modelPlayer1.actions)
-//                    print(self.game.modelPlayer1.otherPlayer2.cards)
-            }
-            
-           DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                self.game.cardsInit(ACTR: true)
-                self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
-                self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
-                self.updateViewFromModel(updateDiscardPile: false)
-     
-                let (action1, position1, beverbende1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
-                if(beverbende1 == true){
+            if !self.endGame {
+                let (action, position, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+                if(beverbende == true){
                     self.beverbende()
                     return
                 }
-                if action1 != -1 {
-                    self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
-//                        print(self.game.modelPlayer2.actions)
-//                        print(self.game.modelPlayer2.otherPlayer2.cards)
+                if action != -1 {
+                    self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
+    //                    print(self.game.modelPlayer1.actions)
+    //                    print(self.game.modelPlayer1.otherPlayer2.cards)
                 }
-              DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+
+               DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                     self.game.cardsInit(ACTR: true)
-                    self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
-                    self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
+                    self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+                    self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
                     self.updateViewFromModel(updateDiscardPile: false)
-                
-                    let (action2, position2, beverbende2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
-                    if(beverbende2 == true){
+         
+                    let (action1, position1, beverbende1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
+                    if(beverbende1 == true){
                         self.beverbende()
                         return
                     }
-                    if action2 != -1 {
-                        self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
-//                            print(self.game.modelPlayer3.actions)
-//                            print(self.game.modelPlayer3.otherPlayer2.cards)
+                    if action1 != -1 {
+                        self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
+    //                        print(self.game.modelPlayer2.actions)
+    //                        print(self.game.modelPlayer2.otherPlayer2.cards)
                     }
-                
-                self.game.cardsInit(ACTR: false)
-                self.updateViewFromModel(updateDiscardPile: false)
+
+                    self.game.cardsInit(ACTR: true)
+                    self.updateViewFromModel(updateDiscardPile: false)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+
+                        self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+                        self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
+                        self.updateViewFromModel(updateDiscardPile: false)
+                    
+                        let (action2, position2, beverbende2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
+                        if(beverbende2 == true){
+                            self.beverbende()
+                            return
+                        }
+                        if action2 != -1 {
+                            self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
+    //                            print(self.game.modelPlayer3.actions)
+    //                            print(self.game.modelPlayer3.otherPlayer2.cards)
+                        }
+                    
+                    self.game.cardsInit(ACTR: false)
+                    self.updateViewFromModel(updateDiscardPile: false)
+                    }
                 }
             }
-        }
-        self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
-        self.updateViewFromModel(updateDiscardPile: false)
+            self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+            self.updateViewFromModel(updateDiscardPile: false)
         }
     }
     
@@ -490,16 +533,7 @@ class ViewController: UIViewController {
         game = Game()
 
         updateViewFromModel(updateDiscardPile: true)
-
-        print("models loaded")
-        game.modelPlayer1.loadModel(fileName: "beverbende")
-        game.modelPlayer1.loadedModel = "beverbende"
-        
-        game.modelPlayer2.loadModel(fileName: "beverbende")
-        game.modelPlayer2.loadedModel = "beverbende"
-
-        game.modelPlayer3.loadModel(fileName: "beverbende")
-        game.modelPlayer3.loadedModel = "beverbende"
+        loadModels(game: game)
     }
 }
 
