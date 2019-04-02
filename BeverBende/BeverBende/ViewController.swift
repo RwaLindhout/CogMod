@@ -534,7 +534,7 @@ class ViewController: UIViewController {
         self.updateViewFromModel(updateDiscardPile: false)
         
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             if !self.endGame {
                 self.game.playerDeck.makeCardsFaceUp(fourCards: true, setTrueOrFalse: false)
                 let (action, position, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
@@ -547,7 +547,7 @@ class ViewController: UIViewController {
                     self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
                  }
 
-               DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+               DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                     self.game.cardsInit(ACTR: true)
                     self.game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
                     self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
@@ -564,7 +564,7 @@ class ViewController: UIViewController {
 
                     self.game.cardsInit(ACTR: true)
                     self.updateViewFromModel(updateDiscardPile: false)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
 
                         self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
                         self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
