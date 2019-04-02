@@ -82,6 +82,9 @@ class Deck {
     
     public func removeAndAppendCard(fromDeck: Deck) {
         let card = fromDeck.cards.popLast()
+        if card?.type == "peek" || card?.type == "sneak-peek" {
+            makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+        }
         self.cards.append(card!)
     }
     
@@ -114,8 +117,8 @@ class Deck {
     
     public func hideOuterCards() {
         // todo: set this to false
-   //     self.cards[0].isFaceUp = false
-     //   self.cards[3].isFaceUp = false
+        self.cards[0].isFaceUp = false
+        self.cards[3].isFaceUp = false
     }
     
     public func makeCardsClickable(fourCards: Bool, setTrueOrFalse: Bool) {

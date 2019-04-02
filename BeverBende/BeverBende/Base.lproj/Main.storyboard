@@ -113,6 +113,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr2Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="crh-QW-nI9"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sI4-HN-svg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSH-mc-FKh" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -131,6 +132,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr2Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TaR-SC-9Gq"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sad-kU-JPo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6c-fz-2X6" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -149,6 +151,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr2Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J8Y-Zk-yZU"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zn5-UJ-CQh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8p-HU-stZ" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -167,6 +170,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr2Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Glf-6X-A3h"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6s6-OK-bbr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -297,6 +301,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr3Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PAd-th-9Bv"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Jl-hD-Axm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQM-Pd-UQl" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -315,6 +320,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr3Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dht-RR-DR1"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gb1-by-0Wm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjc-Az-ZhG" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -333,6 +339,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr3Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Alb-Pl-6y9"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xMP-Oo-63G"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sH5-Zb-4sw" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -351,6 +358,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr3Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sgE-pE-iUD"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VSJ-Nw-kAZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -384,6 +392,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr1Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OEr-YF-OBn"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tyo-rT-1fv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0R6-NN-Ira" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -402,6 +411,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr1Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pNw-KI-Zct"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RyA-eI-ZqS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUo-vz-J3d" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -420,6 +430,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr1Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4kL-vM-x18"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q7t-1n-Wqy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM8-fm-BOR" customClass="MyButton" customModule="BeverBende" customModuleProvider="target">
@@ -438,6 +449,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="actr1Button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VY4-wq-s8F"/>
+                                            <action selector="chooseSwapCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kOg-7d-JTI"/>
                                         </connections>
                                     </button>
                                 </subviews>
