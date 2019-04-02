@@ -207,6 +207,7 @@ class Game {
             //Beverbende has been called by the model
             //TODO: Implement what happens when beverbende is called.
             beverBende() //geen idee wat deze functie doet maar hij is wel gedefined.
+            //functie die in viewcontroller staat aanpassen zodat het hier werkt 
         }
         
         
@@ -257,7 +258,6 @@ class Game {
         }
         model.run()
         print(model.buffers)
-        print(model.actions)
 
         // TODO: ACT-R Model actions are performed here
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {

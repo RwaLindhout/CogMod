@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     let ruil = UIImage(named: "ruil.png")
     
     private lazy var game = Game()
+    private lazy var newGame = Game()
     private var score = [0,0,0,0]
     private var beverBendeCount = 0
     
@@ -50,7 +51,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func beverbende(){
+    public func beverbende(){
         game.beverBende()
         updateViewFromModel()
         beverBendeCount += 1
@@ -63,7 +64,7 @@ class ViewController: UIViewController {
         } else {
             showscore(end: false)
         }
-        let newGame = Game()
+        newGame = Game()
         game = newGame
         clickCount = 0
         self.beverBendeButton.setTitle("Start!", for: .normal)
@@ -442,6 +443,8 @@ class ViewController: UIViewController {
                 }
             }
         }
+//        game.cardsInit(ACTR: false)
+//        updateViewFromModel()
     }
     
     
@@ -454,6 +457,7 @@ class ViewController: UIViewController {
         
         game = Game()
         updateViewFromModel()
+        print("models loaded")
         game.modelPlayer1.loadModel(fileName: "beverbende")
         game.modelPlayer1.loadedModel = "beverbende"
         
