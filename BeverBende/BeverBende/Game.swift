@@ -196,6 +196,8 @@ class Game {
         
         //Does the model wanna call beverbende?
         let my_score = model.buffers["action"]?.slotvals["total"]?.number()
+        print(model.buffers)
+        print(my_score)
         if( callBeverbende(model: my_score!, opponent1: Double(model.otherPlayer2.sumCards()), opponent2: Double(model.otherPlayer3.sumCards()), opponent3: Double(model.humanPlayer.sumCards()))) {
                //We wanna call beverbende
             model.modifyLastAction(slot: "isa", value: "beverbende")
@@ -243,6 +245,7 @@ class Game {
                 model.modifyLastAction(slot: "isa", value: "peek")
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
+                model.run()
                 return (3, position, false)
             } else {
                 //Look at the card chosen by ACT-R.
@@ -251,6 +254,7 @@ class Game {
                 model.modifyLastAction(slot: "isa", value: "peek")
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
+                model.run()
                 return (3, position, false)
                 }
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "find-swap"{
@@ -260,9 +264,10 @@ class Game {
             model.modifyLastAction(slot: "player", value: String(lowest_opponent_card.0))
             model.modifyLastAction(slot: "position", value: String(lowest_opponent_card.1))
             model.modifyLastAction(slot: "value", value: String(lowest_opponent_card.2))
+            model.run()
             
         }
-        model.run()
+        
         print(model.buffers)
 
         // TODO: ACT-R Model actions are performed here
