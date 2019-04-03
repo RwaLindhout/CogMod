@@ -75,12 +75,13 @@ class ViewController: UIViewController {
         } else {
             showscore(end: false)
         }
-//        newGame = Game()
-//        game = newGame
-//        updateViewFromModel(updateDiscardPile: true)
-//        loadModels(game: game)
-//        clickCount = 0
-//        self.beverBendeButton.setTitle("Start!", for: .normal)
+        newGame = Game()
+        game = newGame
+        game.cardsInit(ACTR: false)
+        updateViewFromModel(updateDiscardPile: true)
+        loadModels(game: game)
+        clickCount = 0
+        self.beverBendeButton.setTitle("Start!", for: .normal)
         // now everything should start again
     }
     
@@ -153,11 +154,11 @@ class ViewController: UIViewController {
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
         game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         game.drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-        //added the 2 followinglines to make a turn start by discarding a drawn card as well
+        //added the 2 following lines to make a turn start by discarding a drawn card as well
         //This might need to be changed again once the cards are no longer open.
-        runACTR()
-        game.cardsInit(ACTR: false)
-        updateViewFromModel(updateDiscardPile: true)
+//        runACTR()
+//        game.cardsInit(ACTR: false)
+//        updateViewFromModel(updateDiscardPile: true)
     }
     
     @IBAction func playerClick(_ sender: MyButton) {
@@ -289,11 +290,6 @@ class ViewController: UIViewController {
                 cardButton.backgroundColor = #colorLiteral(red: 0.09182383865, green: 0.6374981999, blue: 0.09660141915, alpha: 1)
                 cardButton.setBackgroundImage(nil, for: .normal)
                 cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
-            }
-            if deck.cards[deck.cards.endIndex-1].isClickable {
-                cardButton.isEnabled = true
-            } else {
-                cardButton.isEnabled = false
             }
         // If the deck is the drawPile
         } else {

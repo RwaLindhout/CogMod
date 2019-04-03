@@ -295,10 +295,10 @@ class Game {
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "discard-swap" {
             //Model discarded a swap, so nothing changes other than that the card goes from drawpile to discardpile
             
-            return (-1, -1, false)
+            return (0, 0, false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "peek-done" {
             //Model looked at one of its cards: representation needs to be updated and card from draw to discard. 
-            return (-1, -1, false)
+            return (0, 0, false)
         } else {
             return (-1, -1, false)
         }

@@ -10,7 +10,6 @@ import Foundation
 //9* ruilen, 7 * spieken
 class Deck {
     private(set) var cards = [Card]()
-//    public var isClickedPile = false
     
     // TODO: Create a complete deck with 52 cards
     public func createDeck() {
