@@ -24,7 +24,7 @@ class Deck {
             let card = Card(value: 5, type: "swap")
             cards += [card]
         }
-        for _ in 0..<7 {
+        for _ in 0..<8 {
             let card = Card(value: 5, type: "sneak-peek")
             cards += [card]
         }

@@ -243,6 +243,7 @@ class Game {
                 model.modifyLastAction(slot: "isa", value: "peek")
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
+                return (3, position, false)
             } else {
                 //Look at the card chosen by ACT-R.
                 let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
@@ -250,6 +251,7 @@ class Game {
                 model.modifyLastAction(slot: "isa", value: "peek")
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
+                return (3, position, false)
                 }
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "find-swap"{
             let lowest_opponent_card = min_opponents(model: model)
