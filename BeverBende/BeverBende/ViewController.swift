@@ -161,11 +161,11 @@ class ViewController: UIViewController {
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
         game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         game.drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-        //added the 2 followinglines to make a turn start by discarding a drawn card as well
+        //added the 2 following lines to make a turn start by discarding a drawn card as well
         //This might need to be changed again once the cards are no longer open.
-        runACTR()
-        game.cardsInit(ACTR: false)
-        updateViewFromModel(updateDiscardPile: true)
+//        runACTR()
+//        game.cardsInit(ACTR: false)
+//        updateViewFromModel(updateDiscardPile: true)
     }
     
     @IBAction func playerClick(_ sender: MyButton) {
@@ -302,11 +302,6 @@ class ViewController: UIViewController {
                 cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
                 cardButton.setBackgroundImage(nil, for: .normal)
                 cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
-            }
-            if deck.cards[deck.cards.endIndex-1].isClickable {
-                cardButton.isEnabled = true
-            } else {
-                cardButton.isEnabled = false
             }
         // If the deck is the drawPile
         } else {
