@@ -58,28 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "576162832.1278059"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
-            landmarkName = "updateDeck(cardButton:deck:isDrawPile:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeverBende/ViewController.swift"
             timestampString = "576162832.128234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "427"
             endingLineNumber = "427"
-            landmarkName = "updateACTRActions(action:position:deck:)"
+            landmarkName = "updateACTRActions(action:position:positionTo:deck:opponent_deck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "435"
             endingLineNumber = "435"
-            landmarkName = "updateACTRActions(action:position:deck:)"
+            landmarkName = "updateACTRActions(action:position:positionTo:deck:opponent_deck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "445"
             endingLineNumber = "445"
-            landmarkName = "updateACTRActions(action:position:deck:)"
+            landmarkName = "updateACTRActions(action:position:positionTo:deck:opponent_deck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -127,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "444"
             endingLineNumber = "444"
-            landmarkName = "updateACTRActions(action:position:deck:)"
+            landmarkName = "updateACTRActions(action:position:positionTo:deck:opponent_deck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -143,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "436"
             endingLineNumber = "436"
-            landmarkName = "updateACTRActions(action:position:deck:)"
+            landmarkName = "updateACTRActions(action:position:positionTo:deck:opponent_deck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -175,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
             endingLineNumber = "55"
-            landmarkName = "swapPlayerCardsAtPos(fromDeck:posFrom:posTo:)"
+            landmarkName = "reshuffleAndInsert(fromDeck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -207,23 +191,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "446"
             endingLineNumber = "446"
-            landmarkName = "updateACTRActions(action:position:deck:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeverBende/ViewController.swift"
-            timestampString = "576162832.132601"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
-            landmarkName = "updateDeck(cardButton:deck:isDrawPile:)"
+            landmarkName = "updateACTRActions(action:position:positionTo:deck:opponent_deck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

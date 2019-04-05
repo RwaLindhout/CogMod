@@ -13,7 +13,7 @@ class Deck {
     
     // TODO: Create a complete deck with 52 cards
     public func createDeck() {
-        for _ in 0..<6 {
+        for _ in 0..<1 {
             // TODO: add correct cards to the deck when initialized
             for i in 0..<10 {
                 let card = Card(value: i)
@@ -40,6 +40,11 @@ class Deck {
     }
     
     public func reshuffleAndInsert(fromDeck: Deck) {
+        for i in 0..<cards.endIndex {
+            if cards[i].type == "sneak-peek" || cards[i].type == "swap" {
+                cards[i].setValue(value: 5)
+            }
+        }
         if self.cards.isEmpty {
             let tmp = Deck()
             let slice = fromDeck.cards.dropLast()
@@ -69,7 +74,10 @@ class Deck {
     }
     
     public func appendCard(fromDeck: Deck, pos: Int) {
-        let card = fromDeck.cards[pos]
+        var card = fromDeck.cards[pos]
+        if card.type == "swap" || card.type == "sneak-peek" {
+            card.setValue(value: 10)
+        }
         self.cards.append(card)
     }
     
@@ -81,7 +89,7 @@ class Deck {
     
     public func removeAndAppendCard(fromDeck: Deck) {
         let card = fromDeck.cards.popLast()
-        if card?.type == "peek" || card?.type == "sneak-peek" {
+        if card?.type == "swap" || card?.type == "sneak-peek" {
             makeCardsClickable(fourCards: false, setTrueOrFalse: false)
         }
         self.cards.append(card!)
@@ -176,8 +184,8 @@ class Deck {
         }
     }
     
-    public func makeCardFaceUp(index: Int) {
-        self.cards[index].isFaceUp = true
+    public func makeCardFaceUp(index: Int, bool: Bool) {
+        self.cards[index].isFaceUp = bool
     }
     
     public func sumCards() -> Int{
