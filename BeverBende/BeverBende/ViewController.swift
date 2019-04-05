@@ -629,8 +629,6 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             if !self.endGame {
                 self.game.playerDeck.makeCardsFaceUp(fourCards: true, setTrueOrFalse: false)
-                self.game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
-                self.game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
                 let (action, position, positionTo, opponent_deck, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
                 
                 if(beverbende == true){
