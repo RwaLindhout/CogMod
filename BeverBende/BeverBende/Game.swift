@@ -87,7 +87,7 @@ class Game {
     }
     
     
-    public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int, Bool) {
+    public func ACTRModelActions(model: ModelPlayer, deck: Deck) -> (Int, Int, Int, Deck?, Bool) {
         //Start by looking at previous moves mnade by opponents 
         print(model.playerNumber)
         for action in model.actions{
@@ -197,7 +197,6 @@ class Game {
         //Does the model wanna call beverbende?
         let my_score = model.buffers["action"]?.slotvals["total"]?.number()
         print(model.buffers)
-        print(my_score)
         if( callBeverbende(model: my_score!, opponent1: Double(model.otherPlayer2.sumCards()), opponent2: Double(model.otherPlayer3.sumCards()), opponent3: Double(model.humanPlayer.sumCards()))) {
                //We wanna call beverbende
             model.modifyLastAction(slot: "isa", value: "beverbende")
@@ -214,7 +213,7 @@ class Game {
          if model.buffers["action"]?.slotvals["action"]?.text() == "beverbende" {
             //Beverbende has been called by the model
             //beverbende will be called from the ViewController
-            return(-2,-2,true)
+            return(-2,-2,-2,nil,true)
         }
         
         
@@ -246,7 +245,7 @@ class Game {
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
                 model.run()
-                return (3, position, false)
+                return (3, position,-2, nil, false)
             } else {
                 //Look at the card chosen by ACT-R.
                 let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
@@ -255,7 +254,7 @@ class Game {
                 model.modifyLastAction(slot: "position", value: String(position))
                 model.modifyLastAction(slot: "value", value: String(value))
                 model.run()
-                return (3, position, false)
+                return (3, position,-2, nil, false)
                 }
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "find-swap"{
             let lowest_opponent_card = min_opponents(model: model)
@@ -270,23 +269,23 @@ class Game {
         
         print(model.buffers)
 
-        // TODO: ACT-R Model actions are performed here
+        // TODO: ACT-R Model actions are performed heres
         if model.buffers["action"]?.slotvals["action"]?.text() == "discard-draw" {
-            return (0, 0, false)
+            return (0, 0,-2,nil,false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-draw" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
             // should be the value of the card that will be swapped and put in the discardpile later on
             let value = deck.cards[position].value / 2
             // needed so that special cards still have avg of 5
             ACTRUpdateKnowledge(model: model, deck: deck, action: 1, position: position, value: value)
-            return (1, position, false)
+            return (1, position,-2,nil,false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-discard" {
             let position = Int((model.buffers["action"]?.slotvals["position"]?.number())!)
             let value = discardPile.cards[discardPile.cards.endIndex-1].value  //hoeft niet te delen door twee hier, want je weet de waarde exact
             // needed so that special cards still have avg of 5
             ACTRUpdateKnowledge(model: model, deck: deck, action: 2, position: position, value: value)
-            return (2, position, false)
-        } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-swap" {
+            return (2, position,-2, nil, false)
+        } else if model.buffers["action"]?.slotvals["action"]?.text() == "took-swap"{
             //Implement a swap
             let position1 = Int((model.buffers["action"]?.slotvals["pos1"]?.number())!)
             let position2 = Int((model.buffers["action"]?.slotvals["pos2"]?.number())!)
@@ -298,16 +297,16 @@ class Game {
             //Swap player1 pos1 with player 2 pos 2
             model_deck.swapPlayerCardsAtPos(fromDeck: opponent_deck, posFrom: position2, posTo: position1)
             //Historie wordt nog niet geupdate met een swap move
-            return (0, 0, false)
+            return (4, position1, position2, opponent_deck, false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "discard-swap" {
             //Model discarded a swap, so nothing changes other than that the card goes from drawpile to discardpile
             
-            return (0, 0, false)
+            return (0, 0, -2, nil, false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "peek-done" {
             //Model looked at one of its cards: representation needs to be updated and card from draw to discard. 
-            return (0, 0, false)
+            return (0, 0, -2, nil, false)
         } else {
-            return (-1, -1, false)
+            return (-1, -1, -2, nil, false)
         }
         // three other case: took-swap en discard-swap, peek-done
     }
@@ -511,7 +510,7 @@ class Game {
     }
     
     public func hideCard() {
-        playerDeck.hideOuterCards()
+    //    playerDeck.hideOuterCards()
     }
     
     init() {

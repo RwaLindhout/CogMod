@@ -10,13 +10,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeverBende/ViewController.swift"
-            timestampString = "575896930.084704"
+            timestampString = "576162606.064401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "updateDeck(cardButton:deck:actr1:actr2:actr3:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeverBende/Game.swift"
+            timestampString = "576162606.064483"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "ACTRModelActions(model:deck:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BeverBende.Game.ACTRModelActions(model: BeverBende.ModelPlayer, deck: BeverBende.Deck) -&gt; (Swift.Int, Swift.Int, Swift.Bool)"
+                  moduleName = "BeverBende"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/s2954524/Documents/CogMod/BeverBende/BeverBende/Game.swift"
+                  timestampString = "576158728.671654"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "290"
+                  endingLineNumber = "290"
+                  offsetFromSymbolStart = "40417">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BeverBende.Game.ACTRModelActions(model: BeverBende.ModelPlayer, deck: BeverBende.Deck) -&gt; (Swift.Int, Swift.Int, Swift.Bool)"
+                  moduleName = "BeverBende"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/s2954524/Documents/CogMod/BeverBende/BeverBende/Game.swift"
+                  timestampString = "576158728.675299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "290"
+                  endingLineNumber = "290"
+                  offsetFromSymbolStart = "53819">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

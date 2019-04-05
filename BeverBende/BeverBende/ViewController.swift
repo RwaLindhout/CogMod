@@ -29,8 +29,8 @@ class ViewController: UIViewController {
     private var clickCount = 0
     private var endGame = false
     private var special = 0
-    private lazy var swapDeck = game.playerDeck
-    private var swapPos = 5
+    private lazy var swapDeck: Deck? = nil
+    private var swapPos: Int? = nil
     
     @IBAction func centralButton(_ sender: UIButton) {
         clickCount+=1
@@ -137,6 +137,9 @@ class ViewController: UIViewController {
         game.actrDeck1.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
         game.actrDeck2.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
         game.actrDeck3.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
         game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         updateViewFromModel(updateDiscardPile: true)
@@ -161,11 +164,14 @@ class ViewController: UIViewController {
         game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: true)
         game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
         game.drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-        //added the 2 following lines to make a turn start by discarding a drawn card as well
-        //This might need to be changed again once the cards are no longer open.
-//        runACTR()
-//        game.cardsInit(ACTR: false)
-//        updateViewFromModel(updateDiscardPile: true)
+        
+        
+        game.actrDeck1.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck2.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck3.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck1.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+        game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
     }
     
     @IBAction func playerClick(_ sender: MyButton) {
@@ -174,12 +180,12 @@ class ViewController: UIViewController {
                 if pileClicked == 1 {
                     if special == 1{
                         playerButtons[i].isEnabled = false
-                        game.playerDeck.swapPlayerCardsAtPos(fromDeck: swapDeck, posFrom: swapPos, posTo: playerButtons[i].tag)
+                        game.playerDeck.swapPlayerCardsAtPos(fromDeck: swapDeck!, posFrom: swapPos!, posTo: playerButtons[i].tag)
                         game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
                         
                     }
                     if special == 2 {
-                        game.playerDeck.makeCardFaceUp(index: playerButtons[i].tag)
+                        game.playerDeck.makeCardFaceUp(index: playerButtons[i].tag, bool: true)
                         game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
                     } else {
                     // put card on discardPile and put drawPile card on correct place in playerDeck
@@ -237,7 +243,7 @@ class ViewController: UIViewController {
             let button = cardButton[index]
             let card = deck.cards[button.tag]
             if card.isFaceUp {
-                button.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                button.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                 if card.type == "swap" {
                     button.setBackgroundImage(ruil, for: .normal)
                     button.setTitle("", for: .normal)
@@ -292,14 +298,14 @@ class ViewController: UIViewController {
         } else if !isDrawPile {
             if deck.cards[deck.cards.endIndex-1].type == "swap" {
                 cardButton.setBackgroundImage(ruil, for: .normal)
-                cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                cardButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                 cardButton.setTitle("", for: .normal)
             } else if deck.cards[deck.cards.endIndex-1].type == "sneak-peek" {
                 cardButton.setBackgroundImage(vergrootglas, for: .normal)
-                cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                cardButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                 cardButton.setTitle("", for: .normal)
             } else {
-                cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                cardButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                 cardButton.setBackgroundImage(nil, for: .normal)
                 cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
             }
@@ -316,17 +322,19 @@ class ViewController: UIViewController {
             if deck.cards[deck.cards.endIndex-1].isFaceUp {
                 if deck.cards[deck.cards.endIndex-1].type == "swap" {
                     cardButton.setBackgroundImage(ruil, for: .normal)
-                    cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                    cardButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                     cardButton.setTitle("", for: .normal)
                 } else if deck.cards[deck.cards.endIndex-1].type == "sneak-peek" {
                     cardButton.setBackgroundImage(vergrootglas, for: .normal)
-                    cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                    cardButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                     cardButton.setTitle("", for: .normal)
                 } else {
-                    cardButton.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+                    cardButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                     cardButton.setBackgroundImage(nil, for: .normal)
                     cardButton.setTitle(String(deck.cards[deck.cards.endIndex-1].value), for:UIControl.State.normal)
                 }
+            } else {
+                cardButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             }
             if deck.cards[deck.cards.endIndex-1].isClickable {
                 cardButton.isEnabled = true
@@ -353,17 +361,31 @@ class ViewController: UIViewController {
     }
     
     // todo: this function should also update all the representations of cards
-    private func updateACTRActions(action: Int, position: Int, deck: Deck) {
+    private func updateACTRActions(action: Int, position: Int, positionTo: Int, deck: Deck, opponent_deck: Deck?) {
         let alert = UIAlertController(title: "", message: "Your turn!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         var chooseDeck = 5
-        let decks = [actr1Buttons,actr2Buttons,actr3Buttons]
+        var opponentDeck = 5
+        let decks = [playerButtons, actr1Buttons,actr2Buttons,actr3Buttons]
+        var opponentButtons: [MyButton]?
         if deck === game.actrDeck1 {
-            chooseDeck = 0
-        } else if deck === game.actrDeck2 {
             chooseDeck = 1
-        } else if deck === game.actrDeck3 {
+        } else if deck === game.actrDeck2 {
             chooseDeck = 2
+        } else if deck === game.actrDeck3 {
+            chooseDeck = 3
+        }
+        if opponent_deck != nil {
+            if opponent_deck === game.playerDeck {
+                opponentDeck = 0
+            } else if opponent_deck === game.actrDeck1 {
+                opponentDeck = 1
+            } else if opponent_deck === game.actrDeck2 {
+                opponentDeck = 2
+            } else if opponent_deck === game.actrDeck3 {
+                opponentDeck = 3
+            }
+            opponentButtons = decks[opponentDeck]
         }
         let buttons = decks[chooseDeck]
         // if action is discard-draw
@@ -401,7 +423,7 @@ class ViewController: UIViewController {
                             animations: {
                                 self.discardPile.transform = CGAffineTransform.identity
                                 self.updateViewFromModel(updateDiscardPile: true)
-                                if chooseDeck == 2 {
+                                if chooseDeck == 3 {
                                     self.present(alert, animated: true)
                                 }
                         })
@@ -414,11 +436,13 @@ class ViewController: UIViewController {
             for button in buttons! {
                 if button.tag == position{
                     game.cardActions(pos: button.tag, pileClicked: 1, deck: deck)
-                    button.isEnabled = false
-                    // if the drawPile is now empty, put discard cards on the draw pile
                     if game.drawPile.isEmpty() {
                         game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
                     }
+                    button.isEnabled = false
+                    deck.makeCardFaceUp(index: button.tag, bool: false)
+                    // if the drawPile is now empty, put discard cards on the draw pile
+                    
                     UIViewPropertyAnimator.runningPropertyAnimator(
                         withDuration: 1,
                         delay: 0,
@@ -450,7 +474,7 @@ class ViewController: UIViewController {
                             animations: {
                                 self.discardPile.transform = CGAffineTransform.identity
                                 self.updateViewFromModel(updateDiscardPile: true)
-                                if chooseDeck == 2 {
+                                if chooseDeck == 3 {
                                     self.present(alert, animated: true)
                                 }
                         })
@@ -461,6 +485,12 @@ class ViewController: UIViewController {
         } else if action == 3 {
             for button in buttons!{
                 if button.tag == position{
+                    button.isEnabled = false
+                    deck.makeCardFaceUp(index: button.tag, bool: false)
+                    game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
+                    if game.drawPile.isEmpty() {
+                        game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
+                    }
                     UIViewPropertyAnimator.runningPropertyAnimator(
                         withDuration: 1,
                         delay: 0,
@@ -475,14 +505,81 @@ class ViewController: UIViewController {
                             animations: {
                                 button.transform = CGAffineTransform.identity
                                 self.updateViewFromModel(updateDiscardPile: true)
-                                if chooseDeck == 2 {
+                        })
+                    })
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 2,
+                        options: [],
+                        animations: {
+                            self.discardPile.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                    }, completion: { _ in
+                        UIViewPropertyAnimator.runningPropertyAnimator(
+                            withDuration: 1,
+                            delay: 0,
+                            options: [],
+                            animations: {
+                                self.discardPile.transform = CGAffineTransform.identity
+                                self.updateViewFromModel(updateDiscardPile: true)
+                                if chooseDeck == 3 {
                                     self.present(alert, animated: true)
                                 }
                         })
                     })
                 }
             }
-        } //else action is took-discard
+        } else if action == 4 && opponentButtons != nil {
+             for button in buttons! {
+                if button.tag == position{
+                    button.isEnabled = false
+                    deck.makeCardFaceUp(index: button.tag, bool: false)
+                    game.discardPile.removeAndAppendCard(fromDeck: game.drawPile)
+                    if game.drawPile.isEmpty() {
+                        game.drawPile.reshuffleAndInsert(fromDeck: game.discardPile)
+                    }
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 0,
+                        options: [],
+                        animations: {
+                            button.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                    }, completion: { _ in
+                        UIViewPropertyAnimator.runningPropertyAnimator(
+                            withDuration: 1,
+                            delay: 0,
+                            options: [],
+                            animations: {
+                                button.transform = CGAffineTransform.identity
+                        })
+                    })
+                }
+            }
+            for opponentButton in opponentButtons! {
+                if opponentButton.tag == position{
+                    deck.makeCardFaceUp(index: opponentButton.tag, bool: false)
+                    UIViewPropertyAnimator.runningPropertyAnimator(
+                        withDuration: 1,
+                        delay: 0,
+                        options: [],
+                        animations: {
+                            opponentButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                    }, completion: { _ in
+                        UIViewPropertyAnimator.runningPropertyAnimator(
+                            withDuration: 1,
+                            delay: 0,
+                            options: [],
+                            animations: {
+                                opponentButton.transform = CGAffineTransform.identity
+                                self.updateViewFromModel(updateDiscardPile: true)
+                                if chooseDeck == 3 {
+                                    self.present(alert, animated: true)
+                                }
+                        })
+                    })
+                }
+            }
+        
+        }//else action is took-discard
             else {
             //Look for the button corresponding to the correct tag
             for button in buttons! {
@@ -505,7 +602,7 @@ class ViewController: UIViewController {
                                     button.transform = CGAffineTransform.identity
                                     self.discardPile.transform = CGAffineTransform.identity
                                     self.updateViewFromModel(updateDiscardPile: true)
-                                    if chooseDeck == 2 {
+                                    if chooseDeck == 3 {
                                         self.present(alert, animated: true)
                                     }
                             })
@@ -532,14 +629,16 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             if !self.endGame {
                 self.game.playerDeck.makeCardsFaceUp(fourCards: true, setTrueOrFalse: false)
-                let (action, position, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
+                self.game.playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
+                self.game.playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
+                let (action, position, positionTo, opponent_deck, beverbende) = self.game.ACTRModelActions(model: self.game.modelPlayer1, deck: self.game.actrDeck1)
                 
                 if(beverbende == true){
                     self.beverbende()
                     return
                 }
                 if action != -1 {
-                    self.updateACTRActions(action: action, position: position, deck: self.game.actrDeck1)
+                    self.updateACTRActions(action: action, position: position, positionTo: positionTo, deck: self.game.actrDeck1, opponent_deck: opponent_deck)
                  }
 
                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
@@ -548,13 +647,13 @@ class ViewController: UIViewController {
                     self.game.actrDeck2.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
                     self.updateViewFromModel(updateDiscardPile: false)
          
-                    let (action1, position1, beverbende1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
+                    let (action1, position1, positionTo1, opponent_deck1, beverbende1) = self.game.ACTRModelActions(model: self.game.modelPlayer2, deck: self.game.actrDeck2)
                     if(beverbende1 == true){
                         self.beverbende()
                         return
                     }
                     if action1 != -1 {
-                        self.updateACTRActions(action: action1, position: position1, deck: self.game.actrDeck2)
+                        self.updateACTRActions(action: action1, position: position1, positionTo: positionTo1,deck: self.game.actrDeck2, opponent_deck: opponent_deck1)
                     }
 
                     self.game.cardsInit(ACTR: true)
@@ -565,13 +664,13 @@ class ViewController: UIViewController {
                         self.game.actrDeck3.makeCardsHighlighted(fourCards: true, setTrueOrFalse: true)
                         self.updateViewFromModel(updateDiscardPile: false)
                     
-                        let (action2, position2, beverbende2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
+                        let (action2, position2, positionTo2, opponent_deck2, beverbende2) = self.game.ACTRModelActions(model: self.game.modelPlayer3, deck: self.game.actrDeck3)
                         if(beverbende2 == true){
                             self.beverbende()
                             return
                         }
                         if action2 != -1 {
-                            self.updateACTRActions(action: action2, position: position2, deck: self.game.actrDeck3)
+                            self.updateACTRActions(action: action2, position: position2,positionTo: positionTo2, deck: self.game.actrDeck3, opponent_deck: opponent_deck2)
                          }
                 
                     self.game.cardsInit(ACTR: false)
