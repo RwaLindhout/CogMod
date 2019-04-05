@@ -42,7 +42,7 @@ class ModelPlayer: Model {
             } else if player == 3 {
                 otherPlayer3.setCardValueAtPos(position: position, value: estimatedValue)
             }
-        } else if player == 3 {
+        } else if playerNumber == 3 {
             if player == 1 {
                 otherPlayer2.setCardValueAtPos(position: position, value: estimatedValue)
             } else if player == 2 {

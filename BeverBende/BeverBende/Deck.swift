@@ -17,18 +17,18 @@ class Deck {
         for _ in 0..<6 {
             // TODO: add correct cards to the deck when initialized
             for i in 0..<10 {
-                let card = Card(value: i, type: 0)
+                let card = Card(value: i)
                 cards += [card]
             }
         }
-//        for _ in 0..<10 {
-//            let card = Card(value: 100, type: 1)
-//            cards += [card]
-//        }
-//        for _ in 0..<7 {
-//            let card = Card(value: 100, type: 2)
-//            cards += [card]
-//        }
+        for _ in 0..<10 {
+            let card = Card(value: 5, type: "swap")
+            cards += [card]
+        }
+        for _ in 0..<8 {
+            let card = Card(value: 5, type: "sneak-peek")
+            cards += [card]
+        }
         // Shuffles the entire deck
         cards.shuffle()
     }
@@ -38,6 +38,27 @@ class Deck {
         for i in 0..<4 {
             drawCard(fromDeck: drawDeck, pos: i)
         }
+    }
+    
+    public func reshuffleAndInsert(fromDeck: Deck) {
+        if self.cards.isEmpty {
+            let tmp = Deck()
+            let slice = fromDeck.cards.dropLast()
+            tmp.cards = Array(slice)
+            tmp.cards.shuffle()
+            self.cards = tmp.cards
+            fromDeck.cards = [fromDeck.cards.popLast()!]
+        }
+    }
+    
+    // you call this function playerDeck.swapPlayerCardsAtPos(fromDeck: actrDeck1, posFrom: 3, posTo: 2)
+    public func swapPlayerCardsAtPos(fromDeck: Deck, posFrom: Int, posTo: Int) {
+        let card = fromDeck.cards[posFrom]
+        let card1 = self.cards[posTo]
+        fromDeck.cards.remove(at: posFrom)
+        self.cards.remove(at: posTo)
+        fromDeck.cards.insert(card, at: posFrom)
+        self.cards.insert(card1, at: posTo)
     }
     
     public func swapCardsAtPos(fromDeck: Deck, pos: Int) {
@@ -61,6 +82,9 @@ class Deck {
     
     public func removeAndAppendCard(fromDeck: Deck) {
         let card = fromDeck.cards.popLast()
+        if card?.type == "peek" || card?.type == "sneak-peek" {
+            makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+        }
         self.cards.append(card!)
     }
     
@@ -72,6 +96,10 @@ class Deck {
     
     public func returnCardAtPos(position: Int) -> Int {
         return cards[position].value
+    }
+    
+    public func returnStringAtPos(position: Int) -> String {
+        return cards[position].type
     }
     
     public func setCardValueAtPos(position: Int, value: Int) {
@@ -89,8 +117,8 @@ class Deck {
     
     public func hideOuterCards() {
         // todo: set this to false
-   //     self.cards[0].isFaceUp = false
-     //   self.cards[3].isFaceUp = false
+        self.cards[0].isFaceUp = false
+        self.cards[3].isFaceUp = false
     }
     
     public func makeCardsClickable(fourCards: Bool, setTrueOrFalse: Bool) {
@@ -149,6 +177,10 @@ class Deck {
         }
     }
     
+    public func makeCardFaceUp(index: Int) {
+        self.cards[index].isFaceUp = true
+    }
+    
     public func sumCards() -> Int{
         var sum = 0
         for i in 0..<4{
@@ -159,7 +191,7 @@ class Deck {
     
     private func initFourCards() {
         for _ in 0..<4 {
-            let card = Card(value: 5, type:0)
+            let card = Card(value: 5)
             cards += [card]
         }
     }
