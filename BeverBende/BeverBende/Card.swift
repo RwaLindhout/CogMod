@@ -9,7 +9,7 @@
 import Foundation
 
 struct Card: Hashable {
-    public var isFaceUp = false
+    public var isFaceUp = true
     public var isHighlighted = false
     public var isClickable = false
     public var isClicked = false

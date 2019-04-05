@@ -35,13 +35,12 @@ class Game {
         } else {
             drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
             drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-            if discardPile.cards.isEmpty {
-                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: false)
-                discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
-            } else {
-                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
-                discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-            }
+//            if discardPile.cards.isEmpty {
+//                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: false)
+//                discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+//            } else {
+            discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+            discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
         }
     }
     // took-drawpile action = 1
