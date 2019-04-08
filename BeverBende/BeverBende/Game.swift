@@ -22,23 +22,17 @@ class Game {
     
     
     public func cardsInit(ACTR: Bool) {
+        discardPile.makeCardsFaceUp(fourCards: false, setTrueOrFalse: true)
         if ACTR {
-            drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: false)
+            drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
             drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
             playerDeck.makeCardsClickable(fourCards: true, setTrueOrFalse: false)
             playerDeck.makeCardsHighlighted(fourCards: true, setTrueOrFalse: false)
-            if discardPile.cards.isEmpty {
-                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: false)
-                discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
-
-            }
+            discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
+            discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
         } else {
             drawPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
             drawPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
-//            if discardPile.cards.isEmpty {
-//                discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: false)
-//                discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
-//            } else {
             discardPile.makeCardsHighlighted(fourCards: false, setTrueOrFalse: true)
             discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: true)
         }
@@ -263,7 +257,6 @@ class Game {
             model.modifyLastAction(slot: "position", value: String(lowest_opponent_card.1))
             model.modifyLastAction(slot: "value", value: String(lowest_opponent_card.2))
             model.run()
-            
         }
         
         print(model.buffers)
@@ -299,7 +292,6 @@ class Game {
             return (4, position1, position2, opponent_deck, false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "discard-swap" {
             //Model discarded a swap, so nothing changes other than that the card goes from drawpile to discardpile
-            
             return (0, 0, -2, nil, false)
         } else if model.buffers["action"]?.slotvals["action"]?.text() == "peek-done" {
             //Model looked at one of its cards: representation needs to be updated and card from draw to discard. 
@@ -307,7 +299,6 @@ class Game {
         } else {
             return (-1, -1, -2, nil, false)
         }
-        // three other case: took-swap en discard-swap, peek-done
     }
 
     public func cardActions(pos: Int, pileClicked: Int, deck: Deck) {
@@ -317,8 +308,11 @@ class Game {
             deck.popAndInsertCard(fromDeck: drawPile, pos: pos)
         } else if pileClicked == 2 {
             // if the discardPile is clicked
+            discardPile.makeCardsFaceUp(fourCards: false, setTrueOrFalse: false)
+            discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
             deck.swapCardsAtPos(fromDeck: discardPile, pos: pos)
         }
+        discardPile.makeCardsFaceUp(fourCards: false, setTrueOrFalse: true)
         if discardPile.cards[discardPile.cards.endIndex-1].type == "sneak-peek" ||
             discardPile.cards[discardPile.cards.endIndex-1].type == "swap" {
             discardPile.makeCardsClickable(fourCards: false, setTrueOrFalse: false)
@@ -509,7 +503,7 @@ class Game {
     }
     
     public func hideCard() {
-    //    playerDeck.hideOuterCards()
+        playerDeck.hideOuterCards()
     }
     
     init() {

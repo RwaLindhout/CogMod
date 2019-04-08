@@ -13,7 +13,7 @@ class Deck {
     
     // TODO: Create a complete deck with 52 cards
     public func createDeck() {
-        for _ in 0..<1 {
+        for _ in 0..<10 {
             // TODO: add correct cards to the deck when initialized
             for i in 0..<10 {
                 let card = Card(value: i)
@@ -39,30 +39,37 @@ class Deck {
         }
     }
     
+    // DrawPile is empty (Drawpile is self, fromDeck is discardPile)
     public func reshuffleAndInsert(fromDeck: Deck) {
-        for i in 0..<cards.endIndex {
-            if cards[i].type == "sneak-peek" || cards[i].type == "swap" {
-                cards[i].setValue(value: 5)
+        // Make sure that all the values of the special cards are set back to 5
+        for i in 0..<fromDeck.cards.endIndex {
+            if fromDeck.cards[i].type == "sneak-peek" || fromDeck.cards[i].type == "swap" {
+                fromDeck.cards[i].setValue(value: 5)
             }
         }
-        if self.cards.isEmpty {
-            let tmp = Deck()
-            let slice = fromDeck.cards.dropLast()
-            tmp.cards = Array(slice)
-            tmp.cards.shuffle()
-            self.cards = tmp.cards
-            fromDeck.cards = [fromDeck.cards.popLast()!]
+        // Create a tmp deck which is a copy of the discardPile with the last card dropped
+        let tmp = Deck()
+        let slice = fromDeck.cards.dropLast()
+        tmp.cards = Array(slice)
+        tmp.cards.shuffle()
+        // Set all the cards to faceDown
+        for i in 0..<tmp.cards.endIndex {
+            tmp.cards[i].isFaceUp = false
         }
+        // Overwrite drawPile with the tmp deck
+        self.cards = tmp.cards
+        // Set discardPile to be only the last card of the pile
+        fromDeck.cards = [fromDeck.cards.popLast()!]
     }
     
-    // you call this function playerDeck.swapPlayerCardsAtPos(fromDeck: actrDeck1, posFrom: 3, posTo: 2)
+    // you call this function playerDeck.swapPlayerCardsAtPos(fromDeck: actrDeck1, posFrom: 3, posTo: 2) PosTo corresponds with self.cards[PosTo]
     public func swapPlayerCardsAtPos(fromDeck: Deck, posFrom: Int, posTo: Int) {
         let card = fromDeck.cards[posFrom]
         let card1 = self.cards[posTo]
         fromDeck.cards.remove(at: posFrom)
         self.cards.remove(at: posTo)
-        fromDeck.cards.insert(card, at: posFrom)
-        self.cards.insert(card1, at: posTo)
+        fromDeck.cards.insert(card1, at: posFrom)
+        self.cards.insert(card, at: posTo)
     }
     
     public func swapCardsAtPos(fromDeck: Deck, pos: Int) {
@@ -78,19 +85,26 @@ class Deck {
         if card.type == "swap" || card.type == "sneak-peek" {
             card.setValue(value: 10)
         }
+        // to do: maybe set this to true
+        // card.isFaceUp = true
         self.cards.append(card)
     }
     
     public func popAndInsertCard(fromDeck: Deck, pos: Int) {
-        let card = fromDeck.cards.popLast()
+        var card = fromDeck.cards.popLast()
+        card?.isClickable = false
         self.cards.remove(at: pos)
         self.cards.insert(card!, at:pos)
     }
     
     public func removeAndAppendCard(fromDeck: Deck) {
-        let card = fromDeck.cards.popLast()
+        var card = fromDeck.cards.popLast()
+        card?.isFaceUp = true
         if card?.type == "swap" || card?.type == "sneak-peek" {
-            makeCardsClickable(fourCards: false, setTrueOrFalse: false)
+            card?.setValue(value: 10)
+            card?.isClickable = false
+        } else {
+            card?.isClickable = true
         }
         self.cards.append(card!)
     }
@@ -124,8 +138,8 @@ class Deck {
     
     public func hideOuterCards() {
         // todo: set this to false
-//        self.cards[0].isFaceUp = false
-//        self.cards[3].isFaceUp = false
+        self.cards[0].isFaceUp = false
+        self.cards[3].isFaceUp = false
     }
     
     public func makeCardsClickable(fourCards: Bool, setTrueOrFalse: Bool) {
